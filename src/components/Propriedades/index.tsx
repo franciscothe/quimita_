@@ -189,7 +189,7 @@ export const TodasMaterias: Materia[] = [
       },
       {
         linkLicao: './L22',
-        nomeLicao: 'L22 - quação de Clapeyron 2',
+        nomeLicao: 'L22 - equação de Clapeyron 2',
         url: 'https://www.youtube.com/embed/22uy_oOGo0U',
         apostila:
           'https://drive.google.com/file/d/1gSyru32QG-yvA9tPsHWx5Kv2X_8Pb9Og/preview'
@@ -952,7 +952,7 @@ export const TodasMaterias: Materia[] = [
     licoes: [
       {
         linkLicao: './L118',
-        nomeLicao: 'L118 - >Número de Oxidação (Nox)',
+        nomeLicao: 'L118 - Número de Oxidação (Nox)',
         url: 'https://www.youtube.com/embed/zCCIKvryTy8',
         apostila:
           'https://drive.google.com/file/d/1jIGO5feuRUrmxQUrhb0CBLIwsOVZBHg1/preview'
