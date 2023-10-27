@@ -189,7 +189,7 @@ export const TodasMaterias: Materia[] = [
       },
       {
         linkLicao: './L22',
-        nomeLicao: 'L22 - equação de Clapeyron 2',
+        nomeLicao: 'L22 - Equação de Clapeyron 2',
         url: 'https://www.youtube.com/embed/22uy_oOGo0U',
         apostila:
           'https://drive.google.com/file/d/1gSyru32QG-yvA9tPsHWx5Kv2X_8Pb9Og/preview'
