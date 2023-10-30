@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 import { BotaoClaro } from '../../components/Botao/styles'
+import { Link } from 'react-router-dom'
 
 export const StyledInput = styled.input`
   width: 100%;
@@ -35,7 +36,7 @@ export const DivCriarConta = styled.div`
   justify-content: center;
   display: flex;
 `
-export const LinkCriarConta = styled.a`
+export const LinkCriarConta = styled(Link)`
   text-decoration: none;
   color: #20b9e2;
 `

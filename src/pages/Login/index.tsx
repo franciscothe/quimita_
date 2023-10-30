@@ -66,7 +66,7 @@ const FormularioLogin: React.FC = () => {
         <BtnEnviar type="submit">ENTRAR</BtnEnviar>
       </form>
       <DivCriarConta>
-        <LinkCriarConta href=""> CRIAR CONTA</LinkCriarConta>
+        <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
       </DivCriarConta>
     </Container>
   )
