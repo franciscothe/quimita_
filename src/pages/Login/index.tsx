@@ -10,7 +10,6 @@ import {
   StyledInput
 } from './styles'
 import Logotipo from '../../components/Logo'
-import { BotaoClaro } from '../../components/Botao/styles'
 import { cores } from '../../styles'
 
 const FormularioLogin: React.FC = () => {

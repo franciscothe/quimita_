@@ -48,9 +48,10 @@ export const SmallButton = styled(BotaoClaro)`
   font-size: 16px;
   padding: 5px 10px;
   margin: 50px 0px;
-  color: #e1915c9c
+  color: #e1915c9c;
   background-color: #bbe7f580;
 `
 export const NavLogin = styled.div`
   margin-top: 20px;
+  margin-bottom: 20px;
 `

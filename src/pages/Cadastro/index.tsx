@@ -1,6 +1,7 @@
-import { Container } from '@mui/material'
 import React, { useState } from 'react'
-import { BtnEnviar, StyledInput } from '../Login/styles'
+import { BtnEnviar, NavLogin, SmallButton, StyledInput } from '../Login/styles'
+import { cores } from '../../styles'
+import { Container } from '@mui/material'
 
 const CadastroForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const CadastroForm = () => {
     confirmacaoSenha: ''
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
     setFormData({
       ...formData,
@@ -20,15 +21,19 @@ const CadastroForm = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    // Aqui você pode adicionar a lógica para lidar com os dados do formulário
     console.log('Dados do formulário:', formData)
-    // Por exemplo, pode enviar os dados para a API, etc.
+    // Lógica para manipular os dados do formulário, como enviar para uma API, etc.
   }
 
   return (
     <Container>
+      <NavLogin>
+        <SmallButton to="/Sumario" color={cores.laranjaClaro}>
+          LIÇÕES
+        </SmallButton>
+      </NavLogin>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nome">Nome:</label>
