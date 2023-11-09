@@ -6,6 +6,9 @@ export const HeaderSumario = styled.header`
   display: flex;
   align-items: center;
   color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 6;
 
   img {
     width: 40px;
