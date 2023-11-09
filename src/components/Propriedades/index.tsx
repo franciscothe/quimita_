@@ -1,5 +1,6 @@
-interface Materia {
+export interface Materia {
   nomeMateria: string
+  id: string
   fundo1: string
   fundo2: string
   licoes: Licao[]
@@ -17,6 +18,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Quimica Geral',
     fundo1: '#DDC3F2',
     fundo2: '#fbf3ff',
+    id: '1',
     licoes: [
       {
         linkLicao: './L1',
@@ -115,6 +117,8 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Leis Ponderais',
     fundo1: '#86d0fb',
     fundo2: '#ceedff',
+    id: '2',
+
     licoes: [
       {
         linkLicao: './L14',
@@ -150,6 +154,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Gases',
     fundo1: '#f694f1',
     fundo2: '#f4d5fb',
+    id: '3',
     licoes: [
       {
         linkLicao: './L18',
@@ -270,6 +275,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Cálculo Estequiométrico',
     fundo1: '#b079f3',
     fundo2: '#c2a3e7',
+    id: '4',
     licoes: [
       {
         linkLicao: './L32',
@@ -347,6 +353,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Cristalografia',
     fundo1: '#e99403',
     fundo2: '#ffcb9e',
+    id: '5',
     licoes: [
       {
         linkLicao: './L41',
@@ -368,6 +375,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Termoquímica',
     fundo1: '#fa4a47',
     fundo2: '#ffb0b0',
+    id: '6',
     licoes: [
       {
         linkLicao: './L43',
@@ -480,6 +488,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Soluções',
     fundo1: '#18c738',
     fundo2: '#baffc0',
+    id: '7',
     licoes: [
       {
         linkLicao: './L57',
@@ -634,6 +643,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Cinética Química',
     fundo1: '#f38a44',
     fundo2: '#f9d1b1',
+    id: '8',
     licoes: [
       {
         linkLicao: './L78',
@@ -711,6 +721,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Coloides',
     fundo1: '#c1f870',
     fundo2: '#ebffcf',
+    id: '9',
     licoes: [
       {
         linkLicao: './L88',
@@ -732,6 +743,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Equilíbrio Molecular',
     fundo1: '#04a99c',
     fundo2: '#97dbd6',
+    id: '10',
     licoes: [
       {
         linkLicao: './L90',
@@ -802,6 +814,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Equilíbrio Iônico',
     fundo1: '#0772e3',
     fundo2: '#a7d2ff',
+    id: '11',
     licoes: [
       {
         linkLicao: './L99',
@@ -949,6 +962,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Eletroquímica',
     fundo1: '#e3d107',
     fundo2: '#f5efab',
+    id: '12',
     licoes: [
       {
         linkLicao: './L118',
@@ -1106,6 +1120,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Propriedades Coligativas',
     fundo1: '#ff8c57',
     fundo2: '#ffe3d6',
+    id: '13',
     licoes: [
       {
         linkLicao: './L139',
@@ -1156,6 +1171,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Radioatividade',
     fundo1: '#8ce005',
     fundo2: '#e5ffbc',
+    id: '14',
     licoes: [
       {
         linkLicao: './L145',
@@ -1221,6 +1237,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Funções Inorgânicas',
     fundo1: '#d9ff2f',
     fundo2: '#f5ffc7',
+    id: '15',
     licoes: [
       {
         linkLicao: './L153',
@@ -1299,6 +1316,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Funções Inorgânicas: Reações',
     fundo1: '#d9ff2f',
     fundo2: '#f5ffd7',
+    id: '16',
     licoes: [
       {
         linkLicao: './L163',
@@ -1358,6 +1376,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Reações dos Óxidos',
     fundo1: '#d9ff2f',
     fundo2: '#f5ffe7',
+    id: '17',
     licoes: [
       {
         linkLicao: './L170',
@@ -1427,6 +1446,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Estrutura Atômica',
     fundo1: '#8550e7',
     fundo2: '#e1d1ff',
+    id: '18',
     licoes: [
       {
         linkLicao: './L179',
@@ -1543,6 +1563,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Isomeria R-S',
     fundo1: '#c6abdf',
     fundo2: '#ece2f5',
+    id: '19',
     licoes: [
       {
         linkLicao: './L194',
@@ -1571,6 +1592,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'REVISÂO ITA/IME',
     fundo1: '#03e045',
     fundo2: '#ccfbda',
+    id: '20',
     licoes: [
       {
         linkLicao: './L501',
@@ -1732,6 +1754,7 @@ export const TodasMaterias: Materia[] = [
     nomeMateria: 'Vestibulares',
     fundo1: '#d5e003',
     fundo2: '#fcffc7',
+    id: '21',
     licoes: [
       {
         linkLicao: './L601',

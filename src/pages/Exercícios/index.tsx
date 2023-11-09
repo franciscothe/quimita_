@@ -63,7 +63,6 @@ export const Exercicios5 = () => {
   return (
     <FundoAmarelo2>
       <PaginaExercicios5>
-        <Header />
         <EnunciadosL1Grupo5 />
       </PaginaExercicios5>
     </FundoAmarelo2>

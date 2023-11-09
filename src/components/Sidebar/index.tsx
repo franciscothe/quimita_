@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const openPeriodicTableViewer = () => {
     openPDFViewer(
-      'https://pse.merckgroup.com/periodic-table/filter/classification/'
+      'https://drive.google.com/file/d/1B7NLr9Cb7q6EHusLcBReV4Txcx9Fy_JZ/preview'
     )
   }
 
@@ -76,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             <ListItemText primary="Glossário Atkins" />
           </ListItem>
           <ListItem button onClick={openPeriodicTableViewer}>
-            <ListItemText primary="Tabela Periódica da Merck" />
+            <ListItemText primary="Tabela Periódica" />
           </ListItem>
         </List>
       </Drawer>

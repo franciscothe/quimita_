@@ -10,8 +10,9 @@ export type Props = {
   color?: string
   text?: string
   licoes: Array<{ linkLicao: string; nomeLicao: string }>
-  linkLicao: string
-  nomeLicao: string
+  linkLicao?: string
+  nomeLicao?: string
+  id?: string
 }
 
 export const ExibicaoSumario = (props: Props) => (
@@ -22,9 +23,10 @@ export const ExibicaoSumario = (props: Props) => (
     linkLicao={props.linkLicao}
     nomeLicao={props.nomeLicao}
     licoes={props.licoes}
+    id={props.id}
   >
     <div className="guiaMateria">
-      <Titulo fontSize={22} texto={props.nomemateria} />
+      <Titulo fontSize={22} texto={props.nomemateria} id={props.id} />
     </div>
 
     <div className="ListaMaterias">
