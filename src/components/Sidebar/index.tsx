@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const [isPeriodicTableVisible, setPeriodicTableVisible] = useState(false)
 
   const handleCalculatorClick = () => {
-    openPDFViewer('https://www.calculadoraonline.com.br/cientifica')
+    openPDFViewer('https://www.desmos.com/scientific?lang=pt-BR')
   }
 
   const closeCalculator = () => {
