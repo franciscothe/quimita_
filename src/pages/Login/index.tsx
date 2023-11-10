@@ -62,7 +62,7 @@ const FormularioLogin: React.FC = () => {
             placeholder="Senha"
           />
         </div>
-        <BtnEnviar type="submit">ENTRAR</BtnEnviar>
+        <BtnEnviar type="submit">ACESSAR LIÇÕES</BtnEnviar>
       </form>
       <DivCriarConta>
         <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
