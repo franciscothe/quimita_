@@ -57,7 +57,20 @@ export const EnunciadosL1Grupo1 = () => {
   }, [exercicioAtualIndex])
 
   const toggleMostrarResolucao = () => {
-    setMostrarResolucao(!mostrarResolucao)
+    setMostrarResolucao((prevMostrarResolucao) => {
+      if (!prevMostrarResolucao) {
+        // Se a resolução não estiver sendo exibida, role a tela para cima de forma animada
+        const scrollToTop = () => {
+          const currentPosition = window.scrollY
+          if (currentPosition > 0) {
+            window.scrollTo(0, currentPosition + 20)
+            window.requestAnimationFrame(scrollToTop)
+          }
+        }
+        scrollToTop()
+      }
+      return !prevMostrarResolucao
+    })
   }
 
   useEffect(() => {
