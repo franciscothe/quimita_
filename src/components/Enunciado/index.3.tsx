@@ -56,19 +56,13 @@ export const EnunciadosL1Grupo3 = () => {
   }, [exercicioAtualIndex])
 
   const toggleMostrarResolucao = () => {
-    setMostrarResolucao((prevMostrarResolucao) => {
-      if (!prevMostrarResolucao) {
-        // Se a resolução não estiver sendo exibida, role a tela para cima de forma animada
-        const scrollToTop = () => {
-          const currentPosition = window.scrollY
-          if (currentPosition > 0) {
-            window.scrollTo(0, currentPosition + 20)
-            window.requestAnimationFrame(scrollToTop)
-          }
-        }
-        scrollToTop()
-      }
-      return !prevMostrarResolucao
+    setMostrarResolucao(!mostrarResolucao)
+  }
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
     })
   }
 
@@ -130,7 +124,12 @@ export const EnunciadosL1Grupo3 = () => {
             <IconVoltar />
           </BotoesControles>
 
-          <BtnResolucao onClick={toggleMostrarResolucao}>
+          <BtnResolucao
+            onClick={() => {
+              toggleMostrarResolucao()
+              setTimeout(scrollToBottom, 100)
+            }}
+          >
             RESOLUÇÃO
           </BtnResolucao>
 

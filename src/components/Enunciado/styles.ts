@@ -1,4 +1,15 @@
-import { styled } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(50vh); /* Move para baixo 50% da altura da viewport */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
 
 export const BtnResolucao = styled.button`
   background-color: #ff99c1;
@@ -33,11 +44,17 @@ export const ResolucaoImg = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  opacity: 1; /* Adicionando a propriedade opacity */
+
+  &.fade-in {
+    animation: ${fadeIn} 0.5s ease-in-out;
+  }
 
   img {
     max-width: 600px;
     width: 100%;
     margin: 10px 10px;
+    scroll-behavior: smooth;
   }
 `
 export const PaginaExercicios = styled.div`
