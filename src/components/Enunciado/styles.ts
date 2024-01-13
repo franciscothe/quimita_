@@ -44,11 +44,6 @@ export const ResolucaoImg = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 1; /* Adicionando a propriedade opacity */
-
-  &.fade-in {
-    animation: ${fadeIn} 0.5s ease-in-out;
-  }
 
   img {
     max-width: 600px;
