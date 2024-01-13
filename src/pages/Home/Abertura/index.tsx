@@ -18,10 +18,7 @@ const Abertura = () => (
     <Titulo fontSize={25} texto="ENEM" />
 
     <div className="div-btn">
-      <Botao to="/Login" color={cores.laranja}>
-        ENTRAR
-      </Botao>
-      <BotaoClaro to="/Sumario" color={cores.laranjaClaro}>
+      <BotaoClaro to="/Sumario" color={cores.laranja}>
         ACESSAR LIÇÕES
       </BotaoClaro>
     </div>
