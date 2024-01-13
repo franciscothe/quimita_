@@ -1,31 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import { BtnEnviar, NavLogin, SmallButton, StyledInput } from '../Login/styles'
 import { cores } from '../../styles'
 import { Container } from '@mui/material'
+import axios from 'axios'
 
 const CadastroForm = () => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    dataNascimento: '',
-    telefone: '',
-    senha: '',
-    confirmacaoSenha: ''
+  const formik = useFormik({
+    initialValues: {
+      Nome: '',
+      Email: '',
+      Data_nascimento: '',
+      Telefone: '',
+      Senha: '',
+      ConfirmacaoSenha: ''
+    },
+    validationSchema: Yup.object({
+      Nome: Yup.string().required('Campo obrigatório'),
+      Email: Yup.string()
+        .email('E-mail inválido')
+        .required('Campo obrigatório'),
+      Data_nascimento: Yup.date().required('Campo obrigatório'),
+      Telefone: Yup.string().required('Campo obrigatório'),
+      Senha: Yup.string().required('Campo obrigatório'),
+      ConfirmacaoSenha: Yup.string()
+        .oneOf([Yup.ref('Senha')], 'As senhas não coincidem')
+        .required('Campo obrigatório')
+    }),
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post(
+          'http://localhost:3001/insert',
+          values
+        )
+        console.log(response.data)
+      } catch (error) {
+        console.error('Houve um erro ao enviar os dados do formulário', error)
+      }
+    }
   })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    console.log('Dados do formulário:', formData)
-    // Lógica para manipular os dados do formulário, como enviar para uma API, etc.
-  }
 
   return (
     <Container>
@@ -34,66 +48,85 @@ const CadastroForm = () => {
           LIÇÕES
         </SmallButton>
       </NavLogin>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="nome">Nome:</label>
+          <label htmlFor="Nome">Nome:</label>
           <StyledInput
             type="text"
-            id="nome"
-            name="nome"
-            value={formData.nome}
-            onChange={handleChange}
+            id="Nome"
+            name="Nome"
+            value={formik.values.Nome}
+            onChange={formik.handleChange}
           />
+          {formik.touched.Nome && formik.errors.Nome && (
+            <p style={{ color: 'red' }}>{formik.errors.Nome}</p>
+          )}
         </div>
         <div>
-          <label htmlFor="email">E-mail:</label>
+          <label htmlFor="Email">E-mail:</label>
           <StyledInput
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            id="Email"
+            name="Email"
+            value={formik.values.Email}
+            onChange={formik.handleChange}
           />
+          {formik.touched.Email && formik.errors.Email && (
+            <p style={{ color: 'red' }}>{formik.errors.Email}</p>
+          )}
         </div>
         <div>
-          <label htmlFor="dataNascimento">Data de Nascimento:</label>
+          <label htmlFor="Data_nascimento">Data de Nascimento:</label>
           <StyledInput
             type="date"
-            id="dataNascimento"
-            name="dataNascimento"
-            value={formData.dataNascimento}
-            onChange={handleChange}
+            id="Data_nascimento"
+            name="Data_nascimento"
+            value={formik.values.Data_nascimento}
+            onChange={formik.handleChange}
           />
+          {formik.touched.Data_nascimento && formik.errors.Data_nascimento && (
+            <p style={{ color: 'red' }}>{formik.errors.Data_nascimento}</p>
+          )}
         </div>
         <div>
-          <label htmlFor="telefone">Telefone:</label>
+          <label htmlFor="Telefone">Telefone:</label>
           <StyledInput
             type="tel"
-            id="telefone"
-            name="telefone"
-            value={formData.telefone}
-            onChange={handleChange}
+            id="Telefone"
+            name="Telefone"
+            value={formik.values.Telefone}
+            onChange={formik.handleChange}
           />
+          {formik.touched.Telefone && formik.errors.Telefone && (
+            <p style={{ color: 'red' }}>{formik.errors.Telefone}</p>
+          )}
         </div>
         <div>
-          <label htmlFor="senha">Senha:</label>
+          <label htmlFor="Senha">Senha:</label>
           <StyledInput
             type="password"
-            id="senha"
-            name="senha"
-            value={formData.senha}
-            onChange={handleChange}
+            id="Senha"
+            name="Senha"
+            value={formik.values.Senha}
+            onChange={formik.handleChange}
           />
+          {formik.touched.Senha && formik.errors.Senha && (
+            <p style={{ color: 'red' }}>{formik.errors.Senha}</p>
+          )}
         </div>
         <div>
-          <label htmlFor="confirmacaoSenha">Confirmação de Senha:</label>
+          <label htmlFor="ConfirmacaoSenha">Confirmação de Senha:</label>
           <StyledInput
             type="password"
-            id="confirmacaoSenha"
-            name="confirmacaoSenha"
-            value={formData.confirmacaoSenha}
-            onChange={handleChange}
+            id="ConfirmacaoSenha"
+            name="ConfirmacaoSenha"
+            value={formik.values.ConfirmacaoSenha}
+            onChange={formik.handleChange}
           />
+          {formik.touched.ConfirmacaoSenha &&
+            formik.errors.ConfirmacaoSenha && (
+              <p style={{ color: 'red' }}>{formik.errors.ConfirmacaoSenha}</p>
+            )}
         </div>
         <BtnEnviar type="submit">Cadastrar</BtnEnviar>
       </form>

@@ -14,7 +14,7 @@ export const Botao = styled(Link)`
 `
 
 export const BotaoClaro = styled(Botao)`
-  color: #b97f59;
+  color: #fff;
   font-weight: bold;
 `
 
