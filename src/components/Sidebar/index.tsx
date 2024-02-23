@@ -66,7 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             button
             onClick={() =>
               openPDFViewer(
-                'https://drive.google.com/file/d/1XATkVx9DscpVfEbPtAYlgDe2upoodvRk/preview'
+                'https://drive.google.com/file/d/1ILuy6IobFkIeRKA4l_jwR1OM6tjIglfl/preview'
               )
             }
           >
