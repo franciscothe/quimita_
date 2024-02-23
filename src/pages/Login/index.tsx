@@ -1,5 +1,6 @@
 import { Container } from '@mui/material'
 import React, { useState, ChangeEvent, FormEvent } from 'react'
+import axios from 'axios' // Importe o axios
 import {
   BtnEnviar,
   DivCriarConta,
@@ -13,22 +14,46 @@ import Logotipo from '../../components/Logo'
 import { cores } from '../../styles'
 
 const FormularioLogin: React.FC = () => {
-  const [usuario, setUsuario] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [senha, setSenha] = useState<string>('')
 
-  const handleUsuarioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUsuario(event.target.value)
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value)
   }
 
   const handleSenhaChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSenha(event.target.value)
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('Usuário:', usuario)
+    console.log('Email:', email)
     console.log('Senha:', senha)
-    setUsuario('')
+
+    try {
+      const response = await axios.post('http://localhost:3001/auth/login', {
+        email: email,
+        senha: senha
+      })
+
+      // Após o login bem-sucedido, você pode fazer algo com o token retornado, como armazená-lo no localStorage
+      localStorage.setItem('token', response.data.token)
+
+      // Redirecionar o usuário para outra página, por exemplo, a página do perfil
+      location.href = 'user/perfil'
+      // window.location.href = '/perfil';
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.msg) {
+        alert(error.response.data.msg)
+      } else {
+        console.error('Erro ao fazer login:', error)
+        alert(
+          'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
+        )
+      }
+    }
+
+    setEmail('')
     setSenha('')
   }
 
@@ -47,9 +72,9 @@ const FormularioLogin: React.FC = () => {
         <div>
           <StyledInput
             type="text"
-            id="usuario"
-            value={usuario}
-            onChange={handleUsuarioChange}
+            id="email"
+            value={email}
+            onChange={handleEmailChange}
             placeholder="E-mail"
           />
         </div>

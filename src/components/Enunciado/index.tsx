@@ -18,6 +18,7 @@ import {
 import { BotaoIrSumario } from '../Botao/styles'
 import Sidebar from '../Sidebar'
 import { Button } from '@mui/material'
+import axios from 'axios' // Importar o axios
 
 export const EnunciadosL1Grupo1 = () => {
   const { id } = useParams<{ id: string }>()
@@ -28,6 +29,38 @@ export const EnunciadosL1Grupo1 = () => {
   const [exercicioAtualIndex, setExercicioAtualIndex] = useState<number>(0)
   const [mostrarResolucao, setMostrarResolucao] = useState<boolean>(false)
   const [mostrarEnunciado, setMostrarEnunciado] = useState<boolean>(true)
+  const [usuario, setUsuario] = useState(null) // Inicializar o estado do usuário
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      axios
+        .get('http://localhost:3001/Sumario/L1/grupo1', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          // Atualiza o estado com as informações do usuário
+          setUsuario(response.data.user)
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar informações do usuário:', error)
+          navigate('/login') // Redireciona para a página de login em caso de erro
+        })
+    } else {
+      navigate('/login') // Redireciona para a página de login se não houver token
+    }
+  }, [navigate])
+
+  if (!usuario) {
+    return <div>Carregando...</div>
+  }
 
   const exerciciosL1Grupo1 = Questoes[`${id}`]?.grupo1?.exercicios || []
   const exercicioAtual = exerciciosL1Grupo1[exercicioAtualIndex]
@@ -52,10 +85,6 @@ export const EnunciadosL1Grupo1 = () => {
     }
   }
 
-  useEffect(() => {
-    setMostrarResolucao(false)
-  }, [exercicioAtualIndex])
-
   const toggleMostrarResolucao = () => {
     setMostrarResolucao(!mostrarResolucao)
   }
@@ -65,19 +94,6 @@ export const EnunciadosL1Grupo1 = () => {
       top: document.body.scrollHeight,
       behavior: 'smooth'
     })
-  }
-
-  useEffect(() => {
-    if (exercicioAtualIndex === exerciciosL1Grupo1.length - 1) {
-      // O redirecionamento para a próxima rota acontecerá apenas quando o botão de avançar for clicado no último exercício do grupo
-      return
-    }
-  }, [exercicioAtualIndex, exerciciosL1Grupo1])
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
   }
 
   return (

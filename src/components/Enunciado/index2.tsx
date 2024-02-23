@@ -9,13 +9,17 @@ import {
 } from '../../pages/Exercícios/styles'
 import { IconVoltar, IconAvancar, IconSidebar } from '../Icones'
 import {
+  PaginaExercicios,
   EnunciadoImg,
   BtnResolucao,
   ResolucaoImg,
-  PaginaExercicios2,
-  TopoPagina
+  TopoPagina,
+  PaginaExercicios2
 } from './styles'
 import { BotaoIrSumario } from '../Botao/styles'
+import Sidebar from '../Sidebar'
+import { Button } from '@mui/material'
+import axios from 'axios' // Importar o axios
 
 export const EnunciadosL1Grupo2 = () => {
   const { id } = useParams<{ id: string }>()
@@ -25,33 +29,62 @@ export const EnunciadosL1Grupo2 = () => {
 
   const [exercicioAtualIndex, setExercicioAtualIndex] = useState<number>(0)
   const [mostrarResolucao, setMostrarResolucao] = useState<boolean>(false)
+  const [mostrarEnunciado, setMostrarEnunciado] = useState<boolean>(true)
+  const [usuario, setUsuario] = useState(null) // Inicializar o estado do usuário
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  const exerciciosL1Grupo2 = Questoes[`${id}`]?.grupo2?.exercicios || []
-  const exercicioAtual = exerciciosL1Grupo2[exercicioAtualIndex]
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      axios
+        .get('http://localhost:3001/Sumario/L1/grupo2', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          // Atualiza o estado com as informações do usuário
+          setUsuario(response.data.user)
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar informações do usuário:', error)
+          navigate('/login') // Redireciona para a página de login em caso de erro
+        })
+    } else {
+      navigate('/login') // Redireciona para a página de login se não houver token
+    }
+  }, [navigate])
+
+  if (!usuario) {
+    return <div>Carregando...</div>
+  }
+
+  const exerciciosL1grupo2 = Questoes[`${id}`]?.grupo2?.exercicios || []
+  const exercicioAtual = exerciciosL1grupo2[exercicioAtualIndex]
 
   const mostrarExercicioAnterior = () => {
     if (exercicioAtualIndex > 0) {
       // Se não for o primeiro exercício do grupo atual, volte para o exercício anterior
       setExercicioAtualIndex(exercicioAtualIndex - 1)
     } else {
-      // Se for o primeiro exercício do grupo atual, direcione para a rota "Grupo1"
+      // Se for o primeiro exercício do grupo atual, direcione para a rota "grupo2"
       navigate(`/Sumario/${id}/Grupo1`)
     }
   }
 
   const mostrarProximoExercicio = () => {
-    if (exercicioAtualIndex < exerciciosL1Grupo2.length - 1) {
+    if (exercicioAtualIndex < exerciciosL1grupo2.length - 1) {
       // Se ainda houver exercícios no grupo atual, avance para o próximo exercício
       setExercicioAtualIndex(exercicioAtualIndex + 1)
     } else {
       // Se estiver no último exercício do grupo 1, redirecione para a rota /Sumario/${id}/Grupo2
-      navigate(`/Sumario/${id}/Grupo3`)
+      navigate(`/Sumario/${id}/Grupo2`)
     }
   }
-
-  useEffect(() => {
-    setMostrarResolucao(false)
-  }, [exercicioAtualIndex])
 
   const toggleMostrarResolucao = () => {
     setMostrarResolucao(!mostrarResolucao)
@@ -64,27 +97,21 @@ export const EnunciadosL1Grupo2 = () => {
     })
   }
 
-  useEffect(() => {
-    if (exercicioAtualIndex === exerciciosL1Grupo2.length - 1) {
-      // O redirecionamento para a próxima rota acontecerá apenas quando o botão de avançar for clicado no último exercício do grupo
-      return
-    }
-  }, [exercicioAtualIndex, exerciciosL1Grupo2])
-
   return (
     <div>
       <TopoPagina>
-        <h3> {id} - Grupo 2</h3>
+        <h3> {id} - Grupo 1</h3>
         <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
       </TopoPagina>
       <BarraNavegacao>
-        <ButtonSideBar>
+        <Button onClick={toggleSidebar} variant="contained" color="primary">
           <IconSidebar />
-        </ButtonSideBar>
+        </Button>
+        <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
         <div className="navExercicios">
           <EnunciadoButtons
-            exercicios={exerciciosL1Grupo2}
+            exercicios={exerciciosL1grupo2}
             exercicioAtualIndex={exercicioAtualIndex}
             setExercicioAtualIndex={setExercicioAtualIndex}
           />
@@ -92,27 +119,30 @@ export const EnunciadosL1Grupo2 = () => {
       </BarraNavegacao>
 
       <PaginaExercicios2>
-        {Array.isArray(exercicioAtual.enunciado) ? (
-          exercicioAtual.enunciado.map((url, index) => (
-            <EnunciadoImg key={index}>
-              {
-                <img
-                  src={`/Images/${id}/${url}`}
-                  alt={`Enunciado do exercício ${exercicioAtual.ex}`}
-                />
-              }
-            </EnunciadoImg>
-          ))
-        ) : (
-          <EnunciadoImg>
-            {
-              <img
-                src={`/Images/${id}/${exercicioAtual.enunciado}`}
-                alt={`Enunciado do exercício ${exercicioAtual.ex}`}
-              />
-            }
-          </EnunciadoImg>
-        )}
+        <div>
+          {mostrarEnunciado && (
+            <div>
+              {Array.isArray(exercicioAtual.enunciado) ? (
+                <EnunciadoImg>
+                  {exercicioAtual.enunciado.map((url, index) => (
+                    <img
+                      key={index}
+                      src={`/Images/${id}/${url}`}
+                      alt={`Enunciado do exercício ${exercicioAtual.ex}`}
+                    />
+                  ))}
+                </EnunciadoImg>
+              ) : (
+                <EnunciadoImg>
+                  <img
+                    src={`/Images/${id}/${exercicioAtual.enunciado}`}
+                    alt={`Enunciado do exercício ${exercicioAtual.ex}`}
+                  />
+                </EnunciadoImg>
+              )}
+            </div>
+          )}
+        </div>
 
         <NavBotoes>
           <BotoesControles onClick={mostrarExercicioAnterior}>
@@ -131,7 +161,7 @@ export const EnunciadosL1Grupo2 = () => {
           <BotoesControles
             onClick={mostrarProximoExercicio}
             disabled={
-              exercicioAtualIndex === exerciciosL1Grupo2.length - 1 &&
+              exercicioAtualIndex === exerciciosL1grupo2.length - 1 &&
               (indiceDoGrupoAtual === -1 ||
                 indiceDoGrupoAtual === gruposDeExercicios.length - 1)
             }

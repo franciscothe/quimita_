@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Home from '../../pages/Home'
 import Cadastro from '../../pages/Cadastro'
 import Login from '../../pages/Login'
@@ -11,6 +11,11 @@ import {
   Exercicios4,
   Exercicios5
 } from '../Exercícios'
+import Perfil from '../Perfil'
+const isAuthenticated = () => {
+  const token = localStorage.getItem('token')
+  return !!token // Retorna true se o token existir
+}
 
 export const Rotas = createBrowserRouter([
   {
@@ -52,5 +57,9 @@ export const Rotas = createBrowserRouter([
   {
     path: 'Sumario/:id/Grupo5',
     element: <Exercicios5 />
+  },
+  {
+    path: '/user/perfil',
+    element: <Perfil />
   }
 ])
