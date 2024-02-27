@@ -47,13 +47,12 @@ http
     console.error('Erro ao conectar ao servidor EC2:', error)
   })
 
-app.use(
-  cors({
-    origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com'
-  })
-)
+const corsOptions = {
+  origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com'
+}
 
 app.use(cors(corsOptions))
+
 app.get('/', (req, res) => {
   res.status(200).json({
     msg: 'bem-vindo a nossa API'
