@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { cores } from '../../styles'
 import { SmallButton } from '../Login/styles'
 import { useNavigate } from 'react-router-dom' // Certifique-se de importar useNavigate
+import { HeaderSumario } from '../../components/Header/styles'
+import { Container } from '@mui/material'
 
 interface Usuario {
   nome: string
@@ -41,15 +43,33 @@ const Perfil = () => {
   }
 
   return (
-    <div>
-      <h1>Perfil do Usuário</h1>
-      <p>Nome: {usuario.nome}</p>
-      <p>Email: {usuario.email}</p>
-      <SmallButton to="/Sumario" color={cores.laranjaClaro}>
-        LIÇÕES
-      </SmallButton>{' '}
-      {/* Renderize outras informações do usuário conforme necessário */}
-    </div>
+    <>
+      <Container>
+        <div>
+          <HeaderSumario>
+            <SmallButton to="/Sumario" color={cores.azulHeader}>
+              {' '}
+              Lições
+            </SmallButton>
+          </HeaderSumario>
+
+          <h2>Meus dados</h2>
+          <p>Nome: {usuario.nome}</p>
+          <p>Email: {usuario.email}</p>
+        </div>
+
+        <div>
+          <h2>Pagamento</h2>
+          <form action="">
+            <label>Número do cartão:</label>
+            <input type="number" />
+            <br></br>
+            <label>Nome escrito no cartão:</label>
+            <input type="number" />
+          </form>
+        </div>
+      </Container>
+    </>
   )
 }
 
