@@ -19,9 +19,33 @@ AWS.config.update({
   region: 'sa-east-1'
 })
 const s3 = new AWS.S3()
-
 //models
 const User = require('./models/User')
+
+const http = require('http')
+
+// Defina as configurações do servidor EC2
+const ec2Address = '15.228.202.76'
+const ec2Port = 3000 // Porta na qual o servidor EC2 está ouvindo
+
+// Faça uma requisição HTTP para o servidor EC2
+http
+  .get(`http://${ec2Address}:${ec2Port}/`, (response) => {
+    let data = ''
+
+    // Concatene os dados recebidos
+    response.on('data', (chunk) => {
+      data += chunk
+    })
+
+    // Quando a resposta estiver completa, faça algo com os dados
+    response.on('end', () => {
+      console.log('Resposta do servidor EC2:', data)
+    })
+  })
+  .on('error', (error) => {
+    console.error('Erro ao conectar ao servidor EC2:', error)
+  })
 
 //cors
 app.use(cors())
