@@ -47,18 +47,11 @@ http
     console.error('Erro ao conectar ao servidor EC2:', error)
   })
 
-//cors
-// Permitir todos os domínios
-app.use(cors())
+const corsOptions = {
+  origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com'
+}
 
-// Ou especificar um domínio
-app.use(
-  cors({
-    origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com'
-  })
-)
 app.use(cors(corsOptions))
-
 app.get('/', (req, res) => {
   res.status(200).json({
     msg: 'bem-vindo a nossa API'
