@@ -71,7 +71,7 @@ mongoose
     `mongodb+srv://${dbUser}:${dbPassword}@cluster0.pcmsz7n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
-    app.listen(3001)
+    app.listen(3333)
     console.log('Conectou ao Banco!')
   })
   .catch((err) => console.log(err))
