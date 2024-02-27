@@ -48,11 +48,15 @@ http
   })
 
 //cors
+// Permitir todos os domínios
 app.use(cors())
-const corsOptions = {
-  origin: 'http://localhost:3000'
-}
 
+// Ou especificar um domínio
+app.use(
+  cors({
+    origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com'
+  })
+)
 app.use(cors(corsOptions))
 
 app.get('/', (req, res) => {

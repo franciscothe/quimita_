@@ -41,7 +41,7 @@ export const EnunciadosL1Grupo2 = () => {
     const token = localStorage.getItem('token')
     if (token) {
       axios
-        .get('http://localhost:3001/Sumario/L1/grupo2', {
+        .get('http://15.228.202.76:3333/Sumario/L1/grupo2', {
           headers: {
             Authorization: `Bearer ${token}`
           }

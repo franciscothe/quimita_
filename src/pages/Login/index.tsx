@@ -31,10 +31,13 @@ const FormularioLogin: React.FC = () => {
     console.log('Senha:', senha)
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
-        email: email,
-        senha: senha
-      })
+      const response = await axios.post(
+        'http://15.228.202.76:3333/auth/login',
+        {
+          email: email,
+          senha: senha
+        }
+      )
 
       // Após o login bem-sucedido, você pode fazer algo com o token retornado, como armazená-lo no localStorage
       localStorage.setItem('token', response.data.token)
