@@ -23,7 +23,6 @@ const s3 = new AWS.S3()
 const User = require('./models/User')
 
 const http = require('http')
-const { header } = require('express-validator')
 
 // Defina as configurações do servidor EC2
 const ec2Address = '18.229.49.51'
@@ -49,7 +48,14 @@ http
   })
 
 app.use(cors({ origin: 'http://localhost:3000' }))
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://seu_site.com')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
 app.get('/', (req, res) => {
   res.status(200).json({
     msg: 'bem-vindo a nossa API'
