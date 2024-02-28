@@ -31,7 +31,7 @@ const FormularioLogin: React.FC = () => {
     console.log('Senha:', senha)
 
     try {
-      const response = await axios.post('http://18.229.49.51:80/auth/login', {
+      const response = await axios.post('http://18.229.49.51:3001/auth/login', {
         email: email,
         senha: senha
       })
