@@ -25,7 +25,7 @@ const User = require('./models/User')
 const http = require('http')
 
 // Defina as configurações do servidor EC2
-const ec2Address = '15.228.202.76'
+const ec2Address = '18.229.49.51'
 const ec2Port = 3001 // Porta na qual o servidor EC2 está ouvindo
 
 // Faça uma requisição HTTP para o servidor EC2
