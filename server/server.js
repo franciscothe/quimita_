@@ -48,7 +48,7 @@ http
   })
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com',
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200
 }
