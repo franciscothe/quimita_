@@ -20,7 +20,7 @@ const Perfil = () => {
     const token = localStorage.getItem('token')
     if (token) {
       axios
-        .get('http://15.228.202.76:3333/user/perfil', {
+        .get('http://18.229.49.51:80/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}`
           }

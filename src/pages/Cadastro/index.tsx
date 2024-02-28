@@ -33,7 +33,7 @@ const CadastroForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          'http://15.228.202.76:3333/auth/register',
+          'http://18.229.49.51:80/auth/register',
           values
         )
         console.log('Usuário cadastrado com sucesso:', response.data)
