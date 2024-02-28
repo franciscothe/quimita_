@@ -48,8 +48,8 @@ http
     console.error('Erro ao conectar ao servidor EC2:', error)
   })
 
-app.use(cors())
-header (header: 'Access-Control-Allow-Origin: http://localhost:3000 ')
+app.use(cors({ origin: 'http://localhost:3000' }))
+
 app.get('/', (req, res) => {
   res.status(200).json({
     msg: 'bem-vindo a nossa API'
