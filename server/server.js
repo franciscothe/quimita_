@@ -47,13 +47,7 @@ http
     console.error('Erro ao conectar ao servidor EC2:', error)
   })
 
-const corsOptions = {
-  origin: 'http://quimita.com.br.s3-website-sa-east-1.amazonaws.com',
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.status(200).json({
