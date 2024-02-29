@@ -8,9 +8,11 @@ const jwt = require('jsonwebtoken')
 const cors = require('cors')
 const app = express()
 const AWS = require('aws-sdk')
+const path = require('path') // Importe o módulo path
 
 //configurando json
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')))
 
 //configuração aws
 AWS.config.update({
@@ -50,9 +52,7 @@ http
 app.use(cors)
 
 app.get('/', (req, res) => {
-  res.status(200).json({
-    msg: 'bem-vindo a nossa API'
-  })
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
 //rota privada
