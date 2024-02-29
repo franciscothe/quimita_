@@ -28,7 +28,7 @@ const http = require('http')
 
 // Defina as configurações do servidor EC2
 const ec2Address = '18.228.170.107'
-const ec2Port = 3000 // Porta na qual o servidor EC2 está ouvindo
+const ec2Port = 80 // Porta na qual o servidor EC2 está ouvindo
 
 // Faça uma requisição HTTP para o servidor EC2
 http
@@ -49,7 +49,7 @@ http
     console.error('Erro ao conectar ao servidor EC2:', error)
   })
 
-app.use(cors)
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
@@ -65,7 +65,6 @@ mongoose
     `mongodb+srv://${dbUser}:${dbPassword}@cluster0.pcmsz7n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
-    app.listen(3000)
     console.log('Conectou ao Banco!')
   })
   .catch((err) => console.log(err))
