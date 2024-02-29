@@ -28,7 +28,7 @@ const http = require('http')
 
 // Defina as configurações do servidor EC2
 const ec2Address = '18.228.170.107'
-const ec2Port = 3333 // Porta na qual o servidor EC2 está ouvindo
+const ec2Port = 80 // Porta na qual o servidor EC2 está ouvindo
 
 // Faça uma requisição HTTP para o servidor EC2
 http
