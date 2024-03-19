@@ -6,56 +6,49 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
-const app = express()
-const AWS = require('aws-sdk')
 const path = require('path') // Importe o módulo path
-
-//configurando json
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')))
-
-//configuração aws
-AWS.config.update({
-  accessKeyId: 'AKIAXYKJQYLZCEY6ZNXF',
-  secretAccessKey: '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',
-  region: 'sa-east-1'
-})
-const s3 = new AWS.S3()
-//models
-const User = require('./models/User')
-
 const http = require('http')
+const User = require('./models/User')
+const Server = require('socket.io').Server
+const fs = require('fs')
+const https = require('https')
+const app = express()
 
-// Defina as configurações do servidor EC2
-const ec2Address = '18.228.170.107'
-const ec2Port = 80 // Porta na qual o servidor EC2 está ouvindo
 
-// Faça uma requisição HTTP para o servidor EC2
-http
-  .get(`http://${ec2Address}:${ec2Port}/`, (response) => {
-    let data = ''
+// Middlewares
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
-    // Concatene os dados recebidos
-    response.on('data', (chunk) => {
-      data += chunk
-    })
+// Configuração do HTTPS
+const sslOptions = {
+  key: fs.readFileSync(path.join(__dirname, 'SSL/code.key')), // Certifique-se de ter um arquivo .key para a chave
+  cert: fs.readFileSync(path.join(__dirname, 'SSL/code.crt'))
+};
 
-    // Quando a resposta estiver completa, faça algo com os dados
-    response.on('end', () => {
-      console.log('Resposta do servidor EC2:', data)
-    })
-  })
-  .on('error', (error) => {
-    console.error('Erro ao conectar ao servidor EC2:', error)
-  })
+https.createServer(sslOptions, app).listen(5002, () => {
+  console.log("Servidor HTTPS rodando na porta 5002");
+});
 
-app.use(cors())
+// Configuração do servidor HTTP para redirecionar para HTTPS
+http.createServer((req, res) => {
+  res.writeHead(301, { Location: `https://${req.headers.host}:${5002}${req.url}` });
+  res.end();
+}).listen(5001, () => {
+  console.log('Servidor HTTP redirecionando para HTTPS na porta 5001');
+});
+
+// Configuração do caminho estático para servir o frontend
+const buildPath = path.join(__dirname, '../Client/build');
+app.use(express.static(buildPath));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-//rota privada
+  res.sendFile(path.join(__dirname, '../Client/build/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 const dbUser = process.env.DB_USER
 const dbPassword = process.env.DB_PASS
@@ -68,65 +61,59 @@ mongoose
     console.log('Conectou ao Banco!')
   })
   .catch((err) => console.log(err))
-
 //registrando usuario
 
 app.post('/auth/register', async (req, res) => {
-  const { nome, email, senha, confirmaSenha } = req.body
+  const { nome, email, senha, confirmaSenha } = req.body;
 
-  //validation
+  // Validação
   if (!nome) {
-    return res.status(422).json({
-      msg: 'O nome é obrigatório'
-    })
+    return res.status(422).json({ msg: 'O nome é obrigatório' });
   }
   if (!email) {
-    return res.status(422).json({
-      msg: 'O email é obrigatório'
-    })
+    return res.status(422).json({ msg: 'O email é obrigatório' });
   }
   if (!senha) {
-    return res.status(422).json({
-      msg: 'A senha é obrigatória'
-    })
+    return res.status(422).json({ msg: 'A senha é obrigatória' });
   }
   if (senha !== confirmaSenha) {
-    return res.status(422).json({
-      msg: 'As senhas não conferem, tente novamente'
-    })
+    return res.status(422).json({ msg: 'As senhas não conferem, tente novamente' });
   }
 
-  //checagem de existência de usuario
-  const userExists = await User.findOne({
-    email: email
-  })
+  // Checagem de existência de usuário
+  const userExists = await User.findOne({ email: email });
   if (userExists) {
-    return res.status(422).json({
-      msg: 'Por favor, utilize outro email'
-    })
+    return res.status(422).json({ msg: 'Por favor, utilize outro email' });
   }
-  //create password
-  const salt = await bcrypt.genSalt(12)
-  const passwordHash = await bcrypt.hash(senha, salt)
 
-  //create user
+  // Criação da senha criptografada
+  const salt = await bcrypt.genSalt(12);
+  const passwordHash = await bcrypt.hash(senha, salt);
+
+  // Criação do usuário
   const user = new User({
     nome,
     email,
     senha: passwordHash
-  })
-  try {
-    await user.save()
-    res.status(201).json({
-      msg: 'Usuário criado com sucesso!'
-    })
-  } catch (error) {
-    res.status(500).json({
-      msg: 'Aconteceu um erro no servidor'
-    })
-  }
-})
+  });
 
+  try {
+    await user.save();
+
+    // Geração do token
+    const secret = process.env.SECRET;
+    const token = jwt.sign({ id: user._id }, secret, { expiresIn: '1d' });
+
+    // Envio da resposta incluindo o token e a URL de redirecionamento
+    res.status(201).json({
+      msg: 'Usuário criado com sucesso!',
+      token: token, // Envia o token como parte da resposta
+      redirectUrl: '/user/perfil' // Informa a URL para a qual o cliente deve redirecionar o usuário
+    });
+  } catch (error) {
+    res.status(500).json({ msg: 'Aconteceu um erro no servidor' });
+  }
+});
 //login usuario
 app.post('/auth/login', async (req, res) => {
   const { email, senha } = req.body
@@ -187,13 +174,15 @@ app.post('/auth/login', async (req, res) => {
 })
 
 //check token
-
 const checkToken = (req, res, next) => {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
   if (!token) {
-    return res.redirect('local/Login')
-  }
+    return res.status(401).json({
+        msg: 'Token não fornecido'
+    });
+}
+
 
   try {
     const secret = process.env.SECRET
@@ -208,23 +197,17 @@ const checkToken = (req, res, next) => {
 }
 
 app.get('/user/perfil', checkToken, async (req, res) => {
-  const id = req.user.id
-  try {
-    const user = await User.findById(id, '-senha')
-    if (!user) {
-      return res.status(404).json({
-        msg: 'Usuário não encontrado'
-      })
-    }
-    // Aqui você pode acessar as informações do usuário a partir de req.user
-    res
-      .status(200)
-      .json({ msg: 'Acesso permitido à rota protegida', user: user.toObject() })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ msg: 'Erro interno do servidor' })
+  // Extrair o ID do usuário decodificado pelo middleware checkToken
+  const userId = req.user.id;
+    // Buscar informações do usuário usando o ID
+  const user = await User.findById(userId).select('-senha'); // Exclui a senha do objeto retornado
+  
+  if (!user) {
+    return res.status(404).json({ msg: 'Usuário não encontrado' });
   }
-})
+  
+  res.status(200).json(user);
+});
 
 //limitação de acesso à rota de exercicios
 app.get('/Sumario/L1/grupo1', checkToken, async (req, res) => {
@@ -234,14 +217,21 @@ app.get('/Sumario/L1/grupo1', checkToken, async (req, res) => {
   try {
     const user = await User.findById(id, '-senha')
     if (!user) {
-      return res.status(404).json({ msg: 'Usuário não encontrado' })
+      return res.status(404).json({
+        msg: 'Usuário não encontrado'
+      })
     }
     res
       .status(200)
-      .json({ msg: 'Acesso permitido à rota protegida', user: user.toObject() })
+      .json({
+        msg: 'Acesso permitido à rota protegida',
+        user: user.toObject()
+      })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ msg: 'Erro interno do servidor' })
+    res.status(500).json({
+      msg: 'Erro interno do servidor'
+    })
   }
 })
 app.get('/Sumario/L1/grupo2', checkToken, async (req, res) => {
@@ -251,13 +241,20 @@ app.get('/Sumario/L1/grupo2', checkToken, async (req, res) => {
   try {
     const user = await User.findById(id, '-senha')
     if (!user) {
-      return res.status(404).json({ msg: 'Usuário não encontrado' })
+      return res.status(404).json({
+        msg: 'Usuário não encontrado'
+      })
     }
     res
       .status(200)
-      .json({ msg: 'Acesso permitido à rota protegida', user: user.toObject() })
+      .json({
+        msg: 'Acesso permitido à rota protegida',
+        user: user.toObject()
+      })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ msg: 'Erro interno do servidor' })
+    res.status(500).json({
+      msg: 'Erro interno do servidor'
+    })
   }
 })
