@@ -34,7 +34,7 @@ https.createServer(sslOptions, app).listen(5002, () => {
 http.createServer((req, res) => {
   res.writeHead(301, { Location: `https://${req.headers.host}:${5002}${req.url}` });
   res.end();
-}).listen(80, () => {
+}).listen(5001, () => {
   console.log('Servidor HTTP redirecionando para HTTPS na porta 5001');
 });
 
