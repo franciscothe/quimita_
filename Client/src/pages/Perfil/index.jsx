@@ -22,7 +22,7 @@ const Perfil = () => {
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        const response = await axios.get('https://localhost:5002/user/perfil', {
+        const response = await axios.get('/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
