@@ -33,7 +33,7 @@ export const FormLogin = styled.form`
   width: 100%;
 `
 export const DivCriarConta = styled.div`
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
 `
 export const LinkCriarConta = styled(Link)`

@@ -14,35 +14,35 @@ const Sumario = () => {
   const [usuario, setUsuario] = useState(null)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      axios
-        .get('/Sumario/*', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then((response) => {
-          // Atualiza o estado com as informações do usuário
-          setUsuario(response.data.user)
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar informações do usuário:', error)
-          navigate('/login') // Redireciona para a página de login em caso de erro
-        })
-    } else {
-      navigate('/login') // Redireciona para a página de login se não houver token
-    }
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   if (token) {
+  //     axios
+  //       .get('/Sumario/*', {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       })
+  //       .then((response) => {
+  //         // Atualiza o estado com as informações do usuário
+  //         setUsuario(response.data.user)
+  //       })
+  //       .catch((error) => {
+  //         console.error('Erro ao buscar informações do usuário:', error)
+  //         navigate('/login') // Redireciona para a página de login em caso de erro
+  //       })
+  //   } else {
+  //     navigate('/login') // Redireciona para a página de login se não houver token
+  //   }
+  // }, [])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
 
-  if (!usuario) {
-    return <div>Carregando...</div>
-  }
+  // if (!usuario) {
+  //   return <div>Carregando...</div>
+  // }
 
   return (
     <div className="container">
