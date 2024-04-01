@@ -36,31 +36,32 @@ export const EnunciadosL1Grupo1 = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      axios
-        .get('/Sumario', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then((response) => {
-          // Atualiza o estado com as informações do usuário
-          setUsuario(response.data.user)
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar informações do usuário:', error)
-          navigate('/login') // Redireciona para a página de login em caso de erro
-        })
-    } else {
-      navigate('/login') // Redireciona para a página de login se não houver token
-    }
-  }, [navigate])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   if (token) {
+  //     axios
+  //       .get('/Sumario', {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       })
+  //       .then((response) => {
+  //         // Atualiza o estado com as informações do usuário
+  //         setUsuario(response.data.user)
+  //         next()
+  //       })
+  //       .catch((error) => {
+  //         console.error('Erro ao buscar informações do usuário:', error)
+  //         navigate('/login') // Redireciona para a página de login em caso de erro
+  //       })
+  //   } else {
+  //     navigate('/login') // Redireciona para a página de login se não houver token
+  //   }
+  // }, [navigate])
 
-  if (!usuario) {
-    return <div>Carregando...</div>
-  }
+  // if (!usuario) {
+  //   return <div>Carregando...</div>
+  // }
 
   const exerciciosL1Grupo1 = Questoes[`${id}`]?.grupo1?.exercicios || []
   const exercicioAtual = exerciciosL1Grupo1[exercicioAtualIndex]
@@ -221,4 +222,7 @@ const EnunciadoButtons = ({
       ))}
     </>
   )
+}
+function next() {
+  throw new Error('Function not implemented.')
 }

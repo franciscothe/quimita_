@@ -4,7 +4,9 @@ import PdfViewer from '../../../components/ExibirApostila'
 import { Video } from '../../../components/Video'
 import { Header } from '../../../components/Header'
 import BotaoGrupos from '../../../components/BotaoGrupos'
-import { BotaoIrSumario } from '../../../components/Botao/styles'
+import { Botao, BotaoIrSumario } from '../../../components/Botao/styles'
+import { SmallButton } from '../../Login/styles'
+import { cores } from '../../../styles'
 
 export const L1: React.FC = () => {
   const [tokenPresente, setTokenPresente] = useState(false) // Estado para controlar se o token está presente
@@ -19,7 +21,9 @@ export const L1: React.FC = () => {
       } else {
         // Se o token não estiver presente, definir tokenPresente como falso e definir a mensagem
         setTokenPresente(false)
-        setMensagem('Faça a assinatura para visualizar a apostila da lição')
+        setMensagem(
+          'Faça a assinatura para visualizar a apostila e os exercícios da lição'
+        )
       }
     }
 
@@ -36,11 +40,20 @@ export const L1: React.FC = () => {
       <div>
         <Video />
         {tokenPresente ? (
-          <PdfViewer /> // Renderizar PdfViewer se o token estiver presente
+          <>
+            <PdfViewer />
+            <BotaoGrupos />
+          </> // Renderizar PdfViewer se o token estiver presente
         ) : (
-          <p>{mensagem}</p> // Exibir mensagem se o token não estiver presente
+          <>
+            <p>{mensagem}</p>
+
+            <Botao to="/Login" color={cores.laranja}>
+              ENTRAR
+            </Botao>
+          </>
+          // Exibir mensagem se o token não estiver presente
         )}
-        <BotaoGrupos />
       </div>
     </div>
   )

@@ -34,8 +34,17 @@ const CadastroForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post('/auth/register', values)
+
+        // Extrair o token da resposta
+        const token = response.data.token
+
+        // Salvar o token localmente (por exemplo, em localStorage)
+        localStorage.setItem('token', token)
+
         console.log('Usuário cadastrado com sucesso:', response.data)
-        navigate('/user/perfil') // Redireciona para /user/perfil após sucesso
+
+        // Redirecionar para "/user/perfil" após salvar o token
+        navigate('/user/perfil')
 
         // Redirecionar para página de sucesso, fazer login automático, etc.
       } catch (error) {
