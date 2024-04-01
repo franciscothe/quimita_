@@ -7,6 +7,7 @@ import BotaoGrupos from '../../../components/BotaoGrupos'
 import { Botao, BotaoIrSumario } from '../../../components/Botao/styles'
 import { SmallButton } from '../../Login/styles'
 import { cores } from '../../../styles'
+import { ExibirMensagem } from './styles'
 
 export const L1: React.FC = () => {
   const [tokenPresente, setTokenPresente] = useState(false) // Estado para controlar se o token está presente
@@ -45,13 +46,13 @@ export const L1: React.FC = () => {
             <BotaoGrupos />
           </> // Renderizar PdfViewer se o token estiver presente
         ) : (
-          <>
+          <ExibirMensagem>
             <p>{mensagem}</p>
 
             <Botao to="/Login" color={cores.laranja}>
               ENTRAR
             </Botao>
-          </>
+          </ExibirMensagem>
           // Exibir mensagem se o token não estiver presente
         )}
       </div>
