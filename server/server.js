@@ -34,7 +34,7 @@ https.createServer(sslOptions, app).listen(5002, () => {
 http.createServer((req, res) => {
   res.writeHead(301, { Location: `https://${req.headers.host}:${5002}${req.url}` });
   res.end();
-}).listen(5001, () => {
+}).listen(80, () => {
   console.log('Servidor HTTP redirecionando para HTTPS na porta 5001');
 });
 
@@ -235,6 +235,31 @@ app.get('/Sumario/L1/grupo1', checkToken, async (req, res) => {
   }
 })
 app.get('/Sumario/L1/grupo2', checkToken, async (req, res) => {
+  // O middleware checkToken já terá verificado e decodificado o token,
+  // armazenando o resultado no objeto req (geralmente como req.user)
+  const id = req.user.id
+  try {
+    const user = await User.findById(id, '-senha')
+    if (!user) {
+      return res.status(404).json({
+        msg: 'Usuário não encontrado'
+      })
+    }
+    res
+      .status(200)
+      .json({
+        msg: 'Acesso permitido à rota protegida',
+        user: user.toObject()
+      })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({
+      msg: 'Erro interno do servidor'
+    })
+  }
+})
+
+app.get('/Sumario/*', checkToken, async (req, res) => {
   // O middleware checkToken já terá verificado e decodificado o token,
   // armazenando o resultado no objeto req (geralmente como req.user)
   const id = req.user.id

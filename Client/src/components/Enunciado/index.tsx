@@ -40,7 +40,7 @@ export const EnunciadosL1Grupo1 = () => {
     const token = localStorage.getItem('token')
     if (token) {
       axios
-        .get('/Sumario/L1/grupo1', {
+        .get('/Sumario', {
           headers: {
             Authorization: `Bearer ${token}`
           }

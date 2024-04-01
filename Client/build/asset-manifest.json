@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.2aecfac3.js",
+    "main.js": "/static/js/main.1f409602.js",
     "static/js/787.4edde0dd.chunk.js": "/static/js/787.4edde0dd.chunk.js",
     "static/media/quimica.png": "/static/media/quimica.a41f7a07874115ce9959.png",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
-    "main.2aecfac3.js.map": "/static/js/main.2aecfac3.js.map",
+    "main.1f409602.js.map": "/static/js/main.1f409602.js.map",
     "787.4edde0dd.chunk.js.map": "/static/js/787.4edde0dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.2aecfac3.js"
+    "static/js/main.1f409602.js"
   ]
 }

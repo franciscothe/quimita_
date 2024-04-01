@@ -1,18 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { ExibicaoSumario } from '../../components/ExibicaoSumario'
-import { IconBook, IconSidebar } from '../../components/Icones'
+import { Button } from '@mui/material'
 import Titulo from '../../components/Titulo'
 import { TituloSumario } from './styles'
 import { TodasMaterias } from '../../components/Propriedades'
 import { Header } from '../../components/Header'
 import SidebarSumario from '../../components/SidebarSumario'
-import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const Sumario = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [usuario, setUsuario] = useState(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      axios
+        .get('/Sumario/*', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          // Atualiza o estado com as informações do usuário
+          setUsuario(response.data.user)
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar informações do usuário:', error)
+          navigate('/login') // Redireciona para a página de login em caso de erro
+        })
+    } else {
+      navigate('/login') // Redireciona para a página de login se não houver token
+    }
+  }, [])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  if (!usuario) {
+    return <div>Carregando...</div>
   }
 
   return (
