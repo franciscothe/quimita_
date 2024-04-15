@@ -7,6 +7,9 @@ import FormPerfil from '../../components/Formulario_perfil'
 import { ButtonToolbar, Container } from 'react-bootstrap'
 import { BotaoPerfil, HeaderPerfil } from './styles'
 import { Button } from '../../components/Enunciado/styles'
+import FormularioCadastro from './FormularioCadastro'
+import { FormularioPgto } from '../../components/Formulario_perfil/styles'
+import CardForm from './Pagamento'
 
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
@@ -22,7 +25,7 @@ const Perfil = () => {
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -56,9 +59,8 @@ const Perfil = () => {
             <p>Carregando informações do perfil...</p>
           </>
         )}
-        <h2>Efetuar Assinatura</h2>
-
-        <FormPerfil />
+        <FormularioCadastro />
+        <CardForm />
       </Container>
     </div>
   )

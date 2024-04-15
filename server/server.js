@@ -13,6 +13,7 @@ const Server = require('socket.io').Server
 const fs = require('fs')
 const https = require('https')
 const app = express()
+const axios = require('axios');
 
 
 // Middlewares
@@ -283,3 +284,102 @@ app.get('/Sumario/*', checkToken, async (req, res) => {
     })
   }
 })
+
+//Completando informações do usuário
+app.post('/user/perfil/adicionar-informacoes', checkToken, async (req, res) => {
+  try {
+    // Extrair as informações do corpo da requisição
+    const { cpf, telefone, endereco, complemento, cep, cidade, estado } = req.body;
+
+    // Encontrar o usuário pelo ID
+    const user = await User.findById(req.user.id);
+
+    // Se o usuário não for encontrado, retornar um erro
+    if (!user) {
+      return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+    }
+
+    // Atualizar as informações adicionais do usuário
+    user.cpf = cpf;
+    user.telefone = telefone;
+    user.endereco = endereco;
+    user.complemento = complemento;
+    user.cep = cep;
+    user.cidade = cidade;
+    user.estado = estado;
+
+    // Salvar as informações atualizadas no banco de dados
+    await user.save();
+
+    // Responder com uma mensagem de sucesso
+    res.status(200).json({ mensagem: 'Informações adicionais salvas com sucesso' });
+  } catch (error) {
+    console.error('Erro ao salvar informações adicionais do usuário:', error);
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
+});
+
+
+//criação da assinatura
+app.post('/criar-assinatura', async (req, res) => {
+  const { token, token_card } = req.body;
+
+  try {
+    // 1. Fazer requisição para obter informações do usuário com base no token
+    const userDataResponse = await axios.get(`https:/localhost:5002/user/info`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const userData = userDataResponse.data;
+
+    // 2. Montar o payload de assinatura com os dados do usuário e o token do cartão
+    const payload = {
+      customer: {
+        name: userData.nome,
+        type: 'individual',
+        email: userData.email,
+        document: userData.cpf,
+        address: {
+          line_1: userData.endereco,
+          line_2: userData.complemento,
+          zip_code: userData.cep,
+          city: userData.cidade,
+          state: userData.estado,
+          country: 'BR'
+        }
+      },
+      plan_id: 'plan_yKmZzVBUvUEzAGX7',
+      payment_method: 'credit_card',
+      card_token: token_card,
+      credit_card: {
+        installments: 1,
+        statement_descriptor: 'Assinatura acesso aos exercicios',
+        card: {
+          billing_address: {
+            line_1: userData.endereco,
+            zip_code: userData.cep,
+            city: userData.cidade,
+            state: userData.estado,
+            country: 'BR'
+          }
+        }
+      },
+      metadata: {
+        id: userData._id
+      }
+    };
+
+    // 3. Enviar o payload para a API do Pagarme para criar a assinatura
+    const response = await axios.post('https://api.pagar.me/core/v5/subscriptions', payload);
+
+    // 4. Retornar a resposta da API do Pagarme como resposta da rota
+    res.json(response.data);
+  } catch (error) {
+    console.error('Erro ao criar assinatura:', error);
+    res.status(500).json({ error: 'Erro ao criar assinatura' });
+  }
+});
+
+

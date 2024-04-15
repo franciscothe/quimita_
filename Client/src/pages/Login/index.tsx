@@ -32,7 +32,7 @@ const FormularioLogin: React.FC = () => {
     event.preventDefault()
 
     try {
-      const response = await axios.post('/auth/login', {
+      const response = await axios.post('https://localhost:5002/auth/login', {
         email: email,
         senha: senha
       })
@@ -85,6 +85,7 @@ const FormularioLogin: React.FC = () => {
             placeholder="Senha"
           />
         </div>
+
         <BtnEnviar type="submit">ACESSAR LIÇÕES</BtnEnviar>
       </form>
       <DivCriarConta>

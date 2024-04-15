@@ -12,6 +12,7 @@ import {
   Exercicios5
 } from '../Exercícios'
 import Perfil from '../Perfil'
+
 const isAuthenticated = () => {
   const token = localStorage.getItem('token')
   return !!token // Retorna true se o token existir
@@ -60,6 +61,7 @@ export const Rotas = createBrowserRouter([
   },
   {
     path: '/user/perfil',
+    // eslint-disable-next-line react/jsx-no-undef
     element: <Perfil />
   }
 ])
