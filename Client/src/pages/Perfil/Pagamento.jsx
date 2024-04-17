@@ -51,6 +51,7 @@ const CardForm = ({ userToken }) => {
             holder_name: cardData.holder_name,
             exp_month: parseInt(cardData.exp_month),
             exp_year: parseInt(cardData.exp_year),
+            holder_document: userData.cpf,
             cvv: cardData.cvv
           },
           billing_address: {
