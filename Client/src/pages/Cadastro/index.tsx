@@ -34,7 +34,7 @@ const CadastroForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          'https://localhost:5002/auth/register',
+          '/auth/register',
           values
         )
 
