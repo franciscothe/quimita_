@@ -17,8 +17,8 @@ const axios = require('axios');
 
 
 // Middlewares
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Configuração do HTTPS
@@ -95,7 +95,8 @@ app.post('/auth/register', async (req, res) => {
   const user = new User({
     nome,
     email,
-    senha: passwordHash
+    senha: passwordHash,
+    assinatura: false
   });
 
   try {
@@ -192,7 +193,7 @@ const checkToken = (req, res, next) => {
     next()
   } catch (error) {
     res.status(400).json({
-      msg: 'Token Inválido'
+      msg: 'Tnao deu certo'
     })
   }
 }
@@ -383,3 +384,9 @@ app.post('/criar-assinatura', async (req, res) => {
 });
 
 
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions));

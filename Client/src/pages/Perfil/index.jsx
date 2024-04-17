@@ -60,7 +60,7 @@ const Perfil = () => {
           </>
         )}
         <FormularioCadastro />
-        <CardForm />
+        <CardForm userToken={localStorage.getItem('token')} />
       </Container>
     </div>
   )

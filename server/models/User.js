@@ -11,7 +11,8 @@ const UserSchema = mongoose.Schema({
   complemento: String,
   cep: String,
   cidade: String,
-  estado: String
+  estado: String,
+  assinatura: String 
 })
 
 const User = mongoose.model('User', UserSchema)

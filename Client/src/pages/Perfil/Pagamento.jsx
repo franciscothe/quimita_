@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const CardForm = ({ userToken }) => {
@@ -10,10 +10,27 @@ const CardForm = ({ userToken }) => {
     cvv: '',
     label: ''
   })
+  const [userData, setUserData] = useState(null)
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        })
+        setUserData(response.data)
+      } catch (error) {
+        console.error('Erro ao obter dados do usuário:', error)
+      }
+    }
+
+    fetchUserData()
+  }, [userToken])
 
   const handleChange = (e) => {
-    //e é evento, click por exemplo
-    const { name, value } = e.target //extrai as propriedades de nome e valor do elemento que foi alterado
+    const { name, value } = e.target
     setCardData({
       ...cardData,
       [name]: value
@@ -21,46 +38,70 @@ const CardForm = ({ userToken }) => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault() //
+    e.preventDefault()
     try {
-      // eslint-disable-next-line no-undef
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-      const options = {
-        method: 'POST',
-        url: 'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json'
-        },
-        data: {
+      // 1. Enviar os dados do cartão e receber o card_id
+
+      const cardResponse = await axios.post(
+        'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
+        {
           type: 'card',
           card: {
             number: cardData.number,
             holder_name: cardData.holder_name,
             exp_month: parseInt(cardData.exp_month),
             exp_year: parseInt(cardData.exp_year),
-            cvv: cardData.cvv,
-            label: cardData.label
+            cvv: cardData.cvv
+          },
+          billing_address: {
+            line_1: userData.endereco,
+            line_2: userData.complemento,
+            zip_code: userData.cep,
+            city: userData.cidade,
+            state: userData.estado,
+            country: 'BR'
           }
-        }
-      }
-      const response = await axios.request(options)
-      console.log('Token criado:', response.data)
-      const tokenCard = response.data // Supondo que o token_card esteja no objeto response.data.id
-
-      // Aqui você pode lidar com o token criado, como armazená-lo no estado do componente ou enviá-lo para o backend
-      const backendResponse = await axios.post(
-        'http://localhost:5002/criar-assinatura',
-        {
-          tokenCard: tokenCard,
-          userToken: userToken // Envie também o token de usuário para o backend
         }
       )
 
-      console.log('Resposta do backend:', backendResponse.data)
-      // Faça algo com a resposta do backend, se necessário
+      const cardId = cardResponse.data.id
+      console.log('Card ID:', cardId)
+
+      // 2. Obter os dados do usuário do banco de dados
+
+      // 3. Preencher o payload com os dados do usuário e o card_id
+      const payload = {
+        customer: {
+          name: userData.nome,
+          type: 'individual',
+          email: userData.email,
+          document: userData.cpf
+        },
+        plan_id: 'plan_yKmZzVBUvUEzAGX7',
+        billing_address: {
+          line_1: userData.endereco,
+          line_2: userData.complemento,
+          zip_code: userData.cep,
+          city: userData.cidade,
+          state: userData.estado,
+          country: 'BR'
+        },
+        payment_method: 'credit_card',
+        card_token: cardId,
+        metadata: {
+          id: userData._id
+        }
+      }
+
+      // 4. Enviar a assinatura
+      const subscriptionResponse = await axios.post(
+        'https://api.pagar.me/core/v5/subscriptions',
+        payload
+      )
+
+      console.log('Assinatura criada:', subscriptionResponse.data)
     } catch (error) {
-      console.error('Erro ao criar token:', error)
+      console.error('Erro ao criar assinatura:', error)
     }
   }
 
@@ -105,7 +146,7 @@ const CardForm = ({ userToken }) => {
             name="exp_year"
             value={cardData.exp_year}
             onChange={handleChange}
-            placeholder="Mês de Expiração"
+            placeholder="Ano de Expiração"
             className="form-control"
             data-pagarmecheckout-element="number"
           />
