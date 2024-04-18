@@ -38,7 +38,7 @@ const FormularioCadastro = ({ userInfo }) => {
       }
 
       await axios.post(
-        'https:/localhost:5002/user/perfil/adicionar-informacoes',
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
         formValues,
         {
           headers: {
