@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.d5289b2f.css",
-    "main.js": "/static/js/main.24922d09.js",
+    "main.js": "/static/js/main.7180d35a.js",
     "static/js/787.4edde0dd.chunk.js": "/static/js/787.4edde0dd.chunk.js",
     "static/media/quimica.png": "/static/media/quimica.a41f7a07874115ce9959.png",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
     "main.d5289b2f.css.map": "/static/css/main.d5289b2f.css.map",
-    "main.24922d09.js.map": "/static/js/main.24922d09.js.map",
+    "main.7180d35a.js.map": "/static/js/main.7180d35a.js.map",
     "787.4edde0dd.chunk.js.map": "/static/js/787.4edde0dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d5289b2f.css",
-    "static/js/main.24922d09.js"
+    "static/js/main.7180d35a.js"
   ]
 }

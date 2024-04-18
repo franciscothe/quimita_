@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom' // Importe useNavigate
 const CardForm = ({ userToken }) => {
   const [cardData, setCardData] = useState({
     number: '',
@@ -11,6 +11,7 @@ const CardForm = ({ userToken }) => {
     label: ''
   })
   const [userData, setUserData] = useState(null)
+  const navigate = useNavigate() // Inicialize useNavigate
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -98,7 +99,7 @@ const CardForm = ({ userToken }) => {
       // //   'https://api.pagar.me/core/v5/subscriptions',
       // //   payload
       // )
-      window.location.replace('/user/perfil/assinatura')
+      navigate('/user/perfil')
       // console.log('Assinatura criada:', subscriptionResponse.data)
     } catch (error) {
       // window.location.replace('/perfil/assinatura')
