@@ -20,6 +20,12 @@ const axios = require('axios');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
 // Configuração do HTTPS
 const sslOptions = {
@@ -322,67 +328,24 @@ app.post('/user/perfil/adicionar-informacoes', checkToken, async (req, res) => {
 
 
 //criação da assinatura
-app.post('/criar-assinatura', async (req, res) => {
-  const { token, token_card } = req.body;
-
+app.post('/user/verifica-assinatura', checkToken, async (req, res) => {
   try {
-    // 1. Fazer requisição para obter informações do usuário com base no token
-    const userDataResponse = await axios.get(`https:/localhost:5002/user/info`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const userId = req.user.id;
 
-    const userData = userDataResponse.data;
+    // Busca o usuário no banco de dados
+    const user = await User.findById(userId);
 
-    // 2. Montar o payload de assinatura com os dados do usuário e o token do cartão
-    const payload = {
-      customer: {
-        name: userData.nome,
-        type: 'individual',
-        email: userData.email,
-        document: userData.cpf,
-        address: {
-          line_1: userData.endereco,
-          line_2: userData.complemento,
-          zip_code: userData.cep,
-          city: userData.cidade,
-          state: userData.estado,
-          country: 'BR'
-        }
-      },
-      plan_id: 'plan_yKmZzVBUvUEzAGX7',
-      payment_method: 'credit_card',
-      card_token: token_card,
-      credit_card: {
-        installments: 1,
-        statement_descriptor: 'Assinatura acesso aos exercicios',
-        card: {
-          billing_address: {
-            line_1: userData.endereco,
-            zip_code: userData.cep,
-            city: userData.cidade,
-            state: userData.estado,
-            country: 'BR'
-          }
-        }
-      },
-      metadata: {
-        id: userData._id
-      }
-    };
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
 
-    // 3. Enviar o payload para a API do Pagarme para criar a assinatura
-    const response = await axios.post('https://api.pagar.me/core/v5/subscriptions', payload);
-
-    // 4. Retornar a resposta da API do Pagarme como resposta da rota
-    res.json(response.data);
+    res.json({ assinatura: user.assinatura });
+    console.log('Valor da assinatura retornado com sucesso:', user.assinatura);
   } catch (error) {
-    console.error('Erro ao criar assinatura:', error);
-    res.status(500).json({ error: 'Erro ao criar assinatura' });
+    console.error('Erro ao verificar assinatura do usuário:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
   }
 });
-
 
 const corsOptions ={
   origin:'http://localhost:3000', 

@@ -12,6 +12,7 @@ import {
   Exercicios5
 } from '../Exercícios'
 import Perfil from '../Perfil'
+import Assinatura from '../Assinatura'
 
 const isAuthenticated = () => {
   const token = localStorage.getItem('token')
@@ -61,7 +62,10 @@ export const Rotas = createBrowserRouter([
   },
   {
     path: '/user/perfil',
-    // eslint-disable-next-line react/jsx-no-undef
     element: <Perfil />
+  },
+  {
+    path: '/user/perfil/assinatura',
+    element: <Assinatura />
   }
 ])

@@ -51,7 +51,6 @@ const CardForm = ({ userToken }) => {
             holder_name: cardData.holder_name,
             exp_month: parseInt(cardData.exp_month),
             exp_year: parseInt(cardData.exp_year),
-            holder_document: userData.cpf,
             cvv: cardData.cvv
           },
           billing_address: {
@@ -71,38 +70,39 @@ const CardForm = ({ userToken }) => {
       // 2. Obter os dados do usuário do banco de dados
 
       // 3. Preencher o payload com os dados do usuário e o card_id
-      const payload = {
-        customer: {
-          name: userData.nome,
-          type: 'individual',
-          email: userData.email,
-          document: userData.cpf
-        },
-        plan_id: 'plan_yKmZzVBUvUEzAGX7',
-        billing_address: {
-          line_1: userData.endereco,
-          line_2: userData.complemento,
-          zip_code: userData.cep,
-          city: userData.cidade,
-          state: userData.estado,
-          country: 'BR'
-        },
-        payment_method: 'credit_card',
-        card_token: cardId,
-        metadata: {
-          id: userData._id
-        }
-      }
+      // // const payload = {
+      // //   customer: {
+      // //     name: userData.nome,
+      // //     type: 'individual',
+      // //     email: userData.email,
+      // //     document: userData.cpf
+      // //   },
+      // //   plan_id: 'plan_yKmZzVBUvUEzAGX7',
+      // //   billing_address: {
+      // //     line_1: userData.endereco,
+      // //     line_2: userData.complemento,
+      // //     zip_code: userData.cep,
+      // //     city: userData.cidade,
+      // //     state: userData.estado,
+      // //     country: 'BR'
+      // //   },
+      // //   payment_method: 'credit_card',
+      // //   card_token: cardId,
+      // //   metadata: {
+      // //     id: userData._id
+      // //   }
+      // // }
 
-      // 4. Enviar a assinatura
-      const subscriptionResponse = await axios.post(
-        'https://api.pagar.me/core/v5/subscriptions',
-        payload
-      )
-
-      console.log('Assinatura criada:', subscriptionResponse.data)
+      // // // 4. Enviar a assinatura
+      // // const subscriptionResponse = await axios.post(
+      // //   'https://api.pagar.me/core/v5/subscriptions',
+      // //   payload
+      // )
+      window.location.replace('/user/perfil/assinatura')
+      // console.log('Assinatura criada:', subscriptionResponse.data)
     } catch (error) {
-      console.error('Erro ao criar assinatura:', error)
+      // window.location.replace('/perfil/assinatura')
+      // console.error('Erro ao criar assinatura:', error)
     }
   }
 
