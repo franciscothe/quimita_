@@ -16,7 +16,7 @@ const CardForm = ({ userToken }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('https://localhost:5002/user/perfil', {
+        const response = await axios.get('/user/perfil', {
           headers: {
             Authorization: `Bearer ${userToken}`
           }

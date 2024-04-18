@@ -37,15 +37,11 @@ const FormularioCadastro = ({ userInfo }) => {
         return
       }
 
-      await axios.post(
-        'https://localhost:5002/user/perfil/adicionar-informacoes',
-        formValues,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      )
+      })
 
       setShowSuccessMessage(true)
       setShowForm(false) // Oculta o formulário após sucesso
