@@ -120,6 +120,7 @@ const CardForm = ({ userToken }) => {
         onChange={handleChange}
         placeholder="Número do Cartão"
         className="form-control"
+        required
       />
       <input
         type="text"
@@ -129,6 +130,7 @@ const CardForm = ({ userToken }) => {
         placeholder="Nome do Titular"
         className="form-control"
         data-pagarmecheckout-element="holder_name"
+        required
       />
       <div className="row">
         <div className="col-md-3">
@@ -140,6 +142,7 @@ const CardForm = ({ userToken }) => {
             placeholder="Mês de Expiração"
             className="form-control"
             data-pagarmecheckout-element="number"
+            required
           />
         </div>
         <div className="col-md-3">
@@ -151,6 +154,7 @@ const CardForm = ({ userToken }) => {
             placeholder="Ano de Expiração"
             className="form-control"
             data-pagarmecheckout-element="number"
+            required
           />
         </div>
       </div>
@@ -163,6 +167,7 @@ const CardForm = ({ userToken }) => {
         onChange={handleChange}
         placeholder="CVV"
         className="form-control"
+        required
       />
 
       <button type="submit">Enviar</button>
