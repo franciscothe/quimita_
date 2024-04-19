@@ -33,13 +33,13 @@ const sslOptions = {
   cert: fs.readFileSync(path.join(__dirname, 'SSL/code.crt'))
 };
 
-https.createServer(sslOptions, app).listen(5002, () => {
-  console.log("Servidor HTTPS rodando na porta 5002");
+https.createServer(sslOptions, app).listen(80, () => {
+  console.log("Servidor HTTPS rodando na porta 80");
 });
 
 // Configuração do servidor HTTP para redirecionar para HTTPS
 http.createServer((req, res) => {
-  res.writeHead(301, { Location: `https://${req.headers.host}:${5002}${req.url}` });
+  res.writeHead(301, { Location: `https://${req.headers.host}:${80}${req.url}` });
   res.end();
 }).listen(5001, () => {
   console.log('Servidor HTTP redirecionando para HTTPS na porta 5001');
