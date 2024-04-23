@@ -15,7 +15,6 @@ const https = require('https')
 const app = express()
 const axios = require('axios');
 
-
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -319,7 +318,7 @@ app.post('/user/perfil/adicionar-informacoes', checkToken, async (req, res) => {
     await user.save();
 
     // Responder com uma mensagem de sucesso
-    res.status(200).json({ mensagem: 'Informações adicionais salvas com sucesso' });
+    res.status(200).json({ mensagem: 'Informações adiciaaaaaaonais salvas com sucesso' });
   } catch (error) {
     console.error('Erro ao salvar informações adicionais do usuário:', error);
     res.status(500).json({ mensagem: 'Erro interno do servidor' });
@@ -347,9 +346,168 @@ app.post('/user/verifica-assinatura', checkToken, async (req, res) => {
   }
 });
 
+
+// Rota para lidar com o envio dos dados do usuário para a API da Pagar.me
+app.post('/para-pagarme', checkToken, async (req, res) => {
+  // Extrair o ID do usuário decodificado pelo middleware checkToken
+  const userId = req.user.id;
+  console.log(userId);
+  try {
+    // Buscar informações do usuário usando o ID
+    const user = await User.findById(userId).select('-senha'); // Exclui a senha do objeto retornado
+
+    if (!user) {
+      return res.status(404).json({ msg: 'Usuário não encontrado' });
+    }
+    
+    // Montar os dados do usuário para enviar para a API da Pagar.me
+    const dadosUsuario = {
+      name: user.nome,
+      email: user.email,
+      code: '001', // Este campo não está presente no exemplo original, você pode removê-lo se não for necessário
+      document: user.cpf,
+      type: 'individual',
+      document_type: 'CPF',
+      address: {
+        line_1: user.endereco,
+        line_2: user.complemento,
+        zip_code: user.cep,
+        city: user.cidade,
+        state: 'GO',
+        country: 'BR'
+      },
+      phones: {
+        mobile_phone: {
+          country_code: '55',
+          area_code: user.telefone.substring(0, 2),
+          number: user.telefone.substring(2)
+        }
+      }
+    };
+    
+    // Enviar os dados para a API da Pagar.me
+    const options = {
+      method: 'POST',
+      url: 'https://api.pagar.me/core/v5/customers',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+      },
+      data: dadosUsuario
+    };
+
+    // Enviar os dados para a API da Pagar.me
+    const response = await axios.request(options);
+
+    // Responder com os dados retornados pela API da Pagar.me
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error(error); // Log do erro para depuração
+    if (error.response) {
+      // O servidor respondeu com um status fora do intervalo 2xx
+      console.log(error.response.data);
+      res.status(500).json({ success: false, message: "Erro ao enviar dados", error: error.response.data });
+    } else {
+      // Algum outro erro ocorreu no processo de envio
+      res.status(500).json({ success: false, message: "Erro interno", error: error.message });
+    }
+  }
+});
+
+app.post('/assinatura', checkToken, async (req, res) => {
+  const { cardId } = req.body; // Obtenha o cardId do corpo da requisição
+  console.log(cardId);
+  // Extrair o ID do usuário decodificado pelo middleware checkToken
+  const userId = req.user.id;
+  console.log(userId);
+
+  try {
+    // Buscar informações do usuário usando o ID
+    const user = await User.findById(userId).select('-senha'); // Exclui a senha do objeto retornado
+
+    if (!user) {
+      return res.status(404).json({ msg: 'Usuário não encontrado' });
+    }
+
+    // Montar os dados do usuário para enviar para a API da Pagar.me
+    const dadosUsuario = {
+      customer: {
+        name: user.nome,
+        type: 'individual',
+        email: user.email,
+        document: user.cpf
+      },
+      plan_id: 'plan_yKmZzVBUvUEzAGX7',
+      billing_address: {
+        line_1: user.endereco,
+        line_2: user.complemento,
+        zip_code: user.cep,
+        city: user.cidade,
+        state: user.estado,
+        country: 'BR'
+      },
+      payment_method: 'credit_card',
+      card_token: cardId,
+      metadata: {
+        id: user._id
+      }
+    };
+    const options = {
+      method: 'POST',
+      url: 'https://api.pagar.me/core/v5/subscriptions',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+      },
+      data: dadosUsuario
+    };
+    // Enviar os dados para a API da Pagar.me
+    // authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+    // authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+
+    // Enviar os dados para a API da Pagar.me
+    const response = await axios.request(options);
+    user.assinatura = true;
+    await user.save();
+    res.redirect('/user/perfil/assinatura');
+
+    // Responder com os dados retornados pela API da Pagar.me
+    res.status(200).json(response.data);
+    res.redirect('/user/perfil/assinatura');
+    //adicione aqui a mudança para o campo assinatura = true para o usuario 
+
+
+
+  } catch (error) {
+    console.error(error); // Log do erro para depuração
+    res.redirect('/user/perfil/assinatura');
+
+    if (error.response) {
+      // O servidor respondeu com um status fora do intervalo 2xx
+      console.log(error.response.data);
+      res.status(500).json({ success: false, message: "Erro ao enviar dados", error: error.response.data });
+      res.redirect('/user/perfil/assinatura');
+
+    } else {
+      // Algum outro erro ocorreu no processo de envio
+      res.status(500).json({ success: false, message: "Erro interno", error: error.message });
+      res.redirect('/user/perfil/assinatura');
+
+    }
+  }
+});
+
+
+
+
 const corsOptions ={
   origin:'http://localhost:3000', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
+
+
+
 app.use(cors(corsOptions));

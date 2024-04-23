@@ -25,7 +25,7 @@ const Perfil = () => {
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -59,8 +59,21 @@ const Perfil = () => {
             <p>Carregando informações do perfil...</p>
           </>
         )}
-        <FormularioCadastro />
-        <CardForm userToken={localStorage.getItem('token')} />
+
+        {/* Renderização condicional dos componentes com base na assinatura */}
+        {userInfo && userInfo.assinatura === 'true' ? (
+          <>
+            {/* Aqui você pode adicionar os componentes que deseja renderizar quando a assinatura for verdadeira */}
+            {/* Por exemplo, você pode adicionar um texto ou outro conteúdo */}
+            <p>O usuário possui uma assinatura ativa.</p>
+          </>
+        ) : (
+          <>
+            {/* Renderizar os componentes FormularioCadastro e CardForm apenas se a assinatura for diferente de "true" */}
+            <FormularioCadastro userInfo={userInfo} />
+            <CardForm userToken={localStorage.getItem('token')} />
+          </>
+        )}
       </Container>
     </div>
   )
