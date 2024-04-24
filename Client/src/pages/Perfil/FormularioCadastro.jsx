@@ -8,7 +8,10 @@ import { BarraSucesso } from '../Assinatura/styles'
 import { EnderecooDiv } from './styles'
 
 $(document).ready(function () {
-  $('#cpf').mask('00000000000')
+  $('#cpf').mask('000.000.000-00')
+  $('#telefone').mask('(00) 0 0000-0000')
+
+  $('#cep').mask('00000-000')
 })
 const FormularioCadastro = ({ userInfo }) => {
   const [formValues, setFormValues] = useState({
@@ -110,7 +113,6 @@ const FormularioCadastro = ({ userInfo }) => {
                 onChange={handleInputChange}
                 required
                 placeholder="CPF"
-                pattern="[0-9]*"
               />
               <input
                 className="form-control"
@@ -130,7 +132,7 @@ const FormularioCadastro = ({ userInfo }) => {
                 value={formValues.endereco}
                 onChange={handleInputChange}
                 required
-                placeholder="Endereço"
+                placeholder="Rua/Avenida"
               />
               <input
                 className="form-control"
@@ -140,7 +142,7 @@ const FormularioCadastro = ({ userInfo }) => {
                 value={formValues.complemento}
                 onChange={handleInputChange}
                 required
-                placeholder="Complemento"
+                placeholder="Número ou Quadra e lote"
               />
               <input
                 className="form-control"

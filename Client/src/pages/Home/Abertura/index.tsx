@@ -1,4 +1,3 @@
-import Botao from '../../../components/Botao'
 import { BotaoClaro } from '../../../components/Botao/styles'
 import Logotipo from '../../../components/Logo'
 import Titulo from '../../../components/Titulo'
@@ -18,11 +17,11 @@ const Abertura = () => (
     <Titulo fontSize={25} texto="ENEM" />
 
     <div className="div-btn">
-      <Botao to="/Login" color={cores.laranja}>
-        ENTRAR
-      </Botao>
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         ACESSAR LIÇÕES
+      </BotaoClaro>
+      <BotaoClaro to="/Cadastro" color={cores.laranjaClaro}>
+        REALIZAR CADASTRO
       </BotaoClaro>
     </div>
   </PaginaInicial>

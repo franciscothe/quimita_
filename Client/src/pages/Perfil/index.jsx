@@ -70,7 +70,7 @@ const Perfil = () => {
         ) : (
           <>
             {/* Renderizar os componentes FormularioCadastro e CardForm apenas se a assinatura for diferente de "true" */}
-            <FormularioCadastro userInfo={userInfo} />
+            <FormularioCadastro userToken={localStorage.getItem('token')} />
             <CardForm userToken={localStorage.getItem('token')} />
           </>
         )}

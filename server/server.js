@@ -14,6 +14,7 @@ const fs = require('fs')
 const https = require('https')
 const app = express()
 const axios = require('axios');
+const { Base64 } = require('js-base64');
 
 // Middlewares
 app.use(cors());
@@ -359,40 +360,45 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
     if (!user) {
       return res.status(404).json({ msg: 'Usuário não encontrado' });
     }
+    const cpfSemPontosTracos = user.cpf.replace(/[.-]/g, '');
+    const telefoneEdit = user.telefone.replace(/[-()\s]/g, '');
+    const cepEdit = user.cep.replace(/[-]/g, '');
     
     // Montar os dados do usuário para enviar para a API da Pagar.me
     const dadosUsuario = {
       name: user.nome,
       email: user.email,
       code: '001', // Este campo não está presente no exemplo original, você pode removê-lo se não for necessário
-      document: user.cpf,
+      document: cpfSemPontosTracos,
+      document_type: "CPF", // Tipo de documento
       type: 'individual',
-      document_type: 'CPF',
       address: {
         line_1: user.endereco,
         line_2: user.complemento,
-        zip_code: user.cep,
+        zip_code: cepEdit,
         city: user.cidade,
-        state: 'GO',
+        state: "GO",
         country: 'BR'
       },
       phones: {
         mobile_phone: {
           country_code: '55',
-          area_code: user.telefone.substring(0, 2),
-          number: user.telefone.substring(2)
+          area_code: telefoneEdit.substring(0, 2),
+          number: telefoneEdit.substring(2)
         }
       }
     };
     
+    // Converter a chave da API para Base64
+    const apiKey = Base64.encode(process.env.KEY_PAGARME);
+
     // Enviar os dados para a API da Pagar.me
     const options = {
       method: 'POST',
       url: 'https://api.pagar.me/core/v5/customers',
       headers: {
         accept: 'application/json',
-        'content-type': 'application/json',
-        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+        authorization: `Basic ${apiKey}`
       },
       data: dadosUsuario
     };
@@ -471,6 +477,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
     const response = await axios.request(options);
     user.assinatura = true;
     await user.save();
+
     res.redirect('/user/perfil/assinatura');
 
     // Responder com os dados retornados pela API da Pagar.me
@@ -503,7 +510,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
 
 
 const corsOptions ={
-  origin:'http://localhost:3000', 
+  origin:'https://localhost:3000', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
