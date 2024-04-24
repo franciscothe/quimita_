@@ -6,7 +6,7 @@ import $ from 'jquery'
 import 'jquery-mask-plugin/dist/jquery.mask.min.js'
 import { BarraSucesso } from '../Assinatura/styles'
 import { EnderecooDiv } from './styles'
-import { IMaskInput } from 'react-imask';
+import { IMaskInput } from 'react-imask'
 
 const FormularioCadastro = ({ userInfo }) => {
   const [formValues, setFormValues] = useState({
