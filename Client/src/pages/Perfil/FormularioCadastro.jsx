@@ -1,18 +1,13 @@
 // FormularioCadastro.jsx
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Container } from 'react-bootstrap'
 import $ from 'jquery'
 import 'jquery-mask-plugin/dist/jquery.mask.min.js'
 import { BarraSucesso } from '../Assinatura/styles'
 import { EnderecooDiv } from './styles'
+import { IMaskInput } from 'react-imask';
 
-$(document).ready(function () {
-  $('#cpf').mask('000.000.000-00')
-  $('#telefone').mask('(00) 0 0000-0000')
-
-  $('#cep').mask('00000-000')
-})
 const FormularioCadastro = ({ userInfo }) => {
   const [formValues, setFormValues] = useState({
     cpf: '',
@@ -104,7 +99,8 @@ const FormularioCadastro = ({ userInfo }) => {
         {showForm && (
           <EnderecooDiv>
             <form onSubmit={handleSubmit}>
-              <input
+              <IMaskInput
+                mask="000.000.000-00"
                 className="form-control"
                 type="text"
                 id="cpf"
@@ -114,7 +110,8 @@ const FormularioCadastro = ({ userInfo }) => {
                 required
                 placeholder="CPF"
               />
-              <input
+              <IMaskInput
+                mask="(00) 0 0000-0000"
                 className="form-control"
                 type="text"
                 id="telefone"
@@ -144,7 +141,8 @@ const FormularioCadastro = ({ userInfo }) => {
                 required
                 placeholder="Número ou Quadra e lote"
               />
-              <input
+              <IMaskInput
+                mask="00000-000"
                 className="form-control"
                 type="text"
                 id="cep"
