@@ -69,17 +69,17 @@ const FormularioCadastro = ({ userInfo }) => {
         return
       }
       if (formValues.cpf.length !== 14) {
-        alert('Revise o CPF informado!');
-        return;
+        alert('Revise o CPF informado!')
+        return
       }
 
       if (formValues.telefone.length !== 16) {
-        alert('Revise o telefone informado');
-        return;
+        alert('Revise o telefone informado')
+        return
       }
       if (formValues.cep.length !== 9) {
-        alert('Revise o CEP informado');
-        return;
+        alert('Revise o CEP informado')
+        return
       }
 
       await salvarInformacoes(token)
@@ -148,34 +148,34 @@ const FormularioCadastro = ({ userInfo }) => {
                 placeholder="Rua/Avenida"
               />
               <div className="row">
-  <div className="col">
-    <label> N° da residência</label>
-    <input
-      className="form-control"
-      type="text"
-      id="complemento"
-      onChange={handleInputChange}
-      name="complemento"
-      value={formValues.complemento}
-      required
-      placeholder=""
-    />
-  </div>
-  <div className="col">
-    <label> Ap (se houver)</label>
+                <div className="col">
+                  <label> N° da residência</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="complemento"
+                    onChange={handleInputChange}
+                    name="complemento"
+                    value={formValues.complemento}
+                    required
+                    placeholder=""
+                  />
+                </div>
+                <div className="col">
+                  <label> Ap (se houver)</label>
 
-    <input
-      className="form-control"
-      type="text"
-      id="ap"
-      name="ap"
-      onChange={handleInputChange}
-      placeholder=""
-    />
-  </div>
-</div>
-<label>Outras informações (opcional)</label>
-                <input
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="ap"
+                    name="ap"
+                    onChange={handleInputChange}
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <label>Outras informações (opcional)</label>
+              <input
                 className="form-control"
                 type="text"
                 id="complemento111"
@@ -185,7 +185,6 @@ const FormularioCadastro = ({ userInfo }) => {
               />
               <label>CEP</label>
               <IMaskInput
-              
                 mask="00000-000"
                 className="form-control"
                 type="text"

@@ -33,8 +33,7 @@ const CadastroForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('/auth/register',
-         values)
+        const response = await axios.post('/auth/register', values)
 
         // Extrair o token da resposta
         const token = response.data.token

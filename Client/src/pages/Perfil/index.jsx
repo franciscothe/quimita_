@@ -46,7 +46,7 @@ const Perfil = () => {
     <div>
       <Container>
         <HeaderPerfil>
-        <h2>Informações do Usuário</h2>
+          <h2>Informações do Usuário</h2>
         </HeaderPerfil>
         {userInfo ? (
           <div>

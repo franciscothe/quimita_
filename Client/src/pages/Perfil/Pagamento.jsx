@@ -157,17 +157,17 @@ const CardForm = ({ userToken }) => {
           data-pagarmecheckout-element="holder_name"
           required
         />
-            <IMaskInput
-              mask="00/00"
-              type="text"
-              name="exp_date"
-              value={cardData.exp_date}
-              onChange={handleChange}
-              placeholder="Validade: MM/AA"
-              className="form-control"
-              data-pagarmecheckout-element="number"
-              required
-            />
+        <IMaskInput
+          mask="00/00"
+          type="text"
+          name="exp_date"
+          value={cardData.exp_date}
+          onChange={handleChange}
+          placeholder="Validade: MM/AA"
+          className="form-control"
+          data-pagarmecheckout-element="number"
+          required
+        />
 
         <span data-pagarmecheckout-element="brand"></span>
         <input
