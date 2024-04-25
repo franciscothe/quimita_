@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom' // Importe useNavigate
 import { Buffer } from 'buffer'
 
 import { PagamentoDiv } from './styles'
+import { IMaskInput } from 'react-imask'
 
 const CardForm = ({ userToken }) => {
   const [cardData, setCardData] = useState({
@@ -18,22 +19,22 @@ const CardForm = ({ userToken }) => {
   const [userData, setUserData] = useState(null)
   const navigate = useNavigate() // Inicialize useNavigate
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('/user/perfil', {
-          headers: {
-            Authorization: `Bearer ${userToken}`
-          }
-        })
-        setUserData(response.data)
-      } catch (error) {
-        console.error('Erro ao obter dados do usuário:', error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get('/user/perfil', {
+  //         headers: {
+  //           Authorization: `Bearer ${userToken}`
+  //         }
+  //       })
+  //       setUserData(response.data)
+  //     } catch (error) {
+  //       console.error('Erro ao obter dados do usuário:', error)
+  //     }
+  //   }
 
-    fetchUserData()
-  }, [userToken])
+  //   fetchUserData()
+  // }, [userToken])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -48,68 +49,68 @@ const CardForm = ({ userToken }) => {
     try {
       // 1. Enviar os dados do cartão e receber o card_id
 
-      const cardResponse = await axios.post(
-        'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
-        {
-          type: 'card',
-          card: {
-            number: cardData.number,
-            holder_name: cardData.holder_name,
-            exp_month: parseInt(cardData.exp_month),
-            exp_year: parseInt(cardData.exp_year),
-            cvv: cardData.cvv
-          },
-          billing_address: {
-            line_1: userData.endereco,
-            line_2: userData.complemento,
-            zip_code: userData.cep,
-            city: userData.cidade,
-            state: userData.estado,
-            country: 'BR'
-          }
-        }
-      )
+      // const cardResponse = await axios.post(
+      //   'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
+      //   {
+      //     type: 'card',
+      //     card: {
+      //       number: cardData.number,
+      //       holder_name: cardData.holder_name,
+      //       exp_month: parseInt(cardData.exp_month),
+      //       exp_year: parseInt(cardData.exp_year),
+      //       cvv: cardData.cvv
+      //     },
+      //     billing_address: {
+      //       line_1: userData.endereco,
+      //       line_2: userData.complemento,
+      //       zip_code: userData.cep,
+      //       city: userData.cidade,
+      //       state: userData.estado,
+      //       country: 'BR'
+      //     }
+      //   }
+      // )
 
-      const cardId = cardResponse.data.id
-      console.log('Card ID:', cardId)
+      // const cardId = cardResponse.data.id
+      // console.log('Card ID:', cardId)
 
-      await axios.post(
-        '/assinatura',
-        {
-          cardId
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userToken}`
-          }
-        }
-      )
-      // 2. Obter os dados do usuário do banco de dados
+      // await axios.post(
+      //   '/assinatura',
+      //   {
+      //     cardId
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${userToken}`
+      //     }
+      //   }
+      // )
+      // // 2. Obter os dados do usuário do banco de dados
 
-      // 3. Preencher o payload com os dados do usuário e o card_id
-      const payload = {
-        customer: {
-          name: userData.nome,
-          type: 'individual',
-          email: userData.email,
-          document: userData.cpf
-        },
-        plan_id: 'plan_yKmZzVBUvUEzAGX7',
-        billing_address: {
-          line_1: userData.endereco,
-          line_2: userData.complemento,
-          zip_code: userData.cep,
-          city: userData.cidade,
-          state: userData.estado,
-          country: 'BR'
-        },
-        payment_method: 'credit_card',
-        card_token: cardId,
-        metadata: {
-          id: userData._id
-        }
-      }
-      console.log(payload)
+      // // 3. Preencher o payload com os dados do usuário e o card_id
+      // const payload = {
+      //   customer: {
+      //     name: userData.nome,
+      //     type: 'individual',
+      //     email: userData.email,
+      //     document: userData.cpf
+      //   },
+      //   plan_id: 'plan_yKmZzVBUvUEzAGX7',
+      //   billing_address: {
+      //     line_1: userData.endereco,
+      //     line_2: userData.complemento,
+      //     zip_code: userData.cep,
+      //     city: userData.cidade,
+      //     state: userData.estado,
+      //     country: 'BR'
+      //   },
+      //   payment_method: 'credit_card',
+      //   card_token: cardId,
+      //   metadata: {
+      //     id: userData._id
+      //   }
+      // }
+      // console.log(payload)
       res.redirect('/user/perfil/assinatura')
 
       // 4. Enviar a assinatura
@@ -156,32 +157,18 @@ const CardForm = ({ userToken }) => {
           data-pagarmecheckout-element="holder_name"
           required
         />
-        <div className="row">
-          <div className="col-md-3">
-            <input
+            <IMaskInput
+              mask="00/00"
               type="text"
-              name="exp_month"
-              value={cardData.exp_month}
+              name="exp_date"
+              value={cardData.exp_date}
               onChange={handleChange}
-              placeholder="Mês de Expiração"
+              placeholder="Validade: MM/AA"
               className="form-control"
               data-pagarmecheckout-element="number"
               required
             />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="text"
-              name="exp_year"
-              value={cardData.exp_year}
-              onChange={handleChange}
-              placeholder="Ano de Expiração"
-              className="form-control"
-              data-pagarmecheckout-element="number"
-              required
-            />
-          </div>
-        </div>
+
         <span data-pagarmecheckout-element="brand"></span>
         <input
           type="text"

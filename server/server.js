@@ -306,27 +306,30 @@ app.post('/user/perfil/adicionar-informacoes', checkToken, async (req, res) => {
       return res.status(404).json({ mensagem: 'Usuário não encontrado' });
     }
 
-    // Atualizar as informações adicionais do usuário
-    user.cpf = cpf;
-    user.telefone = telefone;
-    user.endereco = endereco;
-    user.complemento = complemento;
-    user.cep = cep;
-    user.cidade = cidade;
-    user.estado = estado;
+    // Verificar se as propriedades existem antes de acessá-las
+    const cpfSemPontosTracos = cpf ? cpf.replace(/[.-]/g, '') : '';
+    const telefoneEdit = telefone ? telefone.replace(/[-()\s]/g, '') : '';
+    const cepEdit = cep ? cep.replace(/[-]/g, '') : '';
+
+    // Atualizar as informações adicionais do usuário apenas se foram fornecidas na requisição
+    if (cpfSemPontosTracos) user.cpf = cpfSemPontosTracos;
+    if (telefoneEdit) user.telefone = telefoneEdit;
+    if (endereco) user.endereco = endereco;
+    if (complemento) user.complemento = complemento;
+    if (cepEdit) user.cep = cepEdit;
+    if (cidade) user.cidade = cidade;
+    if (estado) user.estado = estado;
 
     // Salvar as informações atualizadas no banco de dados
     await user.save();
 
     // Responder com uma mensagem de sucesso
-    res.status(200).json({ mensagem: 'Informações adiciaaaaaaonais salvas com sucesso' });
+    res.status(200).json({ mensagem: 'Informações adicionais salvas com sucesso' });
   } catch (error) {
     console.error('Erro ao salvar informações adicionais do usuário:', error);
     res.status(500).json({ mensagem: 'Erro interno do servidor' });
   }
 });
-
-
 //criação da assinatura
 app.post('/user/verifica-assinatura', checkToken, async (req, res) => {
   try {
@@ -360,10 +363,10 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
     if (!user) {
       return res.status(404).json({ msg: 'Usuário não encontrado' });
     }
+    console.log(user);
     const cpfSemPontosTracos = user.cpf.replace(/[.-]/g, '');
     const telefoneEdit = user.telefone.replace(/[-()\s]/g, '');
     const cepEdit = user.cep.replace(/[-]/g, '');
-    
     // Montar os dados do usuário para enviar para a API da Pagar.me
     const dadosUsuario = {
       name: user.nome,

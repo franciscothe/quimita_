@@ -68,6 +68,19 @@ const FormularioCadastro = ({ userInfo }) => {
         window.location.replace('/login')
         return
       }
+      if (formValues.cpf.length !== 14) {
+        alert('Revise o CPF informado!');
+        return;
+      }
+
+      if (formValues.telefone.length !== 16) {
+        alert('Revise o telefone informado');
+        return;
+      }
+      if (formValues.cep.length !== 9) {
+        alert('Revise o CEP informado');
+        return;
+      }
 
       await salvarInformacoes(token)
       await enviarParaPagarme(token)
@@ -99,6 +112,7 @@ const FormularioCadastro = ({ userInfo }) => {
         {showForm && (
           <EnderecooDiv>
             <form onSubmit={handleSubmit}>
+              <label> CPF</label>
               <IMaskInput
                 mask="000.000.000-00"
                 className="form-control"
@@ -108,8 +122,9 @@ const FormularioCadastro = ({ userInfo }) => {
                 value={formValues.cpf}
                 onChange={handleInputChange}
                 required
-                placeholder="CPF"
+                placeholder="_ _ _ . _ _ _ . _ _ _ - _ _"
               />
+              <label>Telefone</label>
               <IMaskInput
                 mask="(00) 0 0000-0000"
                 className="form-control"
@@ -119,8 +134,9 @@ const FormularioCadastro = ({ userInfo }) => {
                 value={formValues.telefone}
                 onChange={handleInputChange}
                 required
-                placeholder="Telefone"
+                placeholder="(_ _) _ _ _ _ _-_ _ _ _"
               />
+              <label>Rua/Avenida</label>
               <input
                 className="form-control"
                 type="text"
@@ -131,17 +147,45 @@ const FormularioCadastro = ({ userInfo }) => {
                 required
                 placeholder="Rua/Avenida"
               />
-              <input
+              <div className="row">
+  <div className="col">
+    <label> N° da residência</label>
+    <input
+      className="form-control"
+      type="text"
+      id="complemento"
+      onChange={handleInputChange}
+      name="complemento"
+      value={formValues.complemento}
+      required
+      placeholder=""
+    />
+  </div>
+  <div className="col">
+    <label> Ap (se houver)</label>
+
+    <input
+      className="form-control"
+      type="text"
+      id="ap"
+      name="ap"
+      onChange={handleInputChange}
+      placeholder=""
+    />
+  </div>
+</div>
+<label>Outras informações (opcional)</label>
+                <input
                 className="form-control"
                 type="text"
-                id="complemento"
-                name="complemento"
-                value={formValues.complemento}
+                id="complemento111"
+                name="complemento111"
                 onChange={handleInputChange}
-                required
-                placeholder="Número ou Quadra e lote"
+                placeholder=""
               />
+              <label>CEP</label>
               <IMaskInput
+              
                 mask="00000-000"
                 className="form-control"
                 type="text"
@@ -150,18 +194,9 @@ const FormularioCadastro = ({ userInfo }) => {
                 value={formValues.cep}
                 onChange={handleInputChange}
                 required
-                placeholder="CEP"
+                placeholder="_ _  _ _ _ - _ _ _"
               />
-              <input
-                className="form-control"
-                type="text"
-                id="estado"
-                name="estado"
-                value={formValues.estado}
-                onChange={handleInputChange}
-                required
-                placeholder="Estado"
-              />
+              <label>Cidade</label>
               <input
                 className="form-control"
                 type="text"
@@ -171,6 +206,18 @@ const FormularioCadastro = ({ userInfo }) => {
                 onChange={handleInputChange}
                 required
                 placeholder="Cidade"
+              />
+              <label>Estado</label>
+              <IMaskInput
+                mask="aa"
+                className="form-control"
+                type="text"
+                id="estado"
+                name="estado"
+                value={formValues.estado}
+                onChange={handleInputChange}
+                required
+                placeholder="_ _"
               />
               <button type="submit" className="btn btn-primary">
                 Salvar Informações

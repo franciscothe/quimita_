@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const HeaderPerfil = styled.header`
-  border: none;
+  border-bottom: 1px solid black;
   font-size: 20px;
-  border-radius: 10px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
   margin: 20px 0;
   text-decoration: none;

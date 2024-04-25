@@ -17,11 +17,12 @@ const Abertura = () => (
     <Titulo fontSize={25} texto="ENEM" />
 
     <div className="div-btn">
+      <BotaoClaro to="/Cadastro" color={cores.laranja}>
+        REALIZAR CADASTRO
+      </BotaoClaro>
+
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         ACESSAR LIÇÕES
-      </BotaoClaro>
-      <BotaoClaro to="/Cadastro" color={cores.laranjaClaro}>
-        REALIZAR CADASTRO
       </BotaoClaro>
     </div>
   </PaginaInicial>

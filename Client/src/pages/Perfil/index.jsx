@@ -46,9 +46,8 @@ const Perfil = () => {
     <div>
       <Container>
         <HeaderPerfil>
-          <BotaoPerfil to="/Sumario"> Ir para Sumário</BotaoPerfil>
-        </HeaderPerfil>
         <h2>Informações do Usuário</h2>
+        </HeaderPerfil>
         {userInfo ? (
           <div>
             <p>Nome: {userInfo.nome}</p>
