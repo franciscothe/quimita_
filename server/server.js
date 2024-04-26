@@ -306,30 +306,38 @@ app.post('/user/perfil/adicionar-informacoes', checkToken, async (req, res) => {
       return res.status(404).json({ mensagem: 'Usuário não encontrado' });
     }
 
-    // Verificar se as propriedades existem antes de acessá-las
-    const cpfSemPontosTracos = cpf ? cpf.replace(/[.-]/g, '') : '';
-    const telefoneEdit = telefone ? telefone.replace(/[-()\s]/g, '') : '';
-    const cepEdit = cep ? cep.replace(/[-]/g, '') : '';
+    // Remover pontos e traços do CPF
+    const cpfSemPontosTracos = cpf.replace(/[.-]/g, '');
 
-    // Atualizar as informações adicionais do usuário apenas se foram fornecidas na requisição
-    if (cpfSemPontosTracos) user.cpf = cpfSemPontosTracos;
-    if (telefoneEdit) user.telefone = telefoneEdit;
-    if (endereco) user.endereco = endereco;
-    if (complemento) user.complemento = complemento;
-    if (cepEdit) user.cep = cepEdit;
-    if (cidade) user.cidade = cidade;
-    if (estado) user.estado = estado;
+    // Remover caracteres especiais e espaços do telefone
+    const telefoneEdit = telefone.replace(/[-()\s]/g, '');
+
+    // Remover traços do CEP
+    const cepEdit = cep.replace(/[-\s]/g, '');
+
+    // Atualizar as informações adicionais do usuário
+    user.cpf = cpfSemPontosTracos;
+    user.telefone = telefoneEdit;
+    user.endereco = endereco;
+    user.complemento = complemento;
+    user.cep = cepEdit;
+    user.cidade = cidade;
+    user.estado = estado;
 
     // Salvar as informações atualizadas no banco de dados
     await user.save();
 
     // Responder com uma mensagem de sucesso
     res.status(200).json({ mensagem: 'Informações adicionais salvas com sucesso' });
+    console.log(user)
   } catch (error) {
     console.error('Erro ao salvar informações adicionais do usuário:', error);
     res.status(500).json({ mensagem: 'Erro interno do servidor' });
   }
 });
+
+
+
 //criação da assinatura
 app.post('/user/verifica-assinatura', checkToken, async (req, res) => {
   try {
@@ -353,47 +361,41 @@ app.post('/user/verifica-assinatura', checkToken, async (req, res) => {
 
 // Rota para lidar com o envio dos dados do usuário para a API da Pagar.me
 app.post('/para-pagarme', checkToken, async (req, res) => {
-  // Extrair o ID do usuário decodificado pelo middleware checkToken
-  const userId = req.user.id;
-  console.log(userId);
   try {
-    // Buscar informações do usuário usando o ID
-    const user = await User.findById(userId).select('-senha'); // Exclui a senha do objeto retornado
+    // userId pode ser acessado a partir do objeto de solicitação após o middleware checkToken
+    const userId = req.user.id;
 
+    // Buscar informações do usuário usando o ID
+    const user = await User.findById(userId).select('-senha');
+    
     if (!user) {
       return res.status(404).json({ msg: 'Usuário não encontrado' });
     }
-    console.log(user);
-    const cpfSemPontosTracos = user.cpf.replace(/[.-]/g, '');
-    const telefoneEdit = user.telefone.replace(/[-()\s]/g, '');
-    const cepEdit = user.cep.replace(/[-]/g, '');
+
     // Montar os dados do usuário para enviar para a API da Pagar.me
     const dadosUsuario = {
       name: user.nome,
       email: user.email,
       code: '001', // Este campo não está presente no exemplo original, você pode removê-lo se não for necessário
-      document: cpfSemPontosTracos,
-      document_type: "CPF", // Tipo de documento
+      document: user.cpf,
       type: 'individual',
+      document_type: 'CPF',
       address: {
         line_1: user.endereco,
         line_2: user.complemento,
-        zip_code: cepEdit,
+        zip_code: user.cep,
         city: user.cidade,
-        state: "GO",
+        state: 'GO',
         country: 'BR'
       },
       phones: {
         mobile_phone: {
           country_code: '55',
-          area_code: telefoneEdit.substring(0, 2),
-          number: telefoneEdit.substring(2)
+          area_code: user.telefone.substring(0, 2),
+          number: user.telefone.substring(2)
         }
       }
     };
-    
-    // Converter a chave da API para Base64
-    const apiKey = Base64.encode(process.env.KEY_PAGARME);
 
     // Enviar os dados para a API da Pagar.me
     const options = {
@@ -401,7 +403,8 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
       url: 'https://api.pagar.me/core/v5/customers',
       headers: {
         accept: 'application/json',
-        authorization: `Basic ${apiKey}`
+        'content-type': 'application/json',
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
       data: dadosUsuario
     };
@@ -424,9 +427,11 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
   }
 });
 
+
 app.post('/assinatura', checkToken, async (req, res) => {
   const { cardId } = req.body; // Obtenha o cardId do corpo da requisição
   console.log(cardId);
+  
   // Extrair o ID do usuário decodificado pelo middleware checkToken
   const userId = req.user.id;
   console.log(userId);
@@ -447,7 +452,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         email: user.email,
         document: user.cpf
       },
-      plan_id: 'plan_yKmZzVBUvUEzAGX7',
+      plan_id: 'plan_3oVe2yqtQigmvNWO',
       billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,
@@ -462,6 +467,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         id: user._id
       }
     };
+
     const options = {
       method: 'POST',
       url: 'https://api.pagar.me/core/v5/subscriptions',
@@ -472,39 +478,33 @@ app.post('/assinatura', checkToken, async (req, res) => {
       },
       data: dadosUsuario
     };
-    // Enviar os dados para a API da Pagar.me
-    // authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
-    // authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
 
     // Enviar os dados para a API da Pagar.me
     const response = await axios.request(options);
+
+    // Atualizar o campo de assinatura do usuário para true
     user.assinatura = true;
     await user.save();
 
+    // Redirecionar para a página de perfil de assinatura
     res.redirect('/user/perfil/assinatura');
 
     // Responder com os dados retornados pela API da Pagar.me
     res.status(200).json(response.data);
-    res.redirect('/user/perfil/assinatura');
-    //adicione aqui a mudança para o campo assinatura = true para o usuario 
-
-
 
   } catch (error) {
     console.error(error); // Log do erro para depuração
+    
+    // Redirecionar para a página de perfil de assinatura em caso de erro
     res.redirect('/user/perfil/assinatura');
 
     if (error.response) {
       // O servidor respondeu com um status fora do intervalo 2xx
       console.log(error.response.data);
       res.status(500).json({ success: false, message: "Erro ao enviar dados", error: error.response.data });
-      res.redirect('/user/perfil/assinatura');
-
     } else {
       // Algum outro erro ocorreu no processo de envio
       res.status(500).json({ success: false, message: "Erro interno", error: error.message });
-      res.redirect('/user/perfil/assinatura');
-
     }
   }
 });

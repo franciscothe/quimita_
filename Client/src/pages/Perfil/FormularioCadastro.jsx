@@ -8,7 +8,7 @@ import { BarraSucesso } from '../Assinatura/styles'
 import { EnderecooDiv } from './styles'
 import { IMaskInput } from 'react-imask'
 
-const FormularioCadastro = ({ userInfo }) => {
+const FormularioCadastro = ({ userToken }) => {
   const [formValues, setFormValues] = useState({
     cpf: '',
     telefone: '',
@@ -43,14 +43,15 @@ const FormularioCadastro = ({ userInfo }) => {
     }
   }
 
-  const enviarParaPagarme = async (token) => {
+  const enviarParaPagarme = async (userToken) => {
     try {
       await axios.post(
         '/para-pagarme',
-        {}, // Corpo da solicitação vazio, pois você já tem os dados do usuário no servidor
+        // Passando o token no cabeçalho da requisição
+        null,
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${userToken}`
           }
         }
       )
@@ -77,7 +78,7 @@ const FormularioCadastro = ({ userInfo }) => {
         alert('Revise o telefone informado')
         return
       }
-      if (formValues.cep.length !== 9) {
+      if (formValues.cep.length !== 10) {
         alert('Revise o CEP informado')
         return
       }
@@ -185,7 +186,7 @@ const FormularioCadastro = ({ userInfo }) => {
               />
               <label>CEP</label>
               <IMaskInput
-                mask="00000-000"
+                mask="00 000-000"
                 className="form-control"
                 type="text"
                 id="cep"

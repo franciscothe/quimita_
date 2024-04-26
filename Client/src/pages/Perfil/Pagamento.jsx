@@ -10,8 +10,7 @@ const CardForm = ({ userToken }) => {
   const [cardData, setCardData] = useState({
     number: '',
     holder_name: '',
-    exp_month: '',
-    exp_year: '',
+    exp_date: '',
     cvv: '',
     label: ''
   })
@@ -19,22 +18,21 @@ const CardForm = ({ userToken }) => {
   const [userData, setUserData] = useState(null)
   const navigate = useNavigate() // Inicialize useNavigate
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await axios.get('/user/perfil', {
-  //         headers: {
-  //           Authorization: `Bearer ${userToken}`
-  //         }
-  //       })
-  //       setUserData(response.data)
-  //     } catch (error) {
-  //       console.error('Erro ao obter dados do usuário:', error)
-  //     }
-  //   }
-
-  //   fetchUserData()
-  // }, [userToken])
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('/user/perfil', {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        })
+        setUserData(response.data)
+      } catch (error) {
+        console.error('Erro ao obter dados do usuário:', error)
+      }
+    }
+    fetchUserData()
+  }, [userToken])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -49,73 +47,72 @@ const CardForm = ({ userToken }) => {
     try {
       // 1. Enviar os dados do cartão e receber o card_id
 
-      // const cardResponse = await axios.post(
-      //   'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
-      //   {
-      //     type: 'card',
-      //     card: {
-      //       number: cardData.number,
-      //       holder_name: cardData.holder_name,
-      //       exp_month: parseInt(cardData.exp_month),
-      //       exp_year: parseInt(cardData.exp_year),
-      //       cvv: cardData.cvv
-      //     },
-      //     billing_address: {
-      //       line_1: userData.endereco,
-      //       line_2: userData.complemento,
-      //       zip_code: userData.cep,
-      //       city: userData.cidade,
-      //       state: userData.estado,
-      //       country: 'BR'
-      //     }
-      //   }
-      // )
+      const cardResponse = await axios.post(
+        'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
+        {
+          type: 'card',
+          card: {
+            number: cardData.number,
+            holder_name: cardData.holder_name,
+            exp_month: cardData.exp_date.substring(0, 2),
+            exp_year: cardData.exp_date.substring(3, 5),
+            cvv: cardData.cvv
+          },
+          billing_address: {
+            line_1: userData.endereco,
+            line_2: userData.complemento,
+            zip_code: userData.cep,
+            city: userData.cidade,
+            state: userData.estado,
+            country: 'BR'
+          }
+        }
+      )
 
-      // const cardId = cardResponse.data.id
-      // console.log('Card ID:', cardId)
+      const cardId = cardResponse.data.id
+      console.log('Card ID:', cardId)
 
-      // await axios.post(
-      //   '/assinatura',
-      //   {
-      //     cardId
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${userToken}`
-      //     }
-      //   }
-      // )
-      // // 2. Obter os dados do usuário do banco de dados
-
-      // // 3. Preencher o payload com os dados do usuário e o card_id
-      // const payload = {
-      //   customer: {
-      //     name: userData.nome,
-      //     type: 'individual',
-      //     email: userData.email,
-      //     document: userData.cpf
-      //   },
-      //   plan_id: 'plan_yKmZzVBUvUEzAGX7',
-      //   billing_address: {
-      //     line_1: userData.endereco,
-      //     line_2: userData.complemento,
-      //     zip_code: userData.cep,
-      //     city: userData.cidade,
-      //     state: userData.estado,
-      //     country: 'BR'
-      //   },
-      //   payment_method: 'credit_card',
-      //   card_token: cardId,
-      //   metadata: {
-      //     id: userData._id
-      //   }
-      // }
-      // console.log(payload)
+      await axios.post(
+        '/assinatura',
+        {
+          cardId
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        }
+      )
+      // 2. Obter os dados do usuário do banco de dados
+      // 3. Preencher o payload com os dados do usuário e o card_id
+      const payload = {
+        customer: {
+          name: userData.nome,
+          type: 'individual',
+          email: userData.email,
+          document: userData.cpf
+        },
+        plan_id: 'plan_yKmZzVBUvUEzAGX7',
+        billing_address: {
+          line_1: userData.endereco,
+          line_2: userData.complemento,
+          zip_code: userData.cep,
+          city: userData.cidade,
+          state: userData.estado,
+          country: 'BR'
+        },
+        payment_method: 'credit_card',
+        card_token: cardId,
+        metadata: {
+          id: userData._id
+        }
+      }
+      console.log(payload)
       res.redirect('/user/perfil/assinatura')
 
       // 4. Enviar a assinatura
 
-      // navigate('/user/perfil/assinatura');
+      navigate('/user/perfil/assinatura')
     } catch (error) {
       // Trate os erros da requisição aqui
       console.error('Erro ao criar assinatura:', error)
