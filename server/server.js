@@ -404,11 +404,11 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
       },
       data: dadosUsuario
     };
-
+    // c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6
     // Enviar os dados para a API da Pagar.me
     const response = await axios.request(options);
 
@@ -427,19 +427,18 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
   }
 });
 
-
 app.post('/assinatura', checkToken, async (req, res) => {
   const { cardId } = req.body; // Obtenha o cardId do corpo da requisição
-  console.log(cardId);
   
   // Extrair o ID do usuário decodificado pelo middleware checkToken
   const userId = req.user.id;
-  console.log(userId);
 
-  try {
+   try {
+    // userId pode ser acessado a partir do objeto de solicitação após o middleware checkToken
+
     // Buscar informações do usuário usando o ID
-    const user = await User.findById(userId).select('-senha'); // Exclui a senha do objeto retornado
-
+    const user = await User.findById(userId).select('-senha');
+    
     if (!user) {
       return res.status(404).json({ msg: 'Usuário não encontrado' });
     }
@@ -452,7 +451,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         email: user.email,
         document: user.cpf
       },
-      plan_id: 'plan_3oVe2yqtQigmvNWO',
+      plan_id: 'plan_1kQyAkU4dflBoDZ3',
       billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,
@@ -470,11 +469,12 @@ app.post('/assinatura', checkToken, async (req, res) => {
 
     const options = {
       method: 'POST',
+
       url: 'https://api.pagar.me/core/v5/subscriptions',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
+        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
       },
       data: dadosUsuario
     };
@@ -487,27 +487,15 @@ app.post('/assinatura', checkToken, async (req, res) => {
     await user.save();
 
     // Redirecionar para a página de perfil de assinatura
-    res.redirect('/user/perfil/assinatura');
-
-    // Responder com os dados retornados pela API da Pagar.me
-    res.status(200).json(response.data);
 
   } catch (error) {
     console.error(error); // Log do erro para depuração
     
     // Redirecionar para a página de perfil de assinatura em caso de erro
-    res.redirect('/user/perfil/assinatura');
-
-    if (error.response) {
-      // O servidor respondeu com um status fora do intervalo 2xx
-      console.log(error.response.data);
-      res.status(500).json({ success: false, message: "Erro ao enviar dados", error: error.response.data });
-    } else {
-      // Algum outro erro ocorreu no processo de envio
-      res.status(500).json({ success: false, message: "Erro interno", error: error.message });
-    }
   }
 });
+
+
 
 
 
