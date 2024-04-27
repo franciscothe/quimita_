@@ -376,7 +376,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
     const dadosUsuario = {
       name: user.nome,
       email: user.email,
-      code: '001', // Este campo não está presente no exemplo original, você pode removê-lo se não for necessário
+      code: '001', 
       document: user.cpf,
       type: 'individual',
       document_type: 'CPF',
@@ -386,7 +386,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
         zip_code: user.cep,
         city: user.cidade,
         state: 'GO',
-        country: 'BR'
+        country: 'BR' 
       },
       phones: {
         mobile_phone: {
@@ -404,7 +404,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
       data: dadosUsuario
     };
@@ -451,7 +451,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         email: user.email,
         document: user.cpf
       },
-      plan_id: 'plan_1kQyAkU4dflBoDZ3',
+      plan_id: 'plan_b5Dkq3vUxuPW384P',
       billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,
@@ -474,7 +474,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
       data: dadosUsuario
     };
@@ -485,12 +485,14 @@ app.post('/assinatura', checkToken, async (req, res) => {
     // Atualizar o campo de assinatura do usuário para true
     user.assinatura = true;
     await user.save();
+    return res.status(200).json({ msg: 'Assinatura realizada com sucesso' });
 
     // Redirecionar para a página de perfil de assinatura
 
   } catch (error) {
     console.error(error); // Log do erro para depuração
-    
+    return res.status(400).json({ msg: 'Revise os dados de pagamento' });
+
     // Redirecionar para a página de perfil de assinatura em caso de erro
   }
 });
