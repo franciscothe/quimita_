@@ -404,7 +404,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
       data: dadosUsuario
     };
@@ -451,7 +451,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         email: user.email,
         document: user.cpf
       },
-      plan_id: 'plan_1kQyAkU4dflBoDZ3',
+      plan_id: 'plan_b5Dkq3vUxuPW384P',
       billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,
@@ -474,7 +474,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic c2tfdGVzdF9mZjUyYmRmNTk0OWE0NjIxYTY5MWM0Y2U3Yjc1OWQwZDo='
+        authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
       data: dadosUsuario
     };
