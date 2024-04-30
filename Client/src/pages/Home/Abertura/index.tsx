@@ -20,7 +20,9 @@ const Abertura = () => (
       <BotaoClaro to="/Cadastro" color={cores.laranja}>
         REALIZAR CADASTRO
       </BotaoClaro>
-
+      <BotaoClaro to="/Login" color={cores.laranja}>
+        FAZER LOGIN
+      </BotaoClaro>
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         ACESSAR LIÇÕES
       </BotaoClaro>

@@ -24,19 +24,24 @@ const FormularioCadastro = ({ userToken }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+    const uppercaseValue = name === 'estado' ? value.toUpperCase() : value
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: uppercaseValue
     })
   }
 
   const salvarInformacoes = async (token) => {
     try {
-      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await axios.post(
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
+        formValues,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-      })
+      )
       console.log('Informações adicionais salvas com sucesso!')
     } catch (error) {
       console.error('Erro ao salvar informações adicionais:', error)
@@ -46,7 +51,7 @@ const FormularioCadastro = ({ userToken }) => {
   const enviarParaPagarme = async (userToken) => {
     try {
       await axios.post(
-        '/para-pagarme',
+        'https://localhost:5002/para-pagarme',
         // Passando o token no cabeçalho da requisição
         null,
         {

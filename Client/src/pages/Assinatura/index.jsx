@@ -15,7 +15,7 @@ const Assinatura = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
 
-    fetch('/user/verifica-assinatura', {
+    fetch('https://localhost:5002/user/verifica-assinatura', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`

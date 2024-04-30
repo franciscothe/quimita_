@@ -21,7 +21,7 @@ const CardForm = ({ userToken }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${userToken}`
           }
@@ -44,6 +44,8 @@ const CardForm = ({ userToken }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const cpfSemEspacos = cardData.number.replace(/\D/g, '')
+
     try {
       // 1. Enviar os dados do cartão e receber o card_id
 
@@ -52,7 +54,7 @@ const CardForm = ({ userToken }) => {
         {
           type: 'card',
           card: {
-            number: cardData.number,
+            number: cpfSemEspacos,
             holder_name: cardData.holder_name,
             exp_month: cardData.exp_date.substring(0, 2),
             exp_year: cardData.exp_date.substring(3, 5),
@@ -73,7 +75,7 @@ const CardForm = ({ userToken }) => {
       console.log('Card ID:', cardId)
 
       await axios.post(
-        '/assinatura',
+        'https://localhost:5002/assinatura',
         {
           cardId
         },
@@ -83,7 +85,7 @@ const CardForm = ({ userToken }) => {
           }
         }
       )
-      navigate('/user/perfil/assinatura');
+      navigate('/user/perfil/assinatura')
 
       // 2. Obter os dados do usuário do banco de dados
       // 3. Preencher o payload com os dados do usuário e o card_id
@@ -112,7 +114,6 @@ const CardForm = ({ userToken }) => {
       console.log(payload)
 
       // 4. Enviar a assinatura
-
     } catch (error) {
       // Trate os erros da requisição aqui
       console.error('Erro ao criar assinatura:', error)
@@ -125,59 +126,61 @@ const CardForm = ({ userToken }) => {
         Valor da assinatura: <b> R$18,00 </b>
       </h5>
       <ul>
-        <li>
-          Acesso ilimitado às apostilas e coletânea de exercícios com resolução
-          passo-a-passo.
-        </li>
+        <li>Acesso as lições</li>
       </ul>
       <form
         onSubmit={handleSubmit}
         data-pagarmecheckout-form
         className="form-group"
       >
-        <input
+        <label> Número do cartão</label>
+        <IMaskInput
+          mask="0000  0000  0000 0000"
           type="text"
           name="number"
           value={cardData.number}
           onChange={handleChange}
-          placeholder="Número do Cartão"
+          placeholder="_ _ _ _   _ _ _ _   _ _ _ _   _ _ _ _"
           className="form-control"
           required
         />
+        <label>Nome do titular</label>
         <input
           type="text"
           name="holder_name"
           value={cardData.holder_name}
           onChange={handleChange}
-          placeholder="Nome do Titular"
+          placeholder=""
           className="form-control"
           data-pagarmecheckout-element="holder_name"
           required
         />
+        <label>Validade do cartão: MM/AA</label>
         <IMaskInput
           mask="00/00"
           type="text"
           name="exp_date"
           value={cardData.exp_date}
           onChange={handleChange}
-          placeholder="Validade: MM/AA"
+          placeholder=" _ _/_ _"
           className="form-control"
           data-pagarmecheckout-element="number"
           required
         />
 
         <span data-pagarmecheckout-element="brand"></span>
+        <label>Código de segurança (CVV) </label>
         <input
           type="text"
           name="cvv"
           data-pagarmecheckout-element="cvv"
           value={cardData.cvv}
           onChange={handleChange}
-          placeholder="CVV"
+          placeholder="_ _ _"
           className="form-control"
           required
         />
-        <button type="submit">Enviar</button>
+        <button type="submit">Realizar Pagamento</button>
       </form>
     </PagamentoDiv>
   )
