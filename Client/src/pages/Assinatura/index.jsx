@@ -27,7 +27,8 @@ const Assinatura = () => {
         setAssinaturaCompleta(data.assinatura)
       })
       .catch((error) => {
-        console.error('Erro ao verificar status da assinatura:', error)
+        alert(error.response.data.msg) // Exibir alerta com a mensagem de erro
+
         // Trate o erro conforme necessário
       })
   }, [])
