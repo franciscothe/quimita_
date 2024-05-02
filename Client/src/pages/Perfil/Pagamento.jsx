@@ -126,7 +126,7 @@ const CardForm = ({ userToken }) => {
         Valor da assinatura: <b> R$18,00 </b>
       </h5>
       <ul>
-        <li>Acesso as lições</li>
+        <li>Acesso às lições</li>
       </ul>
       <form
         onSubmit={handleSubmit}
