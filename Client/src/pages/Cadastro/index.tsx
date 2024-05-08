@@ -47,8 +47,17 @@ const CadastroForm = () => {
         navigate('/user/perfil')
 
         // Redirecionar para página de sucesso, fazer login automático, etc.
-      } catch (error) {
+      } catch (error: any) {
         console.error('Erro ao cadastrar usuário:', error)
+        if (error.response && error.response.status === 425) {
+          // 409 é o código de status para conflito (e-mail já em uso)
+          alert('Este e-mail já está em uso. Por favor, escolha outro.')
+        } else {
+          // Outros erros, como erro de rede
+          alert(
+            'Ocorreu um erro ao cadastrar. Por favor, tente novamente mais tarde.'
+          )
+        }
       }
     }
   })

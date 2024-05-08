@@ -13,6 +13,7 @@ import {
 } from '../Exercícios'
 import Perfil from '../Perfil'
 import Assinatura from '../Assinatura'
+import RecuperarSenha from '../Recuperar_senha'
 
 const isAuthenticated = () => {
   const token = localStorage.getItem('token')
@@ -67,5 +68,9 @@ export const Rotas = createBrowserRouter([
   {
     path: '/user/perfil/assinatura',
     element: <Assinatura />
+  },
+  {
+    path: '/RecuperarSenha',
+    element: <RecuperarSenha />
   }
 ])

@@ -90,7 +90,7 @@ const FormularioLogin: React.FC = () => {
       </form>
       <DivCriarConta>
         <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
-        <LinkCriarConta to="/Cadastro"> RECUPERAR SENHA</LinkCriarConta>
+        <LinkCriarConta to="/RecuperarSenha"> RECUPERAR SENHA</LinkCriarConta>
       </DivCriarConta>
     </Container>
   )

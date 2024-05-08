@@ -90,7 +90,7 @@ app.post('/auth/register', async (req, res) => {
   // Checagem de existência de usuário
   const userExists = await User.findOne({ email: email });
   if (userExists) {
-    return res.status(422).json({ msg: 'Por favor, utilize outro email' });
+    return res.status(425).json({ msg: 'Por favor, utilize outro email' });
   }
 
   // Criação da senha criptografada
