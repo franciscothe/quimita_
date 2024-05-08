@@ -54,9 +54,7 @@ const CadastroForm = () => {
           alert('Este e-mail já está em uso. Por favor, escolha outro.')
         } else {
           // Outros erros, como erro de rede
-          alert(
-            'Ocorreu um erro ao cadastrar. Por favor, tente novamente mais tarde.'
-          )
+          alert('Este e-mail já está em uso. Por favor, escolha outro.')
         }
       }
     }
