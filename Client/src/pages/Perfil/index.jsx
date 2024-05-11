@@ -10,6 +10,7 @@ import { Button } from '../../components/Enunciado/styles'
 import FormularioCadastro from './FormularioCadastro'
 import { FormularioPgto } from '../../components/Formulario_perfil/styles'
 import CardForm from './Pagamento'
+import { BotaoIrSumario } from '../../components/Botao/styles'
 
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
@@ -65,6 +66,7 @@ const Perfil = () => {
             {/* Aqui você pode adicionar os componentes que deseja renderizar quando a assinatura for verdadeira */}
             {/* Por exemplo, você pode adicionar um texto ou outro conteúdo */}
             <p>O usuário possui uma assinatura ativa.</p>
+            <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
           </>
         ) : (
           <>
