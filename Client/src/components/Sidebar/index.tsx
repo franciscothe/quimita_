@@ -47,6 +47,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     )
   }
 
+  const openAtkinsManual = () => {
+    openPDFViewer(
+      'https://drive.google.com/file/d/1Pdv2lj8nCybxkLkEmLNHT04qpM4gnuoZ/preview'
+    )
+  }
+
   const closePDFViewer = () => {
     setPDFVisible(false)
     setGlossaryVisible(false)
@@ -77,6 +83,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </ListItem>
           <ListItem button onClick={openPeriodicTableViewer}>
             <ListItemText primary="Tabela Periódica" />
+          </ListItem>
+          <ListItem button onClick={openAtkinsManual}>
+            <ListItemText primary="Respostas Atkins" />
           </ListItem>
         </List>
       </Drawer>
