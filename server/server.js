@@ -451,7 +451,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
         email: user.email,
         document: user.cpf
       },
-      plan_id: 'plan_b5Dkq3vUxuPW384P',
+      plan_id: 'plan_ePXlj5zuGnUxPod8',
       billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,

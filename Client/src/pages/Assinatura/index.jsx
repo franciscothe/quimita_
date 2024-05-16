@@ -46,18 +46,13 @@ const Assinatura = () => {
           {' '}
           <DivAssinatura>
             <BarraSucesso>Assinatura realizada com sucesso!</BarraSucesso>
-            <ul>
-              <li>Acesso liberado às apostilas!</li>
-              <li>
-                Acesso liberado à coletânea de exercícios organizados por nível
-                de dificuldade!
-              </li>
-              <li>Acesso liberado às resoluções de exercícios passo-a-passo</li>
-            </ul>
+
             <BotaoIrAssinatura to="/Sumario">
               {' '}
-              Ir para lista de lições
+              Ir para as lições
             </BotaoIrAssinatura>
+            <p>Para cancelar a assinatura clique aqui!</p>
+            <button></button>
           </DivAssinatura>
         </>
       ) : (

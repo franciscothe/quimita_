@@ -13,7 +13,7 @@ const FormularioCadastro = ({ userToken }) => {
     cpf: '',
     telefone: '',
     endereco: '',
-    complemento: '',
+    complemento: '0',
     cep: '',
     cidade: '',
     estado: ''
@@ -30,17 +30,54 @@ const FormularioCadastro = ({ userToken }) => {
       [name]: uppercaseValue
     })
   }
+  const handleCEPChange = async (e) => {
+    const { value } = e.target
+    const cep = value.replace(/[\s\D](?!\d$)/g, '') // Remove todos os caracteres não numéricos
+    setFormValues({
+      ...formValues,
+      cep: cep
+    })
+    if (cep.length === 8) {
+      // Verifica se o CEP tem o tamanho correto para fazer a busca
+      buscarEnderecoPorCEP(cep)
+    }
+  }
 
   const salvarInformacoes = async (token) => {
     try {
-      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await axios.post(
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
+        formValues,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-      })
+      )
       console.log('Informações adicionais salvas com sucesso!')
     } catch (error) {
       console.error('Erro ao salvar informações adicionais:', error)
+    }
+  }
+  const buscarEnderecoPorCEP = async (cep) => {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+      const { data } = response
+      if (!data.erro) {
+        const formattedCep = data.cep.padEnd(9, '0') // Garante que o CEP tenha 8 dígitos, preenchendo com zero no final se necessário
+
+        setFormValues({
+          ...formValues,
+          cidade: data.localidade,
+          estado: data.uf,
+          endereco: data.logradouro,
+          cep: formattedCep
+        })
+      } else {
+        alert('CEP não encontrado')
+      }
+    } catch (error) {
+      console.error('Erro ao buscar endereço:', error)
     }
   }
 
@@ -79,7 +116,7 @@ const FormularioCadastro = ({ userToken }) => {
         alert('Revise o telefone informado')
         return
       }
-      if (formValues.cep.length !== 10) {
+      if (formValues.cep.length !== 9) {
         alert('Revise o CEP informado')
         return
       }
@@ -126,19 +163,19 @@ const FormularioCadastro = ({ userToken }) => {
                 required
                 placeholder="_ _ _ . _ _ _ . _ _ _ - _ _"
               />
-              <label>Telefone</label>
+              <label>CEP</label>
               <IMaskInput
-                mask="(00) 0 0000-0000"
+                mask="00 000-000"
                 className="form-control"
                 type="text"
-                id="telefone"
-                name="telefone"
-                value={formValues.telefone}
-                onChange={handleInputChange}
+                id="cep"
+                name="cep"
+                value={formValues.cep}
+                onChange={handleCEPChange}
                 required
-                placeholder="(_ _) _ _ _ _ _-_ _ _ _"
+                placeholder="_ _  _ _ _ - _ _ _"
               />
-              <label>Rua/Avenida</label>
+              <label>Rua/Avenida/Quadra</label>
               <input
                 className="form-control"
                 type="text"
@@ -185,18 +222,6 @@ const FormularioCadastro = ({ userToken }) => {
                 onChange={handleInputChange}
                 placeholder=""
               />
-              <label>CEP</label>
-              <IMaskInput
-                mask="00 000-000"
-                className="form-control"
-                type="text"
-                id="cep"
-                name="cep"
-                value={formValues.cep}
-                onChange={handleInputChange}
-                required
-                placeholder="_ _  _ _ _ - _ _ _"
-              />
               <label>Cidade</label>
               <input
                 className="form-control"
@@ -219,6 +244,18 @@ const FormularioCadastro = ({ userToken }) => {
                 onChange={handleInputChange}
                 required
                 placeholder="_ _"
+              />
+              <label>Telefone</label>
+              <IMaskInput
+                mask="(00) 0 0000-0000"
+                className="form-control"
+                type="text"
+                id="telefone"
+                name="telefone"
+                value={formValues.telefone}
+                onChange={handleInputChange}
+                required
+                placeholder="(_ _) _ _ _ _ _-_ _ _ _"
               />
               <button type="submit" className="btn btn-primary">
                 Salvar Informações

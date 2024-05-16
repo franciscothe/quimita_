@@ -85,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             <ListItemText primary="Tabela Periódica" />
           </ListItem>
           <ListItem button onClick={openAtkinsManual}>
-            <ListItemText primary="Respostas Atkins" />
+            <ListItemText primary="Respostas Físico Quiímica Atkins - 11° Edição" />
           </ListItem>
         </List>
       </Drawer>
