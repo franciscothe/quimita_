@@ -8,6 +8,7 @@ import {
   Button
 } from '@mui/material'
 import Calculadora from '../Calculadora'
+import { useNavigate } from 'react-router-dom'
 
 interface SidebarProps {
   isOpen: boolean
@@ -19,11 +20,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const [isPDFVisible, setPDFVisible] = useState(false)
   const [isGlossaryVisible, setGlossaryVisible] = useState(false)
   const [isPeriodicTableVisible, setPeriodicTableVisible] = useState(false)
-
   const handleCalculatorClick = () => {
     openPDFViewer('https://www.desmos.com/scientific?lang=pt-BR')
   }
 
+  const navigate = useNavigate()
   const closeCalculator = () => {
     setCalculatorOpen(false)
   }
@@ -52,6 +53,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       'https://drive.google.com/file/d/1Pdv2lj8nCybxkLkEmLNHT04qpM4gnuoZ/preview'
     )
   }
+  const openPerfil = () => {
+    navigate('/')
+  }
 
   const closePDFViewer = () => {
     setPDFVisible(false)
@@ -65,6 +69,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     <div>
       <Drawer anchor="left" open={isOpen} onClose={onClose}>
         <List>
+          <ListItem button onClick={openPerfil}>
+            <ListItemText primary="Minhas Informações" />
+          </ListItem>
           <ListItem button onClick={handleCalculatorClick}>
             <ListItemText primary="Calculadora" />
           </ListItem>

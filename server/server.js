@@ -380,7 +380,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
       document: user.cpf,
       type: 'individual',
       document_type: 'CPF',
-      address: {
+      billing_address: {
         line_1: user.endereco,
         line_2: user.complemento,
         zip_code: user.cep,
@@ -410,6 +410,7 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
     };
     // c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6
     // Enviar os dados para a API da Pagar.me
+    console.log(dadosUsuario);
     const response = await axios.request(options);
 
     // Responder com os dados retornados pela API da Pagar.me
@@ -429,10 +430,14 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
 
 app.post('/assinatura', checkToken, async (req, res) => {
   const { cardId } = req.body; // Obtenha o cardId do corpo da requisição
-  
+  if (!cardId) {
+    return res.status(400).json({ msg: 'Card ID é obrigatório' });
+  }
   // Extrair o ID do usuário decodificado pelo middleware checkToken
   const userId = req.user.id;
-
+  if (!userId) {
+    return res.status(401).json({ msg: 'Usuário não autenticado' });
+  }
    try {
     // userId pode ser acessado a partir do objeto de solicitação após o middleware checkToken
 
@@ -449,23 +454,44 @@ app.post('/assinatura', checkToken, async (req, res) => {
         name: user.nome,
         type: 'individual',
         email: user.email,
-        document: user.cpf
+        document: user.cpf,
+        address: {
+          line_1: user.endereco,
+          line_2: user.complemento,
+          zip_code: user.cep,
+          city: user.cidade,
+          state: user.estado,
+          country: 'BR'
+        },
+        phones: {
+          mobile_phone: {
+            country_code: '55',
+            area_code: user.telefone ? user.telefone.substring(0, 2) : '',
+            number: user.telefone ? user.telefone.substring(2) : ''
+          }
+        }
       },
-      plan_id: 'plan_ePXlj5zuGnUxPod8',
-      billing_address: {
-        line_1: user.endereco,
-        line_2: user.complemento,
-        zip_code: user.cep,
-        city: user.cidade,
-        state: user.estado,
-        country: 'BR'
-      },
+      plan_id: 'plan_b5Dkq3vUxuPW384P',
       payment_method: 'credit_card',
       card_token: cardId,
+      credit_card: {
+        installments: "1",
+        statement_descriptor: 'Assinatura',
+        card: {
+          billing_address: {
+            line_1: user.endereco,
+            line_2: user.complemento,
+            zip_code: user.cep,
+            city: user.cidade,
+            state: user.estado,
+            country: 'BR'
+        }}
+      },
       metadata: {
         id: user._id
       }
-    };
+    }
+    const dadosUsuarioString = JSON.stringify(dadosUsuario);
 
     const options = {
       method: 'POST',
@@ -476,15 +502,17 @@ app.post('/assinatura', checkToken, async (req, res) => {
         'content-type': 'application/json',
         authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
-      data: dadosUsuario
+      data: dadosUsuarioString
     };
+    console.log(dadosUsuarioString);
 
     // Enviar os dados para a API da Pagar.me
     const response = await axios.request(options);
 
+
     // Atualizar o campo de assinatura do usuário para true
-    user.assinatura = true;
-    await user.save();
+    // user.assinatura = true;
+    // await user.save();
     return res.status(200).json({ msg: 'Assinatura realizada com sucesso' });
 
     // Redirecionar para a página de perfil de assinatura
@@ -498,8 +526,30 @@ app.post('/assinatura', checkToken, async (req, res) => {
 });
 
 
+const verifyCoupon = async (cupom) => {
+  // Verificação simples do cupom
+  return cupom === 'CUPOMDESCONTO18';
+};
 
+app.post('/user/apply-coupon', checkToken, async (req, res) => {
+  const { cupom } = req.body;
+  const userId = req.user.id; // Assumindo que o middleware verifyToken adiciona o ID do usuário ao objeto req
 
+  try {
+    const isValidCoupon = await verifyCoupon(cupom);
+    if (!isValidCoupon) {
+      return res.json({ success: false, message: 'Cupom inválido' });
+    }
+
+    // Atualizar o campo "assinatura" do usuário para "true"
+    await User.findByIdAndUpdate(userId, { assinatura: 'true' });
+
+    res.json({ success: true, message: 'Cupom aceito! Sua assinatura foi ativada.' });
+  } catch (error) {
+    console.error('Erro ao aplicar o cupom:', error);
+    res.status(500).json({ success: false, message: 'Erro ao aplicar o cupom' });
+  }
+});
 
 
 const corsOptions ={

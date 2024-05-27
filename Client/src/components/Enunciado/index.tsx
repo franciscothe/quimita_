@@ -97,6 +97,11 @@ export const EnunciadosL1Grupo1 = () => {
     })
   }
 
+  // Adicione este useEffect para redefinir mostrarResolucao quando o exercício atual mudar
+  useEffect(() => {
+    setMostrarResolucao(false)
+  }, [exercicioAtualIndex])
+
   return (
     <div>
       <TopoPagina>

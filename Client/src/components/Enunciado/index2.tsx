@@ -74,6 +74,7 @@ export const EnunciadosL1Grupo2 = () => {
       // Se for o primeiro exercício do grupo atual, direcione para a rota "grupo2"
       navigate(`/Sumario/${id}/Grupo1`)
     }
+    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
 
   const mostrarProximoExercicio = () => {
@@ -84,6 +85,7 @@ export const EnunciadosL1Grupo2 = () => {
       // Se estiver no último exercício do grupo 1, redirecione para a rota /Sumario/${id}/Grupo2
       navigate(`/Sumario/${id}/Grupo2`)
     }
+    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
 
   const toggleMostrarResolucao = () => {
@@ -96,11 +98,14 @@ export const EnunciadosL1Grupo2 = () => {
       behavior: 'smooth'
     })
   }
+  useEffect(() => {
+    setMostrarResolucao(false)
+  }, [exercicioAtualIndex])
 
   return (
     <div>
       <TopoPagina>
-        <h3> {id} - Grupo 1</h3>
+        <h3> {id} - Grupo 2</h3>
         <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
       </TopoPagina>
       <BarraNavegacao>

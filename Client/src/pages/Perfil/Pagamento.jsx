@@ -21,7 +21,7 @@ const CardForm = ({ userToken }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${userToken}`
           }
@@ -56,11 +56,12 @@ const CardForm = ({ userToken }) => {
           card: {
             number: cpfSemEspacos,
             holder_name: cardData.holder_name,
+            holder_document: userData.cpf,
             exp_month: cardData.exp_date.substring(0, 2),
             exp_year: cardData.exp_date.substring(3, 5),
             cvv: cardData.cvv
           },
-          billing_address: {
+          billing: {
             line_1: userData.endereco,
             line_2: userData.complemento,
             zip_code: userData.cep,
@@ -72,10 +73,11 @@ const CardForm = ({ userToken }) => {
       )
 
       const cardId = cardResponse.data.id
+      console.log(cardResponse)
       console.log('Card ID:', cardId)
 
       await axios.post(
-        '/assinatura',
+        'https://localhost:5002/assinatura',
         {
           cardId
         },
@@ -85,7 +87,7 @@ const CardForm = ({ userToken }) => {
           }
         }
       )
-      navigate('/user/perfil/assinatura')
+      // navigate('/user/perfil/assinatura')
 
       // 2. Obter os dados do usuário do banco de dados
       // 3. Preencher o payload com os dados do usuário e o card_id
@@ -111,7 +113,7 @@ const CardForm = ({ userToken }) => {
           id: userData._id
         }
       }
-      console.log(payload)
+      console.log(`o pagamento está sendo: ${payload}`)
 
       // 4. Enviar a assinatura
     } catch (error) {

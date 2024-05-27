@@ -7,6 +7,7 @@ import 'jquery-mask-plugin/dist/jquery.mask.min.js'
 import { BarraSucesso } from '../Assinatura/styles'
 import { EnderecooDiv } from './styles'
 import { IMaskInput } from 'react-imask'
+import NavBarUsuario from '../../components/BarraNavegacao'
 
 const FormularioCadastro = ({ userToken }) => {
   const [formValues, setFormValues] = useState({
@@ -45,11 +46,15 @@ const FormularioCadastro = ({ userToken }) => {
 
   const salvarInformacoes = async (token) => {
     try {
-      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await axios.post(
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
+        formValues,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-      })
+      )
       console.log('Informações adicionais salvas com sucesso!')
     } catch (error) {
       console.error('Erro ao salvar informações adicionais:', error)
@@ -80,7 +85,7 @@ const FormularioCadastro = ({ userToken }) => {
   const enviarParaPagarme = async (userToken) => {
     try {
       await axios.post(
-        '/para-pagarme',
+        'https://localhost:5002/para-pagarme',
         // Passando o token no cabeçalho da requisição
         null,
         {

@@ -5,23 +5,50 @@ import { Video } from '../../../components/Video'
 import { Header } from '../../../components/Header'
 import BotaoGrupos from '../../../components/BotaoGrupos'
 import { Botao, BotaoIrSumario } from '../../../components/Botao/styles'
-import { SmallButton } from '../../Login/styles'
 import { cores } from '../../../styles'
 import { ExibirMensagem } from './styles'
 
 export const L1: React.FC = () => {
-  const [tokenPresente, setTokenPresente] = useState(false) // Estado para controlar se o token está presente
+  const [assinaturaValida, setAssinaturaValida] = useState(false) // Estado para armazenar o status da assinatura e token
   const [mensagem, setMensagem] = useState('') // Estado para armazenar a mensagem
 
   useEffect(() => {
-    const verificarToken = () => {
+    const verificarToken = async () => {
       const token = localStorage.getItem('token')
       if (token) {
-        // Se o token estiver presente, definir tokenPresente como verdadeiro
-        setTokenPresente(true)
+        try {
+          // Chama a API para verificar o status da assinatura
+          const response = await axios.post(
+            'https://localhost:5002/user/verifica-assinatura',
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          )
+          console.log('Resposta da API:', response.data) // Log da resposta da API
+
+          // Verifica o campo 'assinatura' na resposta
+          if (response.data.assinatura === 'true') {
+            setAssinaturaValida(true)
+            console.log('A assinatura é válida.') // Log de assinatura válida
+          } else {
+            setAssinaturaValida(false)
+            setMensagem(
+              'Faça a assinatura para visualizar a apostila e os exercícios da lição'
+            )
+            console.log('A assinatura não é válida.') // Log de assinatura inválida
+          }
+        } catch (error) {
+          console.error('Erro ao verificar a assinatura:', error)
+          setAssinaturaValida(false)
+          setMensagem(
+            'Erro ao verificar a assinatura. Tente novamente mais tarde.'
+          )
+        }
       } else {
-        // Se o token não estiver presente, definir tokenPresente como falso e definir a mensagem
-        setTokenPresente(false)
+        setAssinaturaValida(false)
         setMensagem(
           'Faça a assinatura para visualizar a apostila e os exercícios da lição'
         )
@@ -31,8 +58,14 @@ export const L1: React.FC = () => {
     verificarToken()
   }, [])
 
+  useEffect(() => {
+    console.log(`O estado de assinaturaValida mudou para: ${assinaturaValida}`) // Log de mudança de estado
+  }, [assinaturaValida])
+
   const customContent = () => (
-    <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+    <>
+      <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+    </>
   )
 
   return (
@@ -40,20 +73,18 @@ export const L1: React.FC = () => {
       <Header customContent={customContent} />
       <div>
         <Video />
-        {tokenPresente ? (
+        {assinaturaValida ? (
           <>
             <PdfViewer />
             <BotaoGrupos />
-          </> // Renderizar PdfViewer se o token estiver presente
+          </>
         ) : (
           <ExibirMensagem>
             <p>{mensagem}</p>
-
-            <Botao to="/Login" color={cores.laranja}>
-              ENTRAR
+            <Botao to="/user/Perfil" color={cores.laranja}>
+              Realizar Assinatura
             </Botao>
           </ExibirMensagem>
-          // Exibir mensagem se o token não estiver presente
         )}
       </div>
     </div>

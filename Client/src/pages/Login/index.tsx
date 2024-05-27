@@ -14,7 +14,7 @@ import { cores } from '../../styles'
 import { Container } from '@mui/material' // Importar Container de '@mui/material'
 import { useNavigate } from 'react-router-dom' // Importe useNavigate
 
-const FormularioLogin: React.FC = () => {
+const FormularioLogin = () => {
   const [email, setEmail] = useState<string>('')
   const [senha, setSenha] = useState<string>('')
 
@@ -32,7 +32,7 @@ const FormularioLogin: React.FC = () => {
     event.preventDefault()
 
     try {
-      const response = await axios.post('/auth/login', {
+      const response = await axios.post('https://localhost:5002/auth/login', {
         email: email,
         senha: senha
       })
@@ -56,16 +56,7 @@ const FormularioLogin: React.FC = () => {
   }
 
   return (
-    <Container>
-      <NavLogin>
-        <SmallButton to="/Sumario" color={cores.laranjaClaro}>
-          LIÇÕES
-        </SmallButton>
-      </NavLogin>
-      <DivGeralLogin>
-        <Logotipo />
-      </DivGeralLogin>
-
+    <>
       <form onSubmit={handleSubmit}>
         <div>
           <StyledInput
@@ -92,7 +83,7 @@ const FormularioLogin: React.FC = () => {
         <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
         <LinkCriarConta to="/RecuperarSenha"> RECUPERAR SENHA</LinkCriarConta>
       </DivCriarConta>
-    </Container>
+    </>
   )
 }
 

@@ -5,13 +5,20 @@ import { Header } from '../../components/Header'
 import { SmallButton } from '../Login/styles'
 import FormPerfil from '../../components/Formulario_perfil'
 import { ButtonToolbar, Container } from 'react-bootstrap'
-import { BotaoPerfil, HeaderPerfil } from './styles'
+import {
+  BotaoPerfil,
+  BtnCancelaAssinatura,
+  HeaderPerfil,
+  InfoUser
+} from './styles'
 import { Button } from '../../components/Enunciado/styles'
 import FormularioCadastro from './FormularioCadastro'
 import { FormularioPgto } from '../../components/Formulario_perfil/styles'
 import CardForm from './Pagamento'
 import { BotaoIrSumario } from '../../components/Botao/styles'
-
+import NavBarUsuario from '../../components/BarraNavegacao'
+import styled from 'styled-components'
+import CupomDesconto from '../../components/CupomDesconto'
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
 
@@ -21,12 +28,12 @@ const Perfil = () => {
         const token = localStorage.getItem('token')
         if (!token) {
           // Se o token não estiver presente, redirecionar o usuário para a página de login
-          window.location.replace('/login')
+          window.location.replace('/')
           return
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -45,6 +52,7 @@ const Perfil = () => {
 
   return (
     <div>
+      <NavBarUsuario />
       <Container>
         <HeaderPerfil>
           <h2>Informações do Usuário</h2>
@@ -62,16 +70,18 @@ const Perfil = () => {
 
         {/* Renderização condicional dos componentes com base na assinatura */}
         {userInfo && userInfo.assinatura === 'true' ? (
-          <>
-            {/* Aqui você pode adicionar os componentes que deseja renderizar quando a assinatura for verdadeira */}
-            {/* Por exemplo, você pode adicionar um texto ou outro conteúdo */}
+          <InfoUser>
             <p>O usuário possui uma assinatura ativa.</p>
-            <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
-          </>
+            <BotaoIrSumario to="/Sumario">
+              Acessar lista de lições
+            </BotaoIrSumario>
+            <BtnCancelaAssinatura> Cancelar Assinatura</BtnCancelaAssinatura>
+          </InfoUser>
         ) : (
           <>
             {/* Renderizar os componentes FormularioCadastro e CardForm apenas se a assinatura for diferente de "true" */}
             <FormularioCadastro userToken={localStorage.getItem('token')} />
+            <CupomDesconto userToken={localStorage.getItem('token')} />
             <CardForm userToken={localStorage.getItem('token')} />
           </>
         )}

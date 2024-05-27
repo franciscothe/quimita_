@@ -78,3 +78,17 @@ export const EnderecooDiv = styled.div`
     text-transform: uppercase;
   }
 `
+export const InfoUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`
+export const BtnCancelaAssinatura = styled.button`
+  background-color: #ff05058f;
+  padding: 5px 10px;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+`

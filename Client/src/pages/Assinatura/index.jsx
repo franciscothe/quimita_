@@ -15,7 +15,7 @@ const Assinatura = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
 
-    fetch('/user/verifica-assinatura', {
+    fetch('https://localhost:5002/user/verifica-assinatura', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -27,7 +27,7 @@ const Assinatura = () => {
         setAssinaturaCompleta(data.assinatura)
       })
       .catch((error) => {
-        alert(error.response.data.msg) // Exibir alerta com a mensagem de erro
+        alert(error) // Exibir alerta com a mensagem de erro
 
         // Trate o erro conforme necessário
       })
