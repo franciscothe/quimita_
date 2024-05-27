@@ -46,15 +46,11 @@ const FormularioCadastro = ({ userToken }) => {
 
   const salvarInformacoes = async (token) => {
     try {
-      await axios.post(
-        'https://localhost:5002/user/perfil/adicionar-informacoes',
-        formValues,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      )
+      })
       console.log('Informações adicionais salvas com sucesso!')
     } catch (error) {
       console.error('Erro ao salvar informações adicionais:', error)
@@ -85,7 +81,7 @@ const FormularioCadastro = ({ userToken }) => {
   const enviarParaPagarme = async (userToken) => {
     try {
       await axios.post(
-        'https://localhost:5002/para-pagarme',
+        '/para-pagarme',
         // Passando o token no cabeçalho da requisição
         null,
         {

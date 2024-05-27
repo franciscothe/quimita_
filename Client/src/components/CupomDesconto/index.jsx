@@ -18,7 +18,7 @@ const CupomDesconto = ({ userToken }) => {
     event.preventDefault()
     try {
       const response = await axios.post(
-        'https://localhost:5002/user/apply-coupon',
+        '/user/apply-coupon',
         { cupom },
         {
           headers: {
