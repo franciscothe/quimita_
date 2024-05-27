@@ -24,7 +24,7 @@ const Abertura = () => {
       <PaginaInicial>
         {isUserLoggedIn ? (
           <>
-            <Titulo fontSize={20} texto="Usuario cadastrado" />
+            <Titulo fontSize={20} texto="" />
             <FormularioLogin2 />{' '}
           </>
         ) : (

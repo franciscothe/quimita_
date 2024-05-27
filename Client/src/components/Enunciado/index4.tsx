@@ -9,14 +9,19 @@ import {
 } from '../../pages/Exercícios/styles'
 import { IconVoltar, IconAvancar, IconSidebar } from '../Icones'
 import {
+  PaginaExercicios,
   EnunciadoImg,
   BtnResolucao,
   ResolucaoImg,
+  TopoPagina,
   PaginaExercicios2,
-  PaginaExercicios4,
-  TopoPagina
+  PaginaExercicios3,
+  PaginaExercicios4
 } from './styles'
 import { BotaoIrSumario } from '../Botao/styles'
+import Sidebar from '../Sidebar'
+import { Button } from '@mui/material'
+import axios from 'axios' // Importar o axios
 
 export const EnunciadosL1Grupo4 = () => {
   const { id } = useParams<{ id: string }>()
@@ -26,33 +31,64 @@ export const EnunciadosL1Grupo4 = () => {
 
   const [exercicioAtualIndex, setExercicioAtualIndex] = useState<number>(0)
   const [mostrarResolucao, setMostrarResolucao] = useState<boolean>(false)
+  const [mostrarEnunciado, setMostrarEnunciado] = useState<boolean>(true)
+  const [usuario, setUsuario] = useState(null) // Inicializar o estado do usuário
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  const exerciciosL1Grupo4 = Questoes[`${id}`]?.grupo4?.exercicios || []
-  const exercicioAtual = exerciciosL1Grupo4[exercicioAtualIndex]
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  // // useEffect(() => {
+  // //   const token = localStorage.getItem('token')
+  // //   if (token) {
+  // //     axios
+  // //       .get('/Sumario/L1/grupo4', {
+  // //         headers: {
+  // //           Authorization: `Bearer ${token}`
+  // //         }
+  // //       })
+  // //       .then((response) => {
+  // //         // Atualiza o estado com as informações do usuário
+  // //         setUsuario(response.data.user)
+  // //       })
+  // //       .catch((error) => {
+  // //         console.error('Erro ao buscar informações do usuário:', error)
+  // //         navigate('/login') // Redireciona para a página de login em caso de erro
+  // //       })
+  // //   } else {
+  // //     navigate('/login') // Redireciona para a página de login se não houver token
+  // //   }
+  // // }, [navigate])
+
+  // if (!usuario) {
+  //   return <div>Carregando...</div>
+  // }
+
+  const exerciciosL1grupo4 = Questoes[`${id}`]?.grupo4?.exercicios || []
+  const exercicioAtual = exerciciosL1grupo4[exercicioAtualIndex]
 
   const mostrarExercicioAnterior = () => {
     if (exercicioAtualIndex > 0) {
       // Se não for o primeiro exercício do grupo atual, volte para o exercício anterior
       setExercicioAtualIndex(exercicioAtualIndex - 1)
     } else {
-      // Se for o primeiro exercício do grupo atual, direcione para a rota "Grupo1"
+      // Se for o primeiro exercício do grupo atual, direcione para a rota "grupo4"
       navigate(`/Sumario/${id}/Grupo3`)
     }
+    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
 
   const mostrarProximoExercicio = () => {
-    if (exercicioAtualIndex < exerciciosL1Grupo4.length - 1) {
+    if (exercicioAtualIndex < exerciciosL1grupo4.length - 1) {
       // Se ainda houver exercícios no grupo atual, avance para o próximo exercício
       setExercicioAtualIndex(exercicioAtualIndex + 1)
     } else {
       // Se estiver no último exercício do grupo 1, redirecione para a rota /Sumario/${id}/Grupo4
       navigate(`/Sumario/${id}/Grupo5`)
     }
+    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
-
-  useEffect(() => {
-    setMostrarResolucao(false)
-  }, [exercicioAtualIndex])
 
   const toggleMostrarResolucao = () => {
     setMostrarResolucao(!mostrarResolucao)
@@ -64,13 +100,9 @@ export const EnunciadosL1Grupo4 = () => {
       behavior: 'smooth'
     })
   }
-
   useEffect(() => {
-    if (exercicioAtualIndex === exerciciosL1Grupo4.length - 1) {
-      // O redirecionamento para a próxima rota acontecerá apenas quando o botão de avançar for clicado no último exercício do grupo
-      return
-    }
-  }, [exercicioAtualIndex, exerciciosL1Grupo4])
+    setMostrarResolucao(false)
+  }, [exercicioAtualIndex])
 
   return (
     <div>
@@ -79,13 +111,14 @@ export const EnunciadosL1Grupo4 = () => {
         <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
       </TopoPagina>
       <BarraNavegacao>
-        <ButtonSideBar>
+        <Button onClick={toggleSidebar} variant="contained" color="primary">
           <IconSidebar />
-        </ButtonSideBar>
+        </Button>
+        <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
         <div className="navExercicios">
           <EnunciadoButtons
-            exercicios={exerciciosL1Grupo4}
+            exercicios={exerciciosL1grupo4}
             exercicioAtualIndex={exercicioAtualIndex}
             setExercicioAtualIndex={setExercicioAtualIndex}
           />
@@ -93,27 +126,30 @@ export const EnunciadosL1Grupo4 = () => {
       </BarraNavegacao>
 
       <PaginaExercicios4>
-        {Array.isArray(exercicioAtual.enunciado) ? (
-          exercicioAtual.enunciado.map((url, index) => (
-            <EnunciadoImg key={index}>
-              {
-                <img
-                  src={`/Images/${id}/${url}`}
-                  alt={`Enunciado do exercício ${exercicioAtual.ex}`}
-                />
-              }
-            </EnunciadoImg>
-          ))
-        ) : (
-          <EnunciadoImg>
-            {
-              <img
-                src={`/Images/${id}/${exercicioAtual.enunciado}`}
-                alt={`Enunciado do exercício ${exercicioAtual.ex}`}
-              />
-            }
-          </EnunciadoImg>
-        )}
+        <div>
+          {mostrarEnunciado && (
+            <div>
+              {Array.isArray(exercicioAtual.enunciado) ? (
+                <EnunciadoImg>
+                  {exercicioAtual.enunciado.map((url, index) => (
+                    <img
+                      key={index}
+                      src={`/Images/${id}/${url}`}
+                      alt={`Enunciado do exercício ${exercicioAtual.ex}`}
+                    />
+                  ))}
+                </EnunciadoImg>
+              ) : (
+                <EnunciadoImg>
+                  <img
+                    src={`/Images/${id}/${exercicioAtual.enunciado}`}
+                    alt={`Enunciado do exercício ${exercicioAtual.ex}`}
+                  />
+                </EnunciadoImg>
+              )}
+            </div>
+          )}
+        </div>
 
         <NavBotoes>
           <BotoesControles onClick={mostrarExercicioAnterior}>
@@ -132,7 +168,7 @@ export const EnunciadosL1Grupo4 = () => {
           <BotoesControles
             onClick={mostrarProximoExercicio}
             disabled={
-              exercicioAtualIndex === exerciciosL1Grupo4.length - 1 &&
+              exercicioAtualIndex === exerciciosL1grupo4.length - 1 &&
               (indiceDoGrupoAtual === -1 ||
                 indiceDoGrupoAtual === gruposDeExercicios.length - 1)
             }

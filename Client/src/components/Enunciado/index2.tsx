@@ -83,7 +83,7 @@ export const EnunciadosL1Grupo2 = () => {
       setExercicioAtualIndex(exercicioAtualIndex + 1)
     } else {
       // Se estiver no último exercício do grupo 1, redirecione para a rota /Sumario/${id}/Grupo2
-      navigate(`/Sumario/${id}/Grupo2`)
+      navigate(`/Sumario/${id}/Grupo3`)
     }
     setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
