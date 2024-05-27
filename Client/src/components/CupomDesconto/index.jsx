@@ -11,7 +11,7 @@ const CupomDesconto = ({ userToken }) => {
   const [message, setMessage] = useState('')
 
   const handleInputChange = (event) => {
-    setCupom(event.target.value)
+    setCupom(event.target.value.toUpperCase()) // Convertendo para maiúsculas
   }
 
   const handleSubmit = async (event) => {

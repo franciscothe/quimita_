@@ -85,6 +85,7 @@ export const InfoUser = styled.div`
 `
 export const BtnCancelaAssinatura = styled.button`
   background-color: #ff05058f;
+  color: black;
   padding: 5px 10px;
   border-radius: 10px;
   position: fixed;
