@@ -93,3 +93,32 @@ export const BtnCancelaAssinatura = styled.button`
   left: 50%;
   transform: translateX(-50%);
 `
+export const OpcaoUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  input[type='radio'] {
+    margin-right: 10px;
+  }
+  div {
+    display: flex;
+  }
+`
+
+export const InputProfessor = styled.input`
+  margin-left: 20px;
+  width: 69%;
+  height: 29px;
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+`

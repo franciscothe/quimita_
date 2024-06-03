@@ -528,7 +528,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
 
 const verifyCoupon = async (cupom) => {
   // Verificação simples do cupom
-  return cupom === 'CUPOMDESCONTO18';
+  return cupom === '18';
 };
 
 app.post('/user/apply-coupon', checkToken, async (req, res) => {

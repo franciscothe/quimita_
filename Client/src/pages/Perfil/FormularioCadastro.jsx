@@ -1,13 +1,9 @@
-// FormularioCadastro.jsx
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Container } from 'react-bootstrap'
-import $ from 'jquery'
-import 'jquery-mask-plugin/dist/jquery.mask.min.js'
 import { BarraSucesso } from '../Assinatura/styles'
-import { EnderecooDiv } from './styles'
+import { EnderecooDiv, InputProfessor, OpcaoUser } from './styles'
 import { IMaskInput } from 'react-imask'
-import NavBarUsuario from '../../components/BarraNavegacao'
 
 const FormularioCadastro = ({ userToken }) => {
   const [formValues, setFormValues] = useState({
@@ -20,8 +16,11 @@ const FormularioCadastro = ({ userToken }) => {
     estado: ''
   })
 
+  const [userType, setUserType] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showForm, setShowForm] = useState(true)
+  const [discountCode, setDiscountCode] = useState('')
+  const [message, setMessage] = useState('')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -31,37 +30,76 @@ const FormularioCadastro = ({ userToken }) => {
       [name]: uppercaseValue
     })
   }
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value)
+  }
+
+  const handleDiscountCodeChange = (e) => {
+    setDiscountCode(e.target.value)
+  }
+
+  const validateDiscountCode = async () => {
+    try {
+      const response = await axios.post(
+        '/user/apply-coupon',
+        { cupom: discountCode },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        }
+      )
+
+      if (response.data.success) {
+        setMessage('Cupom aceito! Sua assinatura foi ativada.')
+      } else {
+        setMessage('Cupom inválido. Tente novamente.')
+      }
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+    } catch (error) {
+      console.error('Erro ao aplicar o cupom:', error)
+      setMessage('Erro ao aplicar o cupom.')
+    }
+  }
+
   const handleCEPChange = async (e) => {
     const { value } = e.target
-    const cep = value.replace(/[\s\D](?!\d$)/g, '') // Remove todos os caracteres não numéricos
+    const cep = value.replace(/[\s\D](?!\d$)/g, '')
     setFormValues({
       ...formValues,
       cep: cep
     })
     if (cep.length === 8) {
-      // Verifica se o CEP tem o tamanho correto para fazer a busca
       buscarEnderecoPorCEP(cep)
     }
   }
 
   const salvarInformacoes = async (token) => {
     try {
-      await axios.post('/user/perfil/adicionar-informacoes', formValues, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await axios.post(
+        '/user/perfil/adicionar-informacoes',
+        { ...formValues, userType, discountCode },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-      })
+      )
       console.log('Informações adicionais salvas com sucesso!')
     } catch (error) {
       console.error('Erro ao salvar informações adicionais:', error)
     }
   }
+
   const buscarEnderecoPorCEP = async (cep) => {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
       const { data } = response
       if (!data.erro) {
-        const formattedCep = data.cep.padEnd(9, '0') // Garante que o CEP tenha 8 dígitos, preenchendo com zero no final se necessário
+        const formattedCep = data.cep.padEnd(9, '0')
 
         setFormValues({
           ...formValues,
@@ -80,16 +118,11 @@ const FormularioCadastro = ({ userToken }) => {
 
   const enviarParaPagarme = async (userToken) => {
     try {
-      await axios.post(
-        '/para-pagarme',
-        // Passando o token no cabeçalho da requisição
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${userToken}`
-          }
+      await axios.post('/para-pagarme', null, {
+        headers: {
+          Authorization: `Bearer ${userToken}`
         }
-      )
+      })
       console.log('Dados enviados para a Pagarme com sucesso!')
     } catch (error) {
       console.error('Erro ao enviar dados para Pagarme:', error)
@@ -129,8 +162,8 @@ const FormularioCadastro = ({ userToken }) => {
   }
 
   const handleEditClick = () => {
-    setShowForm(true) // Exibe o formulário quando o botão de editar é clicado
-    setShowSuccessMessage(false) // Esconde a mensagem de sucesso
+    setShowForm(true)
+    setShowSuccessMessage(false)
   }
 
   return (
@@ -147,8 +180,53 @@ const FormularioCadastro = ({ userToken }) => {
 
         {showForm && (
           <EnderecooDiv>
+            <OpcaoUser>
+              <label>Tipo de Usuário</label>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    value="professor"
+                    checked={userType === 'professor'}
+                    onChange={handleUserTypeChange}
+                  />
+                  Professor
+                </label>
+                {userType === 'professor' && (
+                  <InputProfessor
+                    type="text"
+                    className="form-control"
+                    value={discountCode}
+                    onChange={handleDiscountCodeChange}
+                    onBlur={validateDiscountCode} // Valida o código quando o campo perde o foco
+                  />
+                )}
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    value="aluno"
+                    checked={userType === 'aluno'}
+                    onChange={handleUserTypeChange}
+                  />
+                  Aluno
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    value="outros"
+                    checked={userType === 'outros'}
+                    onChange={handleUserTypeChange}
+                  />
+                  Outros
+                </label>
+              </div>
+            </OpcaoUser>
             <form onSubmit={handleSubmit}>
-              <label> CPF</label>
+              <label>CPF</label>
               <IMaskInput
                 mask="000.000.000-00"
                 className="form-control"
@@ -185,7 +263,7 @@ const FormularioCadastro = ({ userToken }) => {
               />
               <div className="row">
                 <div className="col">
-                  <label> N° da residência</label>
+                  <label>N° da residência</label>
                   <input
                     className="form-control"
                     type="text"
@@ -198,8 +276,7 @@ const FormularioCadastro = ({ userToken }) => {
                   />
                 </div>
                 <div className="col">
-                  <label> Ap (se houver)</label>
-
+                  <label>Ap (se houver)</label>
                   <input
                     className="form-control"
                     type="text"
@@ -254,10 +331,12 @@ const FormularioCadastro = ({ userToken }) => {
                 required
                 placeholder="(_ _) _ _ _ _ _-_ _ _ _"
               />
+
               <button type="submit" className="btn btn-primary">
                 Salvar Informações
               </button>
             </form>
+            {message && <p>{message}</p>}
           </EnderecooDiv>
         )}
       </Container>

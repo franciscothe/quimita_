@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { BtnCodigoPromocional } from './styles'
 
 const CupomDescontoWrapper = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const CupomDesconto = ({ userToken }) => {
-  const [cupom, setCupom] = useState('')
+  const [cupom, setCupom] = useState('PROFESSOR')
   const [message, setMessage] = useState('')
 
   const handleInputChange = (event) => {
@@ -36,7 +40,8 @@ const CupomDesconto = ({ userToken }) => {
       }
     } catch (error) {
       console.error('Erro ao aplicar o cupom:', error)
-      setMessage('Erro ao aplicar o cupom. Tente novamente.')
+
+      setMessage('Cupom inválido')
     }
   }
 
@@ -44,10 +49,10 @@ const CupomDesconto = ({ userToken }) => {
     <CupomDescontoWrapper>
       <form onSubmit={handleSubmit}>
         <label>
-          Código do Cupom:
+          Você possui algum código de acesso?
           <input type="text" value={cupom} onChange={handleInputChange} />
         </label>
-        <button type="submit">Aplicar Cupom</button>
+        <BtnCodigoPromocional type="submit">Verificar</BtnCodigoPromocional>
       </form>
       {message && <p>{message}</p>}
     </CupomDescontoWrapper>

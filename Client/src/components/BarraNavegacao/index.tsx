@@ -19,12 +19,14 @@ function NavBarUsuario() {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" style={{ backgroundColor: '#eaf5fb' }}>
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav" style={{ margin: '10px' }}>
             <Nav className="me-auto">
-              <Nav.Link href="/user/perfil">Minhas Informações</Nav.Link>
+              <Nav.Link href="/user/perfil" style={{ marginTop: '10px' }}>
+                Minhas Informações
+              </Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link onClick={handleLogout}>Sair</Nav.Link>

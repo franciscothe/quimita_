@@ -81,7 +81,6 @@ const Perfil = () => {
           <>
             {/* Renderizar os componentes FormularioCadastro e CardForm apenas se a assinatura for diferente de "true" */}
             <FormularioCadastro userToken={localStorage.getItem('token')} />
-            <CupomDesconto userToken={localStorage.getItem('token')} />
             <CardForm userToken={localStorage.getItem('token')} />
           </>
         )}
