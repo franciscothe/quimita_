@@ -15,9 +15,11 @@ const https = require('https')
 const app = express()
 const axios = require('axios');
 const { Base64 } = require('js-base64');
+const bodyParser = require('body-parser');
 
 // Middlewares
 app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -26,6 +28,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+app.use(bodyParser.json());
 
 // Configuração do HTTPS
 const sslOptions = {
@@ -376,11 +379,11 @@ app.post('/para-pagarme', checkToken, async (req, res) => {
     const dadosUsuario = {
       name: user.nome,
       email: user.email,
-      code: '001', 
+      code: user.id, 
       document: user.cpf,
       type: 'individual',
       document_type: 'CPF',
-      billing_address: {
+      address: {
         line_1: user.endereco,
         line_2: user.complemento,
         zip_code: user.cep,
@@ -491,7 +494,6 @@ app.post('/assinatura', checkToken, async (req, res) => {
         id: user._id
       }
     }
-    const dadosUsuarioString = JSON.stringify(dadosUsuario);
 
     const options = {
       method: 'POST',
@@ -502,17 +504,20 @@ app.post('/assinatura', checkToken, async (req, res) => {
         'content-type': 'application/json',
         authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
-      data: dadosUsuarioString
+      data: dadosUsuario
     };
-    console.log(dadosUsuarioString);
-
+    console.log(dadosUsuario);
+    user.assinatura = true;
+    await user.save();
     // Enviar os dados para a API da Pagar.me
     const response = await axios.request(options);
 
 
     // Atualizar o campo de assinatura do usuário para true
-    // user.assinatura = true;
-    // await user.save();
+    user.assinatura = true;
+    await user.save();
+    return res.redirect('/user/perfil');
+
     return res.status(200).json({ msg: 'Assinatura realizada com sucesso' });
 
     // Redirecionar para a página de perfil de assinatura
@@ -520,10 +525,15 @@ app.post('/assinatura', checkToken, async (req, res) => {
   } catch (error) {
     console.error(error); // Log do erro para depuração
     return res.status(400).json({ msg: 'Revise os dados de pagamento' });
+    user.assinatura = true;
+    await user.save();
+    return res.redirect('/user/perfil');
+
 
     // Redirecionar para a página de perfil de assinatura em caso de erro
   }
 });
+
 
 
 const verifyCoupon = async (cupom) => {
@@ -545,7 +555,10 @@ app.post('/user/apply-coupon', checkToken, async (req, res) => {
     await User.findByIdAndUpdate(userId, { assinatura: 'true' });
 
     res.json({ success: true, message: 'Cupom aceito! Sua assinatura foi ativada.' });
+
   } catch (error) {
+
+
     console.error('Erro ao aplicar o cupom:', error);
     res.status(500).json({ success: false, message: 'Erro ao aplicar o cupom' });
   }

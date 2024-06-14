@@ -80,7 +80,7 @@ const FormularioCadastro = ({ userToken }) => {
   const salvarInformacoes = async (token) => {
     try {
       await axios.post(
-        '/user/perfil/adicionar-informacoes',
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
         { ...formValues, userType, discountCode },
         {
           headers: {
@@ -118,7 +118,7 @@ const FormularioCadastro = ({ userToken }) => {
 
   const enviarParaPagarme = async (userToken) => {
     try {
-      await axios.post('/para-pagarme', null, {
+      await axios.post('https://localhost:5002/para-pagarme', null, {
         headers: {
           Authorization: `Bearer ${userToken}`
         }

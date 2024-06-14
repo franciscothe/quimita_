@@ -19,7 +19,7 @@ export const L1: React.FC = () => {
         try {
           // Chama a API para verificar o status da assinatura
           const response = await axios.post(
-            '/user/verifica-assinatura',
+            'https://localhost:5002/user/verifica-assinatura',
             {},
             {
               headers: {
