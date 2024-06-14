@@ -951,7 +951,7 @@ export const TodasMaterias: Materia[] = [
       },
       {
         linkLicao: './L117B',
-        nomeLicao: 'L117B - Reações com ácido Sulfúrico',
+        nomeLicao: 'L117B - Reações com Ácido Sulfídrico',
         url: 'https://www.youtube.com/embed/iojE_NVDbKI',
         apostila:
           'https://drive.google.com/file/d/1MIkhJS0imvKMX4mQFYl3hQjEah9LgAE5/preview'
