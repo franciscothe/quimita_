@@ -436,6 +436,7 @@ app.post('/assinatura', checkToken, async (req, res) => {
   if (!cardId) {
     return res.status(400).json({ msg: 'Card ID é obrigatório' });
   }
+  console.log(cardId);
   // Extrair o ID do usuário decodificado pelo middleware checkToken
   const userId = req.user.id;
   if (!userId) {
@@ -454,83 +455,64 @@ app.post('/assinatura', checkToken, async (req, res) => {
     // Montar os dados do usuário para enviar para a API da Pagar.me
     const dadosUsuario = {
       customer: {
-        name: user.nome,
-        type: 'individual',
-        email: user.email,
-        document: user.cpf,
-        address: {
-          line_1: user.endereco,
-          line_2: user.complemento,
-          zip_code: user.cep,
-          city: user.cidade,
-          state: user.estado,
+        name: String(user.nome),
+        email: String(user.email)
+      },
+      card_token: cardId,
+      card: {
+        billing_address: {
+          line_1: String(user.endereco),
+          line_2: String(user.complemento || ''),
+          zip_code: String(user.cep),
+          city: String(user.cidade),
+          state: String(user.estado),
           country: 'BR'
-        },
-        phones: {
-          mobile_phone: {
-            country_code: '55',
-            area_code: user.telefone ? user.telefone.substring(0, 2) : '',
-            number: user.telefone ? user.telefone.substring(2) : ''
-          }
         }
       },
-      plan_id: 'plan_b5Dkq3vUxuPW384P',
+      installments: 1,
+      plan_id: 'plan_N9qBoVmhqEiqzXbk',
       payment_method: 'credit_card',
-      card_token: cardId,
-      credit_card: {
-        installments: "1",
-        statement_descriptor: 'Assinatura',
-        card: {
-          billing_address: {
-            line_1: user.endereco,
-            line_2: user.complemento,
-            zip_code: user.cep,
-            city: user.cidade,
-            state: user.estado,
-            country: 'BR'
-        }}
-      },
       metadata: {
-        id: user._id
+        id: String(user.id)
       }
-    }
-
+    };
+    
+    const dadosUsuario2 = JSON.stringify(dadosUsuario, null, 2)
+    console.log("dados usuario 2" + dadosUsuario2);
     const options = {
       method: 'POST',
-
       url: 'https://api.pagar.me/core/v5/subscriptions',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
         authorization: 'Basic c2tfNWYwNjY2MGQ1YzkyNDRkYzg4NmU2YzNkNDcwNGIxOWM6'
       },
-      data: dadosUsuario
+      data: dadosUsuario2
     };
-    console.log(dadosUsuario);
-    user.assinatura = true;
-    await user.save();
+    console.log(dadosUsuario2);
+    // user.assinatura = true;
+    // await user.save();
     // Enviar os dados para a API da Pagar.me
     const response = await axios.request(options);
+    // console.log(response);
 
 
     // Atualizar o campo de assinatura do usuário para true
     user.assinatura = true;
     await user.save();
-    return res.redirect('/user/perfil');
+    // return res.redirect('/user/perfil');
 
     return res.status(200).json({ msg: 'Assinatura realizada com sucesso' });
 
     // Redirecionar para a página de perfil de assinatura
 
   } catch (error) {
-    console.error(error); // Log do erro para depuração
-    return res.status(400).json({ msg: 'Revise os dados de pagamento' });
+    console.error(error.data); // Log do erro para depuração
     user.assinatura = true;
     await user.save();
-    return res.redirect('/user/perfil');
 
+    return res.status(400).json({ msg: 'Revise os dados de pagamento' });
 
-    // Redirecionar para a página de perfil de assinatura em caso de erro
   }
 });
 

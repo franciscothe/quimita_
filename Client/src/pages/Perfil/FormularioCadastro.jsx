@@ -42,7 +42,7 @@ const FormularioCadastro = ({ userToken }) => {
   const validateDiscountCode = async () => {
     try {
       const response = await axios.post(
-        '/user/apply-coupon',
+        'https://localhost:5002/user/apply-coupon',
         { cupom: discountCode },
         {
           headers: {
@@ -80,7 +80,7 @@ const FormularioCadastro = ({ userToken }) => {
   const salvarInformacoes = async (token) => {
     try {
       await axios.post(
-        '/user/perfil/adicionar-informacoes',
+        'https://localhost:5002/user/perfil/adicionar-informacoes',
         { ...formValues, userType, discountCode },
         {
           headers: {

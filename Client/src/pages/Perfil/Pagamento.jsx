@@ -18,7 +18,7 @@ const CardForm = ({ userToken }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${userToken}`
           }
@@ -45,7 +45,7 @@ const CardForm = ({ userToken }) => {
 
     try {
       const cardResponse = await axios.post(
-        'https://api.pagar.me/core/v5/tokens?appId=pk_test_Y87bOMKHMfAVyqQe',
+        'https://api.pagar.me/core/v5/tokens?appId=pk_1XMN4yCJYUMj2myk',
         {
           type: 'card',
           card: {
@@ -63,7 +63,7 @@ const CardForm = ({ userToken }) => {
       console.log('Card ID:', cardId)
 
       await axios.post(
-        '/assinatura',
+        'https://localhost:5002/assinatura',
         {
           cardId
         },
@@ -74,7 +74,7 @@ const CardForm = ({ userToken }) => {
           }
         }
       )
-      window.location.reload()
+      // window.location.reload()
     } catch (error) {
       console.error('Erro ao realizar pagamento:', error)
       user.assinatura = true
