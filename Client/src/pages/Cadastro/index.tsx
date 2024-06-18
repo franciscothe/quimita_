@@ -1,5 +1,4 @@
-import React, { useState } from 'react' // Adicione o import de useState aqui
-
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { BtnEnviar, NavLogin, SmallButton, StyledInput } from '../Login/styles'
@@ -9,7 +8,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const CadastroForm = () => {
-  const navigate = useNavigate() // Cria a instância de useNavigate
+  const navigate = useNavigate()
 
   const [error, setError] = useState(null)
 
@@ -25,7 +24,6 @@ const CadastroForm = () => {
       email: Yup.string()
         .email('E-mail inválido')
         .required('Campo obrigatório'),
-
       senha: Yup.string().required('Campo obrigatório'),
       confirmaSenha: Yup.string()
         .oneOf([Yup.ref('senha')], 'As senhas não coincidem')
@@ -33,47 +31,34 @@ const CadastroForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(
-          'https://localhost:5002/auth/register',
-          values
-        )
-
-        // Extrair o token da resposta
+        const response = await axios.post('/auth/register', values)
         const token = response.data.token
-
-        // Salvar o token localmente (por exemplo, em localStorage)
         localStorage.setItem('token', token)
-
         console.log('Usuário cadastrado com sucesso:', response.data)
-
-        // Redirecionar para "/user/perfil" após salvar o token
         navigate('/user/perfil')
-
-        // Redirecionar para página de sucesso, fazer login automático, etc.
       } catch (error: any) {
         console.error('Erro ao cadastrar usuário:', error)
-        if (error.response && error.response.status === 425) {
-          // 409 é o código de status para conflito (e-mail já em uso)
+        if (error.response && error.response.status === 409) {
           alert('Este e-mail já está em uso. Por favor, escolha outro.')
         } else {
-          // Outros erros, como erro de rede
-          alert('Este e-mail já está em uso. Por favor, escolha outro.')
+          alert('Ocorreu um erro. Por favor, tente novamente.')
         }
       }
     }
   })
+
   return (
     <Container>
       <NavLogin>
         <SmallButton to="/Sumario" color={cores.laranjaClaro}>
-          LIÇÕES
+          ⏎··········LIÇÕES⏎········
         </SmallButton>
       </NavLogin>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="nome">Nome:</label>
           <StyledInput
-            type="nome"
+            type="text"
             id="nome"
             name="nome"
             value={formik.values.nome}
@@ -96,7 +81,6 @@ const CadastroForm = () => {
             <p style={{ color: 'red' }}>{formik.errors.email}</p>
           )}
         </div>
-
         <div>
           <label htmlFor="senha">Senha:</label>
           <StyledInput
