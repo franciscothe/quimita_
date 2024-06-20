@@ -51,7 +51,7 @@ const CadastroForm = () => {
     <Container>
       <NavLogin>
         <SmallButton to="/Sumario" color={cores.laranjaClaro}>
-          ⏎··········LIÇÕES⏎········
+          LIÇÕES
         </SmallButton>
       </NavLogin>
       <form onSubmit={formik.handleSubmit}>

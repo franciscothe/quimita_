@@ -549,7 +549,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L65',
         nomeLicao: 'L65 - Revisão',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1STPiDFpaPDWDhcpFLxA_T3p-0PsBt1qK/preview'
       },
@@ -1227,7 +1227,7 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L152',
         nomeLicao:
           'L152 - Desintegração Simples - Reações Paralelas - Reações Consecutivas',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1p03svBByF-2wC2nQePDhaAAuMiLIRa53/preview'
       }
@@ -1382,7 +1382,7 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L170',
         nomeLicao: 'L170 - Óxidos Ácidos ou Anidridos de Ácidos',
         url: 'https://www.youtube.com/embed/rKKb8TfT7wk',
-        apostila: '...'
+        apostila: ''
       },
       {
         linkLicao: './L171',
@@ -1394,7 +1394,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L172',
         nomeLicao: 'L172 - Comparação: Óxidos Ácidos e Óxidos Básicos',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1VkfzLZFkIcol6PjvXQhIMUAOxuLeG8jX/preview'
       },
@@ -1422,7 +1422,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L176',
         nomeLicao: 'L176 - Óxidos Duplos, Mistos ou Salinos',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1qsjoeVoSN9iXruQGbYP88GvrcJdhg7jU/preview'
       },
@@ -1436,7 +1436,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L178',
         nomeLicao: 'L178 - Revisão',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1Rb0hUwavcyx5-4zvFFC2GRdMxTCQ7MEy/preview'
       }
@@ -1488,7 +1488,7 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L184',
         nomeLicao:
           'L184 - Distribuição dos Elétrons nos subníveis de energia - Regra de Hund',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1s2-emo9EUdTpBa7oQU8G6QYq4J7_HfXS/preview'
       },
@@ -1496,35 +1496,35 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L185',
         nomeLicao:
           'L185 - Distribuição dos Elétrons em ordem de energia - Ordem de Camadas',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1_APVKMthdQvGznUzYuf5riZ1GEEnZxTQ/preview'
       },
       {
         linkLicao: './L186',
         nomeLicao: 'L186 - Distribuição Eletronica simplificada ',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/11OpQKtbkgrVXizD4bnpIqd6L0nqxGDDn/preview'
       },
       {
         linkLicao: './L187',
         nomeLicao: "L187 - Orbitais 's' e 'p' ",
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/14NlhIRRmtqh4fMUgT9mGerDMWnot-doC/preview'
       },
       {
         linkLicao: './L188',
         nomeLicao: 'L188 - Números Quânticos',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1E__s-YdmhQAeP4qaAFPQBvso-fFSCeMk/preview'
       },
       {
         linkLicao: './L189',
         nomeLicao: 'L189 - Descarga elétrica em Gases: Lei de Dalton',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1gPVDmAVgVnd4nzHAzZK_EiPj-XFgGxie/preview'
       },
@@ -1532,28 +1532,28 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L190',
         nomeLicao:
           'L190 - Experiência de Thomson (1897) - Ampoola de Goldstein (1886) - Experiência de Milikan (1906) - Experiência de Rutherford',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1jOH4xPUr2yD5R-aBR4JZV8mbW-ww4R-L/preview'
       },
       {
         linkLicao: './L191',
         nomeLicao: 'L191 - Modelo Atômico de Bohr - parte 1',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1zeJk7Pes7wmaocmhzNOGty1yUCixkjJm/preview'
       },
       {
         linkLicao: './L192',
         nomeLicao: 'L192 - Modelo Atômico de Bohr - parte 2',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1e90NYqGEqelZAPnFChIUlpmpiUA80Ple/preview'
       },
       {
         linkLicao: './L193',
         nomeLicao: 'L193 - Modelo Atômico de Bohr - parte 3',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/173S3dPtRBzRlv1X3araYhZUObTECYd-0/preview'
       }
@@ -1568,21 +1568,21 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L194',
         nomeLicao: 'L194 - Configuração Absoluta',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1hIuMLHVZtZiNi6KU8PW9-eLDeGmfo3O7/preview'
       },
       {
         linkLicao: './L195',
         nomeLicao: 'L195 - Configuração de Fischer',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1Ck7mwca-HISLAulXTrrbtMw382IwlM3f/preview'
       },
       {
         linkLicao: './L196',
         nomeLicao: 'L196 - Reforçando alguns conceitos',
-        url: '...',
+        url: '',
         apostila:
           'https://drive.google.com/file/d/1Ss6sFPqm47szyUKdqGq559HP6v_eOIM5/preview'
       }
@@ -1598,155 +1598,133 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L501',
         nomeLicao: 'L501 - REVISÃO - 1 ',
         url: 'https://www.youtube.com/embed/x1ipG7y8Xfw?si=--LDCS7lLv6yWyj8',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L502',
         nomeLicao: 'L502 - REVISÃO - 2 ',
         url: 'https://www.youtube.com/embed/MRVugMaiyCE',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L503',
         nomeLicao: 'L503 - REVISÃO - 3 ',
         url: 'https://www.youtube.com/embed/_YsThPicyAc',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L504',
         nomeLicao: 'L504 - REVISÃO - 4 ',
         url: 'https://www.youtube.com/embed/AueY7kWm9yg',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L505',
         nomeLicao: 'L505 - REVISÃO - 5 ',
         url: 'https://www.youtube.com/embed/pvzOX6IFeRQ',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L506',
         nomeLicao: 'L506 - REVISÃO - 6 ',
         url: 'https://www.youtube.com/embed/pvGI3G4jnN8',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L507',
         nomeLicao: 'L507 - REVISÃO - 7 ',
         url: 'https://www.youtube.com/embed/2bcI-hEYy0U',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L508',
         nomeLicao: 'L508 - REVISÃO - 8 ',
         url: 'https://www.youtube.com/embed/81Txmtj6J5g',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L509',
         nomeLicao: 'L509 - REVISÃO - 9 ',
         url: 'https://www.youtube.com/embed/Ju2tymOA95k',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L510',
         nomeLicao: 'L510 - REVISÃO - 10 ',
         url: 'https://www.youtube.com/embed/O7ZVDnXM_3A',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L511',
         nomeLicao: 'L511 - REVISÃO - 11 ',
         url: 'https://www.youtube.com/embed/Mtb2RNu-mqA',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L512',
         nomeLicao: 'L512 - REVISÃO - 12 ',
         url: 'https://www.youtube.com/embed/aiyMZ8dABFA',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L513',
         nomeLicao: 'L513 - REVISÃO - 13 ',
         url: 'https://www.youtube.com/embed/D-Lsb4Isg9g',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L514',
         nomeLicao: 'L514 - REVISÃO - 14 ',
         url: 'https://www.youtube.com/embed/ZrYDzjLVY1A',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L515',
         nomeLicao: 'L515 - REVISÃO - 15 ',
         url: 'https://www.youtube.com/embed/fa1HWC0kj6s',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L516',
         nomeLicao: 'L516 - REVISÃO - 16 ',
         url: 'https://www.youtube.com/embed/wDqKRVmAZuA',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L517',
         nomeLicao: 'L517 - REVISÃO - 17 ',
         url: 'https://www.youtube.com/embed/LWBcU6Exlg8w',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L518',
         nomeLicao: 'L518 - REVISÃO - 18 ',
         url: 'https://www.youtube.com/embed/93Pu1yG5GqU',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L519',
         nomeLicao: 'L519 - REVISÃO - 19 ',
         url: 'https://www.youtube.com/embed/4y_NhwPXnXI',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L520',
         nomeLicao: 'L520 - REVISÃO - 20 ',
         url: 'https://www.youtube.com/embed/I4y6LNX2Rnw',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L521',
         nomeLicao: 'L521 - REVISÃO - 21 ',
         url: '',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       },
       {
         linkLicao: './L522',
         nomeLicao: 'L522 - REVISÃO - 22 ',
         url: '',
-        apostila:
-          'https://drive.google.com/file/d/1JJQZReiLxcG6zDHoqB4M8JYywGjh8uI2/preview'
+        apostila: ''
       }
     ]
   },
@@ -1759,50 +1737,50 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L601',
         nomeLicao: 'L601 - EsPCEx (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L602',
         nomeLicao: 'L602 - Fuvest - 1° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L603',
         nomeLicao: 'L603 - Fuvest - 2° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L604',
         nomeLicao: 'L604 - IME - 1° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L605',
         nomeLicao: 'L605 - IME - 2° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L606',
         nomeLicao: 'L606 - ITA - 1° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L607',
         nomeLicao: 'L607 - ITA - 2° Fase (2022-2023)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       },
       {
         linkLicao: './L608',
         nomeLicao: 'L608 - IME - 1° Fase (2023-2024)',
-        url: '...',
-        apostila: '...'
+        url: '',
+        apostila: ''
       }
     ]
   }

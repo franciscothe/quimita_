@@ -13,7 +13,7 @@ const BotaoGrupos = () => {
     const gruposLicao = Object.keys(Questoes[licao])
     return (
       <SecaoGrupos className="sticky-element">
-        <Titulo texto={`Grupos de Exercícios`} fontSize={20}></Titulo>
+        <Titulo texto={`Exercícios`} fontSize={20}></Titulo>
         <Grupos>
           {gruposLicao.map((grupo) => (
             <BtnGrupos key={grupo} to={`./${grupo}`}>

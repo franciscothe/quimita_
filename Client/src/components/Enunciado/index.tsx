@@ -19,6 +19,7 @@ import { BotaoIrSumario } from '../Botao/styles'
 import Sidebar from '../Sidebar'
 import { Button } from '@mui/material'
 import axios from 'axios' // Importar o axios
+import { TodasMaterias } from '../Propriedades'
 
 export const EnunciadosL1Grupo1 = () => {
   const { id } = useParams<{ id: string }>()
@@ -35,33 +36,6 @@ export const EnunciadosL1Grupo1 = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   if (token) {
-  //     axios
-  //       .get('/Sumario', {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`
-  //         }
-  //       })
-  //       .then((response) => {
-  //         // Atualiza o estado com as informações do usuário
-  //         setUsuario(response.data.user)
-  //         next()
-  //       })
-  //       .catch((error) => {
-  //         console.error('Erro ao buscar informações do usuário:', error)
-  //         navigate('/login') // Redireciona para a página de login em caso de erro
-  //       })
-  //   } else {
-  //     navigate('/login') // Redireciona para a página de login se não houver token
-  //   }
-  // }, [navigate])
-
-  // if (!usuario) {
-  //   return <div>Carregando...</div>
-  // }
 
   const exerciciosL1Grupo1 = Questoes[`${id}`]?.grupo1?.exercicios || []
   const exercicioAtual = exerciciosL1Grupo1[exercicioAtualIndex]
@@ -105,7 +79,6 @@ export const EnunciadosL1Grupo1 = () => {
   return (
     <div>
       <TopoPagina>
-        <h3> {id} - Grupo 1</h3>
         <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
       </TopoPagina>
       <BarraNavegacao>

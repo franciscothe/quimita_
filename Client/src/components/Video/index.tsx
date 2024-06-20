@@ -12,23 +12,26 @@ function encontrarURLDaLicaoPorID(id: string): string | null {
   }
   return null
 }
+
 export const Video = () => {
   const { id } = useParams()
   const IdProcurado = id || ''
   const urlDaLicao = encontrarURLDaLicaoPorID(IdProcurado)
+
+  // Se a URL da lição não for encontrada, retorna null para não renderizar o componente
+  if (urlDaLicao === null) {
+    return <></>
+  }
+
   return (
     <CaseVideo>
-      {urlDaLicao !== null ? (
-        <iframe
-          src={urlDaLicao}
-          title="Vídeo da Lição"
-          width="560"
-          height="315"
-          allowFullScreen
-        ></iframe>
-      ) : (
-        <p>Esta lição não possui video</p>
-      )}
+      <iframe
+        src={urlDaLicao}
+        title="Vídeo da Lição"
+        width="560"
+        height="315"
+        allowFullScreen
+      ></iframe>
     </CaseVideo>
   )
 }
