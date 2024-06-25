@@ -53,6 +53,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       'https://drive.google.com/file/d/1Pdv2lj8nCybxkLkEmLNHT04qpM4gnuoZ/preview'
     )
   }
+
+  const openAtkinsPares = () => {
+    openPDFViewer(
+      'https://drive.google.com/file/d/18P6K6yQ9NIVKrbXSI2dBtzJB4yvPdutj/preview'
+    )
+  }
+
+  const openAtkinsImpares = () => {
+    openPDFViewer(
+      'https://drive.google.com/file/d/1-G95kXuQ4SGDk8GPJJ3vYG-bQY3i0LAA/preview'
+    )
+  }
   const openPerfil = () => {
     navigate('/')
   }
@@ -79,17 +91,50 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             button
             onClick={() =>
               openPDFViewer(
-                'https://drive.google.com/file/d/1ILuy6IobFkIeRKA4l_jwR1OM6tjIglfl/preview'
+                'https://drive.google.com/file/d/1T1tlhl0XBT9yP6DB0CCcyx6pKBy5JRhj/preview'
               )
             }
           >
-            <ListItemText primary="Tabelas" />
+            <ol>
+              <h5> TABELAS:</h5>
+              <li>Prefixos de múltiplos e submúltiplos da unidade</li>
+              <li>Pressão de vapor da água</li>
+              <li>Unidades do Sistema Internacional</li>
+              <li>Constantes</li>
+              <li>Algumas unidades não-SI geralmente usadas</li>
+              <li>Elementos químicos e sua massa atômica</li>
+              <li>Entalpia de formação</li>
+              <li>
+                Entalpia de combustão e formação de alguns compostos orgânicos
+              </li>
+              <li>Energia Livre, Capacidade Calorífica, Entropia</li>
+              <li>
+                Alguns Compostos Orgânicos: Energia Livre, Capacidade Calorífica
+                molar e Entropia Molar
+              </li>
+              <li>Potencial Padrão a 25 °C</li>
+              <li>Configuração Eletrônica do estado fundamental</li>
+              <li>Produtos químicos mais comuns</li>
+              <li>Constantes do produto de solubilidade a 25°C</li>
+              <li>Pressão de vapor da água em várias temperaturas</li>
+              <li>Constantes de ionização de ácidos</li>
+              <li>Constantes de ionização de bases</li>
+              <li>Constantes de formação de alguns íons complexos</li>
+            </ol>
+            <ListItemText primary="" />
           </ListItem>
           <ListItem button onClick={openGlossaryViewer}>
             <ListItemText primary="Glossário Atkins" />
           </ListItem>
           <ListItem button onClick={openPeriodicTableViewer}>
             <ListItemText primary="Tabela Periódica" />
+          </ListItem>
+          <ListItem button onClick={openAtkinsPares}>
+            <ListItemText primary="Resolução dos exercícios do livro Príncipios de Química (Atkins 3° edição) - PARES" />
+          </ListItem>
+
+          <ListItem button onClick={openAtkinsImpares}>
+            <ListItemText primary="Resolução dos exercícios do livro Príncipios de Química (Atkins 3° edição) - ÍMPARES" />
           </ListItem>
         </List>
       </Drawer>
