@@ -91,12 +91,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             button
             onClick={() =>
               openPDFViewer(
-                'https://drive.google.com/file/d/1T1tlhl0XBT9yP6DB0CCcyx6pKBy5JRhj/preview'
+                'https://drive.google.com/file/d/1ILuy6IobFkIeRKA4l_jwR1OM6tjIglfl/preview'
+              )
+            }
+          >
+            <ListItemText primary="Tabelas:" />
+          </ListItem>
+
+          <ListItem
+            button
+            onClick={() =>
+              openPDFViewer(
+                'https://drive.google.com/file/d/1ILuy6IobFkIeRKA4l_jwR1OM6tjIglfl/preview'
               )
             }
           >
             <ol>
-              <h5> TABELAS:</h5>
               <li>Prefixos de múltiplos e submúltiplos da unidade</li>
               <li>Pressão de vapor da água</li>
               <li>Unidades do Sistema Internacional</li>
