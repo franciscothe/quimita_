@@ -115,7 +115,7 @@ export const OpcaoUser = styled.div`
 
 export const InputProfessor = styled.input`
   margin-left: 100px;
-  width: 9%;
+  width: 20%;
   height: 29px;
   opacity: 0;
 
