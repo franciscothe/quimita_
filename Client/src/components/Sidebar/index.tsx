@@ -5,7 +5,8 @@ import {
   ListItem,
   ListItemText,
   Modal,
-  Button
+  Button,
+  Typography
 } from '@mui/material'
 import Calculadora from '../Calculadora'
 import { useNavigate } from 'react-router-dom'
@@ -81,11 +82,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     <div>
       <Drawer anchor="left" open={isOpen} onClose={onClose}>
         <List>
-          <ListItem button onClick={openPerfil}>
-            <ListItemText primary="Minhas Informações" />
-          </ListItem>
           <ListItem button onClick={handleCalculatorClick}>
-            <ListItemText primary="Calculadora" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Calculadora
+                </Typography>
+              }
+            />
           </ListItem>
           <ListItem
             button
@@ -95,7 +99,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               )
             }
           >
-            <ListItemText primary="Tabelas:" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Tabelas
+                </Typography>
+              }
+            />
           </ListItem>
 
           <ListItem
@@ -134,17 +144,43 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             <ListItemText primary="" />
           </ListItem>
           <ListItem button onClick={openGlossaryViewer}>
-            <ListItemText primary="Glossário Atkins" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Glossário Atkins
+                </Typography>
+              }
+            />
           </ListItem>
           <ListItem button onClick={openPeriodicTableViewer}>
-            <ListItemText primary="Tabela Periódica" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Tabela Periódica
+                </Typography>
+              }
+            />
           </ListItem>
           <ListItem button onClick={openAtkinsPares}>
-            <ListItemText primary="Resolução dos exercícios do livro Príncipios de Química (Atkins 3° edição) - PARES" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Resolução dos exercícios do livro Príncipios de Química
+                  (Atkins 3° edição) - PARES
+                </Typography>
+              }
+            />
           </ListItem>
 
           <ListItem button onClick={openAtkinsImpares}>
-            <ListItemText primary="Resolução dos exercícios do livro Príncipios de Química (Atkins 3° edição) - ÍMPARES" />
+            <ListItemText
+              primary={
+                <Typography variant="body1" fontWeight="bold">
+                  Resolução dos exercícios do livro Príncipios de Química
+                  (Atkins 3° edição) - ÍMPARES
+                </Typography>
+              }
+            />
           </ListItem>
         </List>
       </Drawer>
