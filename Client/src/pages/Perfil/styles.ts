@@ -109,12 +109,13 @@ export const OpcaoUser = styled.div`
   }
   div {
     display: flex;
+    justify-content: space-between;
   }
 `
 
 export const InputProfessor = styled.input`
-  margin-left: 20px;
-  width: 69%;
+  margin-left: 100px;
+  width: 9%;
   height: 29px;
   opacity: 0;
 
