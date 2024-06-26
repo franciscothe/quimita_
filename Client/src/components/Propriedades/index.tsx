@@ -2013,6 +2013,13 @@ export const TodasMaterias: Materia[] = [
         nomeLicao: 'L608 - IME - 1° Fase (2023-2024)',
         url: '',
         apostila: ''
+      },
+      {
+        linkLicao: './L609',
+        id: 'L609',
+        nomeLicao: 'L609 - IME - 2° Fase (2023-2024)',
+        url: '',
+        apostila: ''
       }
     ]
   }

@@ -20,6 +20,7 @@ import Sidebar from '../Sidebar'
 import { Button } from '@mui/material'
 import axios from 'axios' // Importar o axios
 import { TodasMaterias } from '../Propriedades'
+import LicaoDetalhes from '../Nomelicao'
 
 export const EnunciadosL1Grupo1 = () => {
   const { id } = useParams<{ id: string }>()
@@ -75,10 +76,13 @@ export const EnunciadosL1Grupo1 = () => {
   useEffect(() => {
     setMostrarResolucao(false)
   }, [exercicioAtualIndex])
+  const idLicao = `${id}` // ID da lição que você deseja buscar
 
   return (
     <div>
       <TopoPagina>
+        <LicaoDetalhes idLicao={idLicao} />
+
         <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
       </TopoPagina>
       <BarraNavegacao>
