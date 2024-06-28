@@ -23170,9 +23170,75 @@ export const Questoes: QuestoesType = {
             'L609-G1-RES-10-parte5.jpg',
             'L609-G1-RES-10-parte6.jpg',
             'L609-G1-RES-10-parte7.jpg',
-            'L609-G1-RES-10-parte8.jpg',
-            'L609-G1-RES-10-parte9.jpg'
+            'L609-G1-RES-10-parte8.jpg'
           ]
+        }
+      ]
+    }
+  },
+  L610: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L610-G1-EX-1.jpg'],
+          resposta: ['L610-G1-RES-1.jpg', 'L609-G1-RES-1-parte2.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L610-G1-EX-2.jpg'],
+          resposta: ['L610-G1-RES-2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L610-G1-EX-3.jpg'],
+          resposta: ['L610-G1-RES-3.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L610-G1-EX-4.jpg'],
+          resposta: ['L610-G1-RES-4.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L610-G1-EX-5.jpg'],
+          resposta: ['L610-G1-RES-5.jpg']
+        },
+        {
+          ex: '6',
+          enunciado: ['L610-G1-EX-6.jpg'],
+          resposta: ['L610-G1-RES-6.jpg']
+        },
+        {
+          ex: '7',
+          enunciado: ['L610-G1-EX-7.jpg'],
+          resposta: ['L610-G1-RES-7.jpg']
+        },
+        {
+          ex: '8',
+          enunciado: ['L610-G1-EX-8.jpg'],
+          resposta: ['L610-G1-RES-8.jpg', 'L609-G1-RES-8-parte2.jpg']
+        },
+        {
+          ex: '9',
+          enunciado: ['L610-G1-EX-9.jpg'],
+          resposta: ['L610-G1-RES-9.jpg']
+        },
+        {
+          ex: '10',
+          enunciado: ['L610-G1-EX-10.jpg'],
+          resposta: ['L610-G1-RES-10.jpg', 'L609-G1-RES-10-parte2.jpg']
+        },
+        {
+          ex: '11',
+          enunciado: ['L610-G1-EX-11.jpg'],
+          resposta: ['L610-G1-RES-11.jpg', 'L609-G1-RES-11-parte2.jpg']
+        },
+        {
+          ex: '12',
+          enunciado: ['L610-G1-EX-12.jpg'],
+          resposta: ['L610-G1-RES-12.jpg']
         }
       ]
     }
