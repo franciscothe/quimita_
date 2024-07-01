@@ -22384,9 +22384,7 @@ export const Questoes: QuestoesType = {
           resposta: [
             'L601-G1-RES-6.jpg',
             'L601-G1-RES-6-parte2.jpg',
-            'L601-G1-RES-6-parte3.jpg',
-            'L601-G1-RES-6-parte4.jpg',
-            'L601-G1-RES-6-parte5.jpg'
+            'L601-G1-RES-6-parte3.jpg'
           ]
         },
         {
@@ -23183,7 +23181,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '1',
           enunciado: ['L610-G1-EX-1.jpg'],
-          resposta: ['L610-G1-RES-1.jpg', 'L609-G1-RES-1-parte2.jpg']
+          resposta: ['L610-G1-RES-1.jpg', 'L610-G1-RES-1-parte2.jpg']
         },
         {
           ex: '2',
@@ -23218,7 +23216,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '8',
           enunciado: ['L610-G1-EX-8.jpg'],
-          resposta: ['L610-G1-RES-8.jpg', 'L609-G1-RES-8-parte2.jpg']
+          resposta: ['L610-G1-RES-8.jpg', 'L610-G1-RES-8-parte2.jpg']
         },
         {
           ex: '9',
@@ -23228,12 +23226,12 @@ export const Questoes: QuestoesType = {
         {
           ex: '10',
           enunciado: ['L610-G1-EX-10.jpg'],
-          resposta: ['L610-G1-RES-10.jpg', 'L609-G1-RES-10-parte2.jpg']
+          resposta: ['L610-G1-RES-10.jpg', 'L610-G1-RES-10-parte2.jpg']
         },
         {
           ex: '11',
           enunciado: ['L610-G1-EX-11.jpg'],
-          resposta: ['L610-G1-RES-11.jpg', 'L609-G1-RES-11-parte2.jpg']
+          resposta: ['L610-G1-RES-11.jpg', 'L610-G1-RES-11-parte2.jpg']
         },
         {
           ex: '12',
