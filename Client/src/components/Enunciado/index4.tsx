@@ -42,7 +42,7 @@ export const EnunciadosL1Grupo4 = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
 
-  const exerciciosL1Grupo4 = Questoes[`${id}`]?.grupo2?.exercicios || []
+  const exerciciosL1Grupo4 = Questoes[`${id}`]?.grupo4?.exercicios || []
   const exercicioAtual = exerciciosL1Grupo4[exercicioAtualIndex]
 
   const mostrarExercicioAnterior = () => {
