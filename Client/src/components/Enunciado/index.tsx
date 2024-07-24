@@ -83,6 +83,8 @@ export const EnunciadosL1Grupo1 = () => {
     <div>
       <TopoPagina>
         <>
+          <h3> {id} - Grupo 1</h3>
+
           <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
         </>
       </TopoPagina>

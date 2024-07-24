@@ -19,8 +19,11 @@ import {
 } from './styles'
 import { BotaoIrSumario } from '../Botao/styles'
 import Sidebar from '../Sidebar'
-import { Button } from '@mui/material'
+import { Button, List } from '@mui/material'
 import axios from 'axios' // Importar o axios
+import { TodasMaterias } from '../Propriedades'
+import LicaoDetalhes from '../Nomelicao'
+import { MateriasSumario } from '../ExibicaoSumario/styles'
 
 export const EnunciadosL1Grupo3 = () => {
   const { id } = useParams<{ id: string }>()
@@ -38,55 +41,27 @@ export const EnunciadosL1Grupo3 = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
 
-  // // useEffect(() => {
-  // //   const token = localStorage.getItem('token')
-  // //   if (token) {
-  // //     axios
-  // //       .get('/Sumario/L1/grupo3', {
-  // //         headers: {
-  // //           Authorization: `Bearer ${token}`
-  // //         }
-  // //       })
-  // //       .then((response) => {
-  // //         // Atualiza o estado com as informações do usuário
-  // //         setUsuario(response.data.user)
-  // //       })
-  // //       .catch((error) => {
-  // //         console.error('Erro ao buscar informações do usuário:', error)
-  // //         navigate('/login') // Redireciona para a página de login em caso de erro
-  // //       })
-  // //   } else {
-  // //     navigate('/login') // Redireciona para a página de login se não houver token
-  // //   }
-  // // }, [navigate])
-
-  // if (!usuario) {
-  //   return <div>Carregando...</div>
-  // }
-
-  const exerciciosL1grupo3 = Questoes[`${id}`]?.grupo3?.exercicios || []
-  const exercicioAtual = exerciciosL1grupo3[exercicioAtualIndex]
+  const exerciciosL1Grupo3 = Questoes[`${id}`]?.grupo2?.exercicios || []
+  const exercicioAtual = exerciciosL1Grupo3[exercicioAtualIndex]
 
   const mostrarExercicioAnterior = () => {
     if (exercicioAtualIndex > 0) {
       // Se não for o primeiro exercício do grupo atual, volte para o exercício anterior
       setExercicioAtualIndex(exercicioAtualIndex - 1)
     } else {
-      // Se for o primeiro exercício do grupo atual, direcione para a rota "grupo3"
+      // Se for o primeiro exercício do grupo atual, direcione para a rota "Grupo3"
       navigate(`/Sumario/${id}/Grupo2`)
     }
-    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
 
   const mostrarProximoExercicio = () => {
-    if (exercicioAtualIndex < exerciciosL1grupo3.length - 1) {
+    if (exercicioAtualIndex < exerciciosL1Grupo3.length - 1) {
       // Se ainda houver exercícios no grupo atual, avance para o próximo exercício
       setExercicioAtualIndex(exercicioAtualIndex + 1)
     } else {
       // Se estiver no último exercício do grupo 1, redirecione para a rota /Sumario/${id}/Grupo3
       navigate(`/Sumario/${id}/Grupo4`)
     }
-    setMostrarResolucao(false) // Adicionado para redefinir mostrarResolucao
   }
 
   const toggleMostrarResolucao = () => {
@@ -99,29 +74,39 @@ export const EnunciadosL1Grupo3 = () => {
       behavior: 'smooth'
     })
   }
+
+  // Adicione este useEffect para redefinir mostrarResolucao quando o exercício atual mudar
   useEffect(() => {
     setMostrarResolucao(false)
   }, [exercicioAtualIndex])
+  const idLicao = `${id}` // ID da lição que você deseja buscar
 
   return (
     <div>
       <TopoPagina>
-        <h3> {id} - Grupo 3</h3>
-        <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+        <>
+          <h3> {id} - Grupo 3</h3>
+
+          <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+        </>
       </TopoPagina>
       <BarraNavegacao>
         <Button onClick={toggleSidebar} variant="contained" color="primary">
           <IconSidebar />
         </Button>
         <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
-
-        <div className="navExercicios">
-          <EnunciadoButtons
-            exercicios={exerciciosL1grupo3}
-            exercicioAtualIndex={exercicioAtualIndex}
-            setExercicioAtualIndex={setExercicioAtualIndex}
-          />
-        </div>
+        <>
+          <div className="navExercicios">
+            <div>
+              <LicaoDetalhes idLicao={idLicao} />
+              <EnunciadoButtons
+                exercicios={exerciciosL1Grupo3}
+                exercicioAtualIndex={exercicioAtualIndex}
+                setExercicioAtualIndex={setExercicioAtualIndex}
+              />
+            </div>
+          </div>
+        </>
       </BarraNavegacao>
 
       <PaginaExercicios3>
@@ -167,7 +152,7 @@ export const EnunciadosL1Grupo3 = () => {
           <BotoesControles
             onClick={mostrarProximoExercicio}
             disabled={
-              exercicioAtualIndex === exerciciosL1grupo3.length - 1 &&
+              exercicioAtualIndex === exerciciosL1Grupo3.length - 1 &&
               (indiceDoGrupoAtual === -1 ||
                 indiceDoGrupoAtual === gruposDeExercicios.length - 1)
             }
@@ -220,7 +205,10 @@ const EnunciadoButtons = ({
           key={index}
           onClick={() => setExercicioAtualIndex(index)}
           style={{
-            fontWeight: exercicioAtualIndex === index ? 'bold' : 'normal'
+            fontWeight: exercicioAtualIndex === index ? 'bold' : 'normal',
+            backgroundColor:
+              exercicioAtualIndex === index ? '#294f29' : 'normal',
+            color: exercicioAtualIndex === index ? '#fff' : 'normal'
           }}
         >
           {index + 1}
@@ -228,4 +216,7 @@ const EnunciadoButtons = ({
       ))}
     </>
   )
+}
+function next() {
+  throw new Error('Function not implemented.')
 }
