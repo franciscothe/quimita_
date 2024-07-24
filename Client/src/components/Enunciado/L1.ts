@@ -23240,5 +23240,121 @@ export const Questoes: QuestoesType = {
         }
       ]
     }
+  },
+  L611: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L611-G1-EX-1.jpg'],
+          resposta: [
+            'L611-G1-RES-1.jpg',
+            'L611-G1-RES-1-parte2.jpg',
+            'L611-G1-RES-1-parte3.jpg'
+          ]
+        },
+        {
+          ex: '2',
+          enunciado: ['L611-G1-EX-2.jpg'],
+          resposta: [
+            'L611-G1-RES-2.jpg',
+            'L611-G1-RES-2-parte2.jpg',
+            'L611-G1-RES-2-parte3.jpg'
+          ]
+        },
+        {
+          ex: '3',
+          enunciado: ['L611-G1-EX-3.jpg'],
+          resposta: [
+            'L611-G1-RES-3.jpg',
+            'L611-G1-RES-3-parte2.jpg',
+            'L611-G1-RES-3-parte3.jpg',
+            'L611-G1-RES-3-parte4.jpg'
+          ]
+        },
+        {
+          ex: '4',
+          enunciado: ['L611-G1-EX-4.jpg'],
+          resposta: [
+            'L611-G1-RES-4.jpg',
+            'L611-G1-RES-4-parte2.jpg',
+            'L611-G1-RES-4-parte3.jpg'
+          ]
+        },
+        {
+          ex: '5',
+          enunciado: ['L611-G1-EX-5.jpg'],
+          resposta: [
+            'L611-G1-RES-5.jpg',
+            'L611-G1-RES-5-parte2.jpg',
+            'L611-G1-RES-5-parte3.jpg',
+            'L611-G1-RES-5-parte4.jpg'
+          ]
+        },
+        {
+          ex: '6',
+          enunciado: ['L611-G1-EX-6.jpg'],
+          resposta: [
+            'L611-G1-RES-6.jpg',
+            'L611-G1-RES-6-parte2.jpg',
+            'L611-G1-RES-6-parte3.jpg',
+            'L611-G1-RES-6-parte4.jpg',
+            'L611-G1-RES-6-parte5.jpg'
+          ]
+        },
+        {
+          ex: '7',
+          enunciado: ['L611-G1-EX-7.jpg'],
+          resposta: [
+            'L611-G1-RES-7.jpg',
+            'L611-G1-RES-7-parte2.jpg',
+            'L611-G1-RES-7-parte3.jpg',
+            'L611-G1-RES-7-parte4.jpg',
+            'L611-G1-RES-7-parte5.jpg',
+            'L611-G1-RES-7-parte6.jpg',
+            'L611-G1-RES-7-parte7.jpg',
+            'L611-G1-RES-7-parte8.jpg'
+          ]
+        },
+        {
+          ex: '8',
+          enunciado: ['L611-G1-EX-8.jpg'],
+          resposta: [
+            'L611-G1-RES-8.jpg',
+            'L611-G1-RES-8-parte2.jpg',
+            'L611-G1-RES-8-parte3.jpg',
+            'L611-G1-RES-8-parte4.jpg',
+            'L611-G1-RES-8-parte5.jpg'
+          ]
+        },
+        {
+          ex: '9',
+          enunciado: ['L611-G1-EX-9.jpg'],
+          resposta: [
+            'L611-G1-RES-9.jpg',
+            'L611-G1-RES-9-parte2.jpg',
+            'L611-G1-RES-9-parte3.jpg',
+            'L611-G1-RES-9-parte4.jpg',
+            'L611-G1-RES-9-parte5.jpg',
+            'L611-G1-RES-9-parte6.jpg',
+            'L611-G1-RES-9-parte7.jpg',
+            'L611-G1-RES-9-parte8.jpg',
+            'L611-G1-RES-9-parte9.jpg',
+            'L611-G1-RES-9-parte10.jpg'
+          ]
+        },
+        {
+          ex: '10',
+          enunciado: ['L611-G1-EX-10.jpg'],
+          resposta: [
+            'L611-G1-RES-10.jpg',
+            'L611-G1-RES-10-parte2.jpg',
+            'L611-G1-RES-10-parte3.jpg',
+            'L611-G1-RES-10-parte4.jpg'
+          ]
+        }
+      ]
+    }
   }
 }

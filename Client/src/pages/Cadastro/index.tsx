@@ -41,7 +41,7 @@ const CadastroForm = () => {
         if (error.response && error.response.status === 409) {
           alert('Este e-mail já está em uso. Por favor, escolha outro.')
         } else {
-          alert('Ocorreu um erro. Por favor, tente novamente.')
+          alert('Este e-mail já está em uso. Por favor, escolha outro.')
         }
       }
     }

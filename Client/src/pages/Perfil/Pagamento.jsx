@@ -74,7 +74,7 @@ const CardForm = ({ userToken }) => {
           }
         }
       )
-      // window.location.reload()
+      window.location.reload()
     } catch (error) {
       console.error('Erro ao realizar pagamento:', error)
       user.assinatura = true
