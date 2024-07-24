@@ -17,10 +17,11 @@ import {
 } from './styles'
 import { BotaoIrSumario } from '../Botao/styles'
 import Sidebar from '../Sidebar'
-import { Button } from '@mui/material'
+import { Button, List } from '@mui/material'
 import axios from 'axios' // Importar o axios
 import { TodasMaterias } from '../Propriedades'
 import LicaoDetalhes from '../Nomelicao'
+import { MateriasSumario } from '../ExibicaoSumario/styles'
 
 export const EnunciadosL1Grupo1 = () => {
   const { id } = useParams<{ id: string }>()
@@ -81,23 +82,27 @@ export const EnunciadosL1Grupo1 = () => {
   return (
     <div>
       <TopoPagina>
-        <LicaoDetalhes idLicao={idLicao} />
-
-        <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+        <>
+          <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+        </>
       </TopoPagina>
       <BarraNavegacao>
         <Button onClick={toggleSidebar} variant="contained" color="primary">
           <IconSidebar />
         </Button>
         <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
-
-        <div className="navExercicios">
-          <EnunciadoButtons
-            exercicios={exerciciosL1Grupo1}
-            exercicioAtualIndex={exercicioAtualIndex}
-            setExercicioAtualIndex={setExercicioAtualIndex}
-          />
-        </div>
+        <>
+          <div className="navExercicios">
+            <div>
+              <LicaoDetalhes idLicao={idLicao} />
+              <EnunciadoButtons
+                exercicios={exerciciosL1Grupo1}
+                exercicioAtualIndex={exercicioAtualIndex}
+                setExercicioAtualIndex={setExercicioAtualIndex}
+              />
+            </div>
+          </div>
+        </>
       </BarraNavegacao>
 
       <PaginaExercicios>
@@ -196,7 +201,10 @@ const EnunciadoButtons = ({
           key={index}
           onClick={() => setExercicioAtualIndex(index)}
           style={{
-            fontWeight: exercicioAtualIndex === index ? 'bold' : 'normal'
+            fontWeight: exercicioAtualIndex === index ? 'bold' : 'normal',
+            backgroundColor:
+              exercicioAtualIndex === index ? '#294f29' : 'normal',
+            color: exercicioAtualIndex === index ? '#fff' : 'normal'
           }}
         >
           {index + 1}

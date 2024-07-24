@@ -21,7 +21,16 @@ const LicaoDetalhes = ({ idLicao }) => {
 
   return (
     <div>
-      <p style={{ color: 'white' }}>{licao.nomeLicao}</p>
+      <p
+        style={{
+          color: '#fff',
+          justifyContent: 'center',
+          display: 'flex',
+          backgroundColor: '#76234f'
+        }}
+      >
+        {licao.nomeLicao}
+      </p>
     </div>
   )
 }
