@@ -425,22 +425,18 @@ app.post("/para-pagarme", checkToken, async (req, res) => {
     if (error.response) {
       // O servidor respondeu com um status fora do intervalo 2xx
       console.log(error.response.data);
-      res
-        .status(500)
-        .json({
-          success: false,
-          message: "Erro ao enviar dados",
-          error: error.response.data,
-        });
+      res.status(500).json({
+        success: false,
+        message: "Erro ao enviar dados",
+        error: error.response.data,
+      });
     } else {
       // Algum outro erro ocorreu no processo de envio
-      res
-        .status(500)
-        .json({
-          success: false,
-          message: "Erro interno",
-          error: error.message,
-        });
+      res.status(500).json({
+        success: false,
+        message: "Erro interno",
+        error: error.message,
+      });
     }
   }
 });
@@ -553,7 +549,7 @@ app.post("/user/apply-coupon", checkToken, async (req, res) => {
     console.error("Erro ao aplicar o cupom:", error);
     res
       .status(500)
-      .json({ success: false, message: "Erro ao aplicar o cupom" });
+      .json({ success: false, message: "Erro ao aplicar o cupomm" });
   }
 });
 
