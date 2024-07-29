@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
   nome: String,
@@ -12,9 +12,9 @@ const UserSchema = mongoose.Schema({
   cep: String,
   cidade: String,
   estado: String,
-  assinatura: String 
-})
+  assinatura: String,
+});
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model("User", UserSchema);
 
-module.exports = User
+module.exports = User;

@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, DELETE"
+    "GET, POST, PUT, PATCH, DELETE",
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
@@ -72,7 +72,7 @@ const dbPassword = process.env.DB_PASS;
 
 mongoose
   .connect(
-    `mongodb+srv://${dbUser}:${dbPassword}@cluster0.pcmsz7n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://${dbUser}:${dbPassword}@cluster0.pcmsz7n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
   )
   .then(() => {
     console.log("Conectou ao Banco!");
@@ -176,7 +176,7 @@ app.post("/auth/login", async (req, res) => {
       {
         id: user._id,
       },
-      secret
+      secret,
     );
 
     // Redireciona para a rota de perfil incluindo o ID do usuário como parâmetro na URL
