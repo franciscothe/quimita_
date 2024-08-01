@@ -83,7 +83,9 @@ export const InfoUser = styled.div`
   flex-direction: column;
   text-align: center;
 `
-export const BtnCancelaAssinatura = styled.button`
+export const BtnCancelaAssinatura = styled(Link).attrs({
+  target: '_blank'
+})`
   background-color: #ff05058f;
   color: black;
   padding: 5px 10px;
@@ -92,6 +94,7 @@ export const BtnCancelaAssinatura = styled.button`
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  text-decoration: none;
 `
 export const OpcaoUser = styled.div`
   display: flex;

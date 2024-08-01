@@ -71,11 +71,14 @@ const Perfil = () => {
         {/* Renderização condicional dos componentes com base na assinatura */}
         {userInfo && userInfo.assinatura === 'true' ? (
           <InfoUser>
-            <p>O usuário possui uma assinatura ativa.</p>
+            <p>A assinatura está ativa</p>
             <BotaoIrSumario to="/Sumario">
               Acessar lista de lições
             </BotaoIrSumario>
-            <BtnCancelaAssinatura> Cancelar Assinatura</BtnCancelaAssinatura>
+            <BtnCancelaAssinatura to="https://api.whatsapp.com/send/?phone=5562985456601&text=Gostaria+de+cancelar+minha+assinatura+quimITA.&type=phone_number&app_absent=0">
+              {' '}
+              Cancelar Assinatura
+            </BtnCancelaAssinatura>
           </InfoUser>
         ) : (
           <>

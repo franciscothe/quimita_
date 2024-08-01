@@ -8,6 +8,7 @@ import {
 } from './styles'
 import { Botao, BotaoClaro } from '../../components/Botao/styles'
 import { BotaoPerfil } from '../Perfil/styles'
+import { Link } from '@mui/material'
 
 const Assinatura = () => {
   const [assinaturaCompleta, setAssinaturaCompleta] = useState(null) // Alterado para null para indicar que a informação ainda não foi carregada
@@ -43,16 +44,21 @@ const Assinatura = () => {
     <Container>
       {assinaturaCompleta ? (
         <>
-          {' '}
           <DivAssinatura>
             <BarraSucesso>Assinatura realizada com sucesso!</BarraSucesso>
 
             <BotaoIrAssinatura to="/Sumario">
-              {' '}
               Ir para as lições
             </BotaoIrAssinatura>
             <p>Para cancelar a assinatura clique aqui!</p>
-            <button></button>
+            <Link
+              onClick={() => {
+                window.location.href =
+                  'https://api.whatsapp.com/send/?phone=5562985456601&text=Gostaria+de+cancelar+minha+assinatura+quimITA.&type=phone_number&app_absent=0'
+              }}
+            >
+              Cancelar Assinatura
+            </Link>
           </DivAssinatura>
         </>
       ) : (
@@ -65,7 +71,6 @@ const Assinatura = () => {
               pagamento.
             </p>
             <BotaoIrAssinatura to="/user/perfil">
-              {' '}
               Ir para pagamento
             </BotaoIrAssinatura>
           </DivAssinatura>

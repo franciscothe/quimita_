@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 import Calculadora from '../Calculadora'
 import { useNavigate } from 'react-router-dom'
+import { Nav } from 'react-bootstrap'
 
 interface SidebarProps {
   isOpen: boolean
@@ -179,6 +180,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                   Resolução dos exercícios do livro Príncipios de Química
                   (Atkins 3° edição) - ÍMPARES
                 </Typography>
+              }
+            />
+          </ListItem>
+
+          <ListItem>
+            <ListItemText
+              primary={
+                <Nav.Link href="/user/perfil" style={{ marginTop: '10px' }}>
+                  Acessar minhas informações
+                </Nav.Link>
               }
             />
           </ListItem>
