@@ -41,11 +41,18 @@ export const PagamentoDiv = styled.div`
   }
 
   button {
-    margin: 10px;
-    padding: 5px 20vw;
-    border-radius: 10px;
+    margin: 5px;
+    margin-top: 25px;
+    border-radius: 8px;
+    border: 3px solid #04ac39;
     color: #000;
+    text-transform: uppercase;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centraliza o botão horizontalmente */
+    align-items: center; /* Centraliza o conteúdo do botão verticalmente */
     font-weight: bold;
+    font-size: 20px;
     text-transform: uppercase;
     background-color: #4afa45;
   }
@@ -75,6 +82,7 @@ button {
   margin-top: 25px;
   border-radius: 8px;
   border: 3px solid #04ac39;
+  background-color:#f7fa00;
   color: #000;
   text-transform: uppercase;
   width: 100%;

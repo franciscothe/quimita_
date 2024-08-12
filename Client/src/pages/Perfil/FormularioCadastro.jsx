@@ -333,7 +333,7 @@ const FormularioCadastro = ({ userToken }) => {
                   placeholder="(_ _) _ _ _ _ _-_ _ _ _"
                 />
 
-                <button type="submit" className="btn btn-warning">
+                <button type="submit" className="btn btn-success">
                   Salvar Informações
                 </button>
               </form>
