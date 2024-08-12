@@ -85,7 +85,7 @@ const CardForm = ({ userToken }) => {
   return (
     <PagamentoDiv>
       <h5>
-        Valor da assinatura: <b>R$18,00</b>
+        Valor da assinatura: <b>R$20,00</b>
       </h5>
       <ul>
         <li>Acesso às lições</li>

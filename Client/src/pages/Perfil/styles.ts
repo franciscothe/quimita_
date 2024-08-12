@@ -44,38 +44,46 @@ export const PagamentoDiv = styled.div`
     margin: 10px;
     padding: 5px 20vw;
     border-radius: 10px;
-    background-color: #458afa;
-    color: #fff;
+    color: #000;
+    font-weight: bold;
     text-transform: uppercase;
+    background-color: #4afa45;
   }
 `
 export const EnderecooDiv = styled.div`
-  background-color: #85d3ff;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: none;
-  padding: 1vw 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #fff;
-  align-items: center;
+background-color: #85d3ff;
+margin-top: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border: none;
+padding: 1vw 20px;
+border-radius: 20px;
+text-decoration: none;
+color: #fff;
+width: 100%;
+color: #0c3f5c;
+margin-bottom: 50px;
+
+h5 {
+  border-bottom: 1px solid black;
+}
+
+button {
+  margin: 5px;
+  margin-top: 25px;
+  border-radius: 8px;
+  border: 3px solid #04ac39;
+  color: #000;
+  text-transform: uppercase;
   width: 100%;
-  color: #0c3f5c;
-  margin-bottom: 10px;
-
-  h5 {
-    border-bottom: 1px solid black;
-  }
-
-  button {
-    margin: 10px;
-    padding: 5px 20vw;
-    border-radius: 10px;
-    background-color: #458afa;
-    color: #fff;
-    text-transform: uppercase;
+  display: flex;
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  align-items: center; /* Centraliza o conteúdo do botão verticalmente */
+  font-weight: bold;
+  font-size: 20px;
+}
   }
 `
 export const InfoUser = styled.div`

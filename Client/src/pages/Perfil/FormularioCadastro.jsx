@@ -225,118 +225,120 @@ const FormularioCadastro = ({ userToken }) => {
                 </label>
               </div>
             </OpcaoUser>
-            <form onSubmit={handleSubmit}>
-              <label>CPF</label>
-              <IMaskInput
-                mask="000.000.000-00"
-                className="form-control"
-                type="text"
-                id="cpf"
-                name="cpf"
-                value={formValues.cpf}
-                onChange={handleInputChange}
-                required
-                placeholder="_ _ _ . _ _ _ . _ _ _ - _ _"
-              />
-              <label>CEP</label>
-              <IMaskInput
-                mask="00 000-000"
-                className="form-control"
-                type="text"
-                id="cep"
-                name="cep"
-                value={formValues.cep}
-                onChange={handleCEPChange}
-                required
-                placeholder="_ _  _ _ _ - _ _ _"
-              />
-              <label>Rua/Avenida/Quadra</label>
-              <input
-                className="form-control"
-                type="text"
-                id="endereco"
-                name="endereco"
-                value={formValues.endereco}
-                onChange={handleInputChange}
-                required
-                placeholder="Rua/Avenida"
-              />
-              <div className="row">
-                <div className="col">
-                  <label>N° da residência</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="complemento"
-                    onChange={handleInputChange}
-                    name="complemento"
-                    value={formValues.complemento}
-                    required
-                    placeholder=""
-                  />
+            <Container>
+              <form onSubmit={handleSubmit}>
+                <label>CPF</label>
+                <IMaskInput
+                  mask="000.000.000-00"
+                  className="form-control"
+                  type="text"
+                  id="cpf"
+                  name="cpf"
+                  value={formValues.cpf}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="_ _ _ . _ _ _ . _ _ _ - _ _"
+                />
+                <label>CEP</label>
+                <IMaskInput
+                  mask="00 000-000"
+                  className="form-control"
+                  type="text"
+                  id="cep"
+                  name="cep"
+                  value={formValues.cep}
+                  onChange={handleCEPChange}
+                  required
+                  placeholder="_ _  _ _ _ - _ _ _"
+                />
+                <label>Rua/Avenida/Quadra</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  id="endereco"
+                  name="endereco"
+                  value={formValues.endereco}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Rua/Avenida"
+                />
+                <div className="row">
+                  <div className="col">
+                    <label>N° da residência</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      id="complemento"
+                      onChange={handleInputChange}
+                      name="complemento"
+                      value={formValues.complemento}
+                      required
+                      placeholder=""
+                    />
+                  </div>
+                  <div className="col">
+                    <label>Ap (se houver)</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      id="ap"
+                      name="ap"
+                      onChange={handleInputChange}
+                      placeholder=""
+                    />
+                  </div>
                 </div>
-                <div className="col">
-                  <label>Ap (se houver)</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="ap"
-                    name="ap"
-                    onChange={handleInputChange}
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <label>Outras informações (opcional)</label>
-              <input
-                className="form-control"
-                type="text"
-                id="complemento111"
-                name="complemento111"
-                onChange={handleInputChange}
-                placeholder=""
-              />
-              <label>Cidade</label>
-              <input
-                className="form-control"
-                type="text"
-                id="cidade"
-                name="cidade"
-                value={formValues.cidade}
-                onChange={handleInputChange}
-                required
-                placeholder="Cidade"
-              />
-              <label>Estado</label>
-              <IMaskInput
-                mask="aa"
-                className="form-control"
-                type="text"
-                id="estado"
-                name="estado"
-                value={formValues.estado}
-                onChange={handleInputChange}
-                required
-                placeholder="_ _"
-              />
-              <label>Telefone</label>
-              <IMaskInput
-                mask="(00) 0 0000-0000"
-                className="form-control"
-                type="text"
-                id="telefone"
-                name="telefone"
-                value={formValues.telefone}
-                onChange={handleInputChange}
-                required
-                placeholder="(_ _) _ _ _ _ _-_ _ _ _"
-              />
+                <label>Outras informações (opcional)</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  id="complemento111"
+                  name="complemento111"
+                  onChange={handleInputChange}
+                  placeholder=""
+                />
+                <label>Cidade</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  id="cidade"
+                  name="cidade"
+                  value={formValues.cidade}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Cidade"
+                />
+                <label>Estado</label>
+                <IMaskInput
+                  mask="aa"
+                  className="form-control"
+                  type="text"
+                  id="estado"
+                  name="estado"
+                  value={formValues.estado}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="_ _"
+                />
+                <label>Telefone</label>
+                <IMaskInput
+                  mask="(00) 0 0000-0000"
+                  className="form-control"
+                  type="text"
+                  id="telefone"
+                  name="telefone"
+                  value={formValues.telefone}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="(_ _) _ _ _ _ _-_ _ _ _"
+                />
 
-              <button type="submit" className="btn btn-primary">
-                Salvar Informações
-              </button>
-            </form>
-            {message && <p>{message}</p>}
+                <button type="submit" className="btn btn-warning">
+                  Salvar Informações
+                </button>
+              </form>
+              {message && <p>{message}</p>}
+            </Container>
           </EnderecooDiv>
         )}
       </Container>
