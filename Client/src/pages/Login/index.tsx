@@ -33,6 +33,7 @@ const FormularioLogin = () => {
 
     try {
       const response = await axios.post('/auth/login', {
+        // const response = await axios.post('https://localhost:5002/auth/login', {
         email: email,
         senha: senha
       })

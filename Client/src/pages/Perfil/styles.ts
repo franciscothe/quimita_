@@ -106,11 +106,11 @@ export const BtnCancelaAssinatura = styled(Link).attrs({
   color: black;
   padding: 5px 10px;
   border-radius: 10px;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 20px;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 `
 export const OpcaoUser = styled.div`
   display: flex;

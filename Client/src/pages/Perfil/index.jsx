@@ -19,6 +19,7 @@ import { BotaoIrSumario } from '../../components/Botao/styles'
 import NavBarUsuario from '../../components/BarraNavegacao'
 import styled from 'styled-components'
 import CupomDesconto from '../../components/CupomDesconto'
+import imagemTutorial from '../Perfil/Formularios/Ativo 1.jpg'
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
 
@@ -34,7 +35,7 @@ const Perfil = () => {
 
         // Fazer uma requisição para o backend para obter as informações do usuário
         const response = await axios.get('/user/perfil', {
-          // const response = await axios.get('/user/perfil', {
+          // const response = await axios.get('https://localhost:5002/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -72,10 +73,14 @@ const Perfil = () => {
         {/* Renderização condicional dos componentes com base na assinatura */}
         {userInfo && userInfo.assinatura === 'true' ? (
           <InfoUser>
-            <p>A assinatura está ativa</p>
+            <p style={{ color: 'green', fontWeight: 'bold' }}>
+              A assinatura está ativa
+            </p>
+
             <BotaoIrSumario to="/Sumario">
               Acessar lista de lições
             </BotaoIrSumario>
+            <img src={imagemTutorial} style={{ marginBottom: '60px' }} />
             <BtnCancelaAssinatura to="https://api.whatsapp.com/send/?phone=5562985456601&text=Gostaria+de+cancelar+minha+assinatura+quimITA.&type=phone_number&app_absent=0">
               {' '}
               Cancelar Assinatura
