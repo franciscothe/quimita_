@@ -56,7 +56,7 @@ const CadastroForm = () => {
       </NavLogin>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="nome">Nome:</label>
+          <label htmlFor="nome">Nome Completo:</label>
           <StyledInput
             type="text"
             id="nome"
