@@ -198,9 +198,9 @@ const checkToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) {
-    return res.status(401).json({
-      msg: "Token não fornecido",
-    });
+    // Redireciona para a rota '/' se o token não for fornecido
+    return res.redirect('/');
+  }
   }
 
   try {
