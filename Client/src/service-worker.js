@@ -1,13 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 
-// This service worker can be customized!
-// See https://developers.google.com/web/tools/workbox/modules
-// for the list of available Workbox modules, or add any other
-// code you'd like.
-// You can also remove this file if you'd prefer not to use a
-// service worker, and the Workbox build step will be skipped.
-
 import { clientsClaim } from 'workbox-core'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching'
@@ -32,16 +25,17 @@ registerRoute(
     // If this isn't a navigation, skip.
     if (request.mode !== 'navigate') {
       return false
-    } // If this is a URL that starts with /_, skip.
-
+    }
+    // If this is a URL that starts with /_, skip.
     if (url.pathname.startsWith('/_')) {
       return false
-    } // If this looks like a URL for a resource, because it contains // a file extension, skip.
-
+    }
+    // If this looks like a URL for a resource, because it contains
+    // a file extension, skip.
     if (url.pathname.match(fileExtensionRegexp)) {
       return false
-    } // Return true to signal that we want to use the handler.
-
+    }
+    // Return true to signal that we want to use the handler.
     return true
   },
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
@@ -52,7 +46,8 @@ registerRoute(
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
   ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+    url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
@@ -69,6 +64,22 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting()
   }
+})
+
+// Force the new service worker to take control and reload the page
+self.addEventListener('install', (event) => {
+  self.skipWaiting() // Skip waiting and activate the new service worker immediately
+})
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    clients.claim() // Take control of all clients as soon as the service worker is activated
+  )
+})
+
+// Reload the page when the service worker is activated and takes control
+self.addEventListener('controllerchange', () => {
+  window.location.reload() // Reload the page when the service worker takes control
 })
 
 // Any other custom service worker logic can go here.
