@@ -99,7 +99,7 @@ const CardForm = ({ userToken }) => {
       <h3>
         Valor da assinatura: <b>R$ 20,00</b>
       </h3>
-      <h5>Acesso às lições</h5>
+      <h5>Acesso as lições</h5>
       <Container>
         <form onSubmit={handleSubmit} autoComplete="off" className="form-group">
           <label>Número do cartão</label>
