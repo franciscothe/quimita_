@@ -101,7 +101,7 @@ const CardForm = ({ userToken }) => {
       </h3>
       <h5>Acesso às lições</h5>
       <Container>
-        <form onSubmit={handleSubmit} className="form-group">
+        <form onSubmit={handleSubmit} autoComplete="off" className="form-group">
           <label>Número do cartão</label>
           <IMaskInput
             mask="0000 0000 0000 0000"
