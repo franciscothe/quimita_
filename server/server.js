@@ -197,20 +197,24 @@ app.post("/auth/login", async (req, res) => {
 const checkToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
+
   if (!token) {
     // Redireciona para a rota '/' se o token não for fornecido
-    return res.redirect('/');
-  }
+    return res.redirect("/");
   }
 
   try {
     const secret = process.env.SECRET;
     const decoded = jwt.verify(token, secret);
-    req.user = decoded; // Adiciona as informações do usuário decodificadas ao objeto de solicitação
+
+    // Adiciona as informações do usuário decodificadas ao objeto de solicitação
+    req.user = decoded;
+
+    // Se a verificação for bem-sucedida, prossegue para o próximo middleware
     next();
   } catch (error) {
     res.status(400).json({
-      msg: "Tnao deu certo",
+      msg: "Token inválido ou não pode ser verificado",
     });
   }
 };
