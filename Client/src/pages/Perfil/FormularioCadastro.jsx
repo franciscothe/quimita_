@@ -80,6 +80,7 @@ const FormularioCadastro = ({ userToken }) => {
   const salvarInformacoes = async (token) => {
     try {
       await axios.post(
+        // 'https://localhost:5002/user/perfil/adicionar-informacoes',
         '/user/perfil/adicionar-informacoes',
         { ...formValues, userType, discountCode },
         {
@@ -156,6 +157,11 @@ const FormularioCadastro = ({ userToken }) => {
 
       setShowSuccessMessage(true)
       setShowForm(false)
+
+      // Adiciona um recarregamento da página após 0,2 segundos
+      setTimeout(() => {
+        window.location.reload()
+      }, 200) // 200 milissegundos = 0,2 segundos
     } catch (error) {
       console.error('Erro ao realizar operações:', error)
     }
@@ -180,6 +186,9 @@ const FormularioCadastro = ({ userToken }) => {
 
         {showForm && (
           <EnderecooDiv>
+            <div>
+              <h3>Complete seu cadastro</h3>{' '}
+            </div>
             <OpcaoUser>
               <label>Tipo de Usuário</label>
               <div>

@@ -14,11 +14,13 @@ const CardForm = ({ userToken }) => {
   })
 
   const [userData, setUserData] = useState(null)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        // const response = await axios.get('https://localhost:5002/user/perfil', {
         const response = await axios.get('/user/perfil', {
           headers: {
             Authorization: `Bearer ${userToken}`
@@ -42,9 +44,14 @@ const CardForm = ({ userToken }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (loading) return // Evita múltiplos cliques
+
     const cpfSemEspacos = cardData.number.replace(/\D/g, '')
 
     try {
+      setLoading(true) // Ativa o estado de carregamento
+
       const cardResponse = await axios.post(
         'https://api.pagar.me/core/v5/tokens?appId=pk_1XMN4yCJYUMj2myk',
         {
@@ -64,6 +71,7 @@ const CardForm = ({ userToken }) => {
       console.log('Card ID:', cardId)
 
       await axios.post(
+        // 'https://localhost:5002/assinatura',
         '/assinatura',
         {
           cardId
@@ -75,22 +83,23 @@ const CardForm = ({ userToken }) => {
           }
         }
       )
+
       window.location.reload()
     } catch (error) {
       console.error('Erro ao realizar pagamento:', error)
       user.assinatura = true
       await user.save()
+    } finally {
+      setLoading(false) // Desativa o estado de carregamento
     }
   }
 
   return (
     <PagamentoDiv>
-      <h5>
+      <h3>
         Valor da assinatura: <b>R$ 20,00</b>
-      </h5>
-      <ul>
-        <li>Acesso às lições</li>
-      </ul>
+      </h3>
+      <h5>Acesso às lições</h5>
       <Container>
         <form onSubmit={handleSubmit} className="form-group">
           <label>Número do cartão</label>
@@ -135,7 +144,9 @@ const CardForm = ({ userToken }) => {
             className="form-control"
             required
           />
-          <button type="submit">Realizar Pagamento</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Processando...' : 'Finalize sua compra'}
+          </button>
         </form>
       </Container>
     </PagamentoDiv>

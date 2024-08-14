@@ -20,7 +20,12 @@ const CadastroForm = () => {
       confirmaSenha: ''
     },
     validationSchema: Yup.object({
-      nome: Yup.string().required('Campo obrigatório'),
+      nome: Yup.string()
+        .required('Campo obrigatório')
+        .matches(
+          /^[a-zA-Z]+(?:\s+[a-zA-Z]+)+$/,
+          'O nome completo deve conter pelo menos duas palavras.'
+        ),
       email: Yup.string()
         .email('E-mail inválido')
         .required('Campo obrigatório'),
@@ -31,7 +36,12 @@ const CadastroForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('/auth/register', values)
+        const response = await axios.post(
+          // 'https://localhost:5002/auth/register',
+          '/auth/register',
+          values
+        )
+        // const response = await axios.post('/auth/register', values)
         const token = response.data.token
         localStorage.setItem('token', token)
         console.log('Usuário cadastrado com sucesso:', response.data)

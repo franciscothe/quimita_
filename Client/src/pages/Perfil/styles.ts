@@ -36,24 +36,31 @@ export const PagamentoDiv = styled.div`
   color: #0c3f5c;
   margin-bottom: 10px;
 
-  h5 {
-    border-bottom: 1px solid black;
+  h3 {
+    with: 100%;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+    padding: 10px 10px;
   }
 
+  h5 {
+    margin-bottom: 20px;
+  }
+  ul {
+    list-style: none;
+  }
   button {
     margin: 5px;
     margin-top: 25px;
     border-radius: 8px;
     border: 3px solid #04ac39;
     color: #000;
-    text-transform: uppercase;
     width: 100%;
     display: flex;
     justify-content: center; /* Centraliza o botão horizontalmente */
     align-items: center; /* Centraliza o conteúdo do botão verticalmente */
     font-weight: bold;
     font-size: 20px;
-    text-transform: uppercase;
     background-color: #4afa45;
   }
 `
@@ -76,6 +83,14 @@ margin-bottom: 50px;
 h5 {
   border-bottom: 1px solid black;
 }
+
+h3{
+  with: 100%;
+  border-bottom: 1px solid #fff;
+  padding: 10px 30px;
+
+}
+
 
 button {
   margin: 5px;
