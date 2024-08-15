@@ -55,3 +55,27 @@ export const NavLogin = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `
+export const Ccontainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+`
+export const ImagemTutorial = styled.img`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    margin-bottom: 30px;
+    max-width: 150%;
+    justify-content: center;
+    height: 100%;
+  }
+`

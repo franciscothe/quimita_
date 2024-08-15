@@ -7,15 +7,18 @@ import { BotaoClaro } from '../../components/Botao/styles'
 import { cores } from '../../styles'
 import NavBarUsuario from '../../components/BarraNavegacao'
 import Logotipo from '../../components/Logo'
+import imagemTutorial from '../Perfil/Formularios/Ativo 1.jpg'
+import { Ccontainer, ImagemTutorial } from './styles'
 
 function BasicExample() {
   return (
-    <>
+    <Ccontainer className="container">
       <Logotipo></Logotipo>
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         VER LISTA DE LIÇÕES
       </BotaoClaro>
-    </>
+      <ImagemTutorial src={imagemTutorial} />
+    </Ccontainer>
   )
 }
 

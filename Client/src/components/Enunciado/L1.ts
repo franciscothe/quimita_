@@ -3068,6 +3068,83 @@ export const Questoes: QuestoesType = {
       ]
     }
   },
+  L27: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: 'L27-G1-EX-1.jpg',
+          resposta: 'L27-G1-RES-1.jpg'
+        },
+        {
+          ex: '2',
+          enunciado: 'L27-G1-EX-2.jpg',
+          resposta: 'L27-G1-RES-2.jpg'
+        },
+        {
+          ex: '3',
+          enunciado: 'L27-G1-EX-3.jpg',
+          resposta: 'L27-G1-RES-3.jpg'
+        },
+        {
+          ex: '4',
+          enunciado: 'L27-G1-EX-4.jpg',
+          resposta: 'L27-G1-RES-4.jpg'
+        },
+        {
+          ex: '5',
+          enunciado: 'L27-G1-EX-5.jpg',
+          resposta: 'L27-G1-RES-5.jpg'
+        },
+        {
+          ex: '6',
+          enunciado: 'L27-G1-EX-6.jpg',
+          resposta: 'L27-G1-RES-6.jpg'
+        },
+        {
+          ex: '7',
+          enunciado: 'L27-G1-EX-7.jpg',
+          resposta: 'L27-G1-RES-7.jpg'
+        }
+      ]
+    },
+    grupo2: {
+      id: '2',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: 'L27-G2-EX-1.jpg',
+          resposta: 'L27-G2-RES-1.jpg'
+        },
+        {
+          ex: '2',
+          enunciado: 'L27-G2-EX-2.jpg',
+          resposta: 'L27-G2-RES-2.jpg'
+        },
+        {
+          ex: '3',
+          enunciado: 'L27-G2-EX-3.jpg',
+          resposta: 'L27-G2-RES-3.jpg'
+        },
+        {
+          ex: '4',
+          enunciado: 'L27-G2-EX-4.jpg',
+          resposta: 'L27-G2-RES-4.jpg'
+        },
+        {
+          ex: '5',
+          enunciado: 'L27-G2-EX-5.jpg',
+          resposta: 'L27-G2-RES-5.jpg'
+        },
+        {
+          ex: '6',
+          enunciado: 'L27-G2-EX-6.jpg',
+          resposta: 'L27-G2-RES-6.jpg'
+        }
+      ]
+    }
+  },
   L28: {
     grupo1: {
       id: '1',

@@ -1,7 +1,7 @@
 function gerarEstruturaDeDados() {
   let estrutura = ''
 
-  for (let i = 29; i <= 200; i++) {
+  for (let i = 27; i <= 28; i++) {
     const linkLicao = `{
       linkLicao: "/L${i}",
       nomeLicao: "L${i} - Título da Lição ${i}"

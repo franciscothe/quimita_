@@ -7,6 +7,7 @@ import FormularioLogin from '../../Login'
 import { PaginaInicial } from './styles'
 import FormularioLogin2 from '../../Login/index2'
 import NavBarUsuario from '../../../components/BarraNavegacao'
+import imagemTutorial from '../../Perfil/Formularios/Ativo 1.jpg'
 
 const Abertura = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
@@ -26,6 +27,7 @@ const Abertura = () => {
           <>
             <Titulo fontSize={20} texto="" />
             <FormularioLogin2 />{' '}
+            <img src={imagemTutorial} style={{ marginBottom: '60px' }} />
           </>
         ) : (
           <>
