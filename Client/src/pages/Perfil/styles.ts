@@ -49,6 +49,7 @@ export const PagamentoDiv = styled.div`
   ul {
     list-style: none;
   }
+
   button {
     margin: 5px;
     margin-top: 25px;
@@ -62,6 +63,8 @@ export const PagamentoDiv = styled.div`
     font-weight: bold;
     font-size: 20px;
     background-color: #4afa45;
+  }
+
   }
 `
 export const EnderecooDiv = styled.div`

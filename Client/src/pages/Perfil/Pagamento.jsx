@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { PagamentoDiv } from './styles'
 import { IMaskInput } from 'react-imask'
 import { Container } from '@mui/material'
+import Cupom6meses from './CupomDesconto'
 
 const CardForm = ({ userToken }) => {
   const [cardData, setCardData] = useState({
@@ -100,6 +101,8 @@ const CardForm = ({ userToken }) => {
         Valor da assinatura: <b>R$ 20,00</b>
       </h3>
       <h5>Acesso às lições</h5>
+      {/* <Cupom6meses userToken={localStorage.getItem('token')}> </Cupom6meses> */}
+
       <Container>
         <form onSubmit={handleSubmit} autoComplete="off" className="form-group">
           <label>Número do cartão</label>

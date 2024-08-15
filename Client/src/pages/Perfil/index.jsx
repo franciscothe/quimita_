@@ -20,6 +20,7 @@ import NavBarUsuario from '../../components/BarraNavegacao'
 import styled from 'styled-components'
 import CupomDesconto from '../../components/CupomDesconto'
 import imagemTutorial from '../Perfil/Formularios/Ativo 1.jpg'
+import Cupom6meses from './CupomDesconto'
 
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
@@ -35,8 +36,8 @@ const Perfil = () => {
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        // const response = await axios.get('https://localhost:5002/user/perfil', {
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
+          // const response = await axios.get('/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -91,11 +92,18 @@ const Perfil = () => {
           <>
             {/* Renderizar o componente FormularioCadastro apenas se o campo cpf não estiver preenchido */}
             {!userInfo?.cpf && (
-              <FormularioCadastro userToken={localStorage.getItem('token')} />
+              <>
+                <FormularioCadastro userToken={localStorage.getItem('token')} />
+                {/* <Cupom6meses userToken={localStorage.getItem('token')}>
+                  {' '}
+                </Cupom6meses> */}
+              </>
             )}
             {/* Renderizar o componente CardForm apenas se o campo cpf estiver preenchido */}
             {userInfo?.cpf && (
-              <CardForm userToken={localStorage.getItem('token')} />
+              <>
+                <CardForm userToken={localStorage.getItem('token')} />
+              </>
             )}
           </>
         )}

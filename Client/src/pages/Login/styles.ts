@@ -74,7 +74,7 @@ export const ImagemTutorial = styled.img`
   @media (max-width: 768px) {
     display: flex;
     margin-bottom: 30px;
-    max-width: 150%;
+    max-width: 100%;
     justify-content: center;
     height: 100%;
   }
