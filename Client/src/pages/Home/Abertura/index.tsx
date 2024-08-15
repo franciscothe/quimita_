@@ -27,7 +27,6 @@ const Abertura = () => {
           <>
             <Titulo fontSize={20} texto="" />
             <FormularioLogin2 />{' '}
-            <img src={imagemTutorial} style={{ marginBottom: '60px' }} />
           </>
         ) : (
           <>
