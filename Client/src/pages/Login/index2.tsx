@@ -17,7 +17,7 @@ function BasicExample() {
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         VER LISTA DE LIÇÕES
       </BotaoClaro>
-      <ImagemTutorial src={imagemTutorial} />
+      {/* <ImagemTutorial src={imagemTutorial} /> */}
     </Ccontainer>
   )
 }
