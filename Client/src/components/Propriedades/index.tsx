@@ -275,7 +275,7 @@ export const TodasMaterias: Materia[] = [
         linkLicao: './L28',
         id: 'L28',
         nomeLicao: 'L28 - Lei Volumétrica de Gay-Lussac',
-        url: 'https://www.youtube.com/embed/obtECA3v470k',
+        url: 'https://www.youtube.com/embed/obtECA3v470?si=M1faJCnzxCnd6fAs',
         apostila:
           'https://drive.google.com/file/d/1Qm7iJgUfNbo9cWYI6bdgL8XqnbjOKRzX/preview'
       },
