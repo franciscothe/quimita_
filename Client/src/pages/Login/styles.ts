@@ -76,6 +76,7 @@ export const ImagemTutorial = styled.img`
     margin-bottom: 30px;
     max-width: 100%;
     justify-content: center;
-    height: 100%;
+    height: auto; /* Mantém a proporção */
+    object-fit: contain; /* Garante que a imagem não seja distorcida */
   }
 `
