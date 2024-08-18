@@ -1818,7 +1818,7 @@ export const Questoes: QuestoesType = {
           resposta: [
             'L17-G1-RES-2.jpg',
             'L17-G1-RES-2-parte2.jpg',
-            'L17-G1-RES-2-parte2.jpg'
+            'L17-G1-RES-2-parte3.jpg'
           ]
         },
         {
