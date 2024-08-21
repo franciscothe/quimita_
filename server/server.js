@@ -334,6 +334,9 @@ app.post("/user/perfil/adicionar-informacoes", checkToken, async (req, res) => {
     user.cidade = cidade;
     user.estado = estado;
 
+    // Atualizar o campo assinatura
+    user.assinatura = "true";
+
     // Salvar as informações atualizadas no banco de dados
     await user.save();
 
@@ -347,7 +350,6 @@ app.post("/user/perfil/adicionar-informacoes", checkToken, async (req, res) => {
     res.status(500).json({ mensagem: "Erro interno do servidor" });
   }
 });
-
 //criação da assinatura
 app.post("/user/verifica-assinatura", checkToken, async (req, res) => {
   try {

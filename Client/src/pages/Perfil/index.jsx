@@ -76,7 +76,7 @@ const Perfil = () => {
         {userInfo && userInfo.assinatura === 'true' ? (
           <InfoUser>
             <p style={{ color: 'green', fontWeight: 'bold' }}>
-              A assinatura está ativa
+              A assinatura está ativa.
             </p>
 
             <BotaoIrSumario to="/Sumario">
