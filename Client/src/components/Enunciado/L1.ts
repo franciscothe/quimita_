@@ -19813,11 +19813,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '4',
           enunciado: ['L194-G1-EX-4.jpg'],
-          resposta: [
-            'L194-G1-RES-4.jpg',
-            'L194-G1-RES-4-parte2.jpg',
-            'L194-G1-RES-4-parte3.jpg'
-          ]
+          resposta: ['L194-G1-RES-4.jpg', 'L194-G1-RES-4-parte2.jpg']
         }
       ]
     },
@@ -23408,9 +23404,7 @@ export const Questoes: QuestoesType = {
             'L611-G1-RES-9-parte5.jpg',
             'L611-G1-RES-9-parte6.jpg',
             'L611-G1-RES-9-parte7.jpg',
-            'L611-G1-RES-9-parte8.jpg',
-            'L611-G1-RES-9-parte9.jpg',
-            'L611-G1-RES-9-parte10.jpg'
+            'L611-G1-RES-9-parte8.jpg'
           ]
         },
         {
