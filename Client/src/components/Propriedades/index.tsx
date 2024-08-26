@@ -389,7 +389,7 @@ export const TodasMaterias: Materia[] = [
         nomeLicao: 'L40 - Mistura de Substâncias',
         url: 'https://www.youtube.com/embed/kPGopsoS2xk',
         apostila:
-          'https://drive.google.com/file/d/1LWJhJZ0ygTC9L67jb61LboGVeW9FE8Kg/previewhttps://drive.google.com/file/d/1hJlQMxm7WzN9UaHBuz45-iegkR7OAKpf/preview'
+          'https://drive.google.com/file/d/1hJlQMxm7WzN9UaHBuz45-iegkR7OAKpf/preview'
       }
     ]
   },
