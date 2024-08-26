@@ -3023,7 +3023,8 @@ export const Questoes: QuestoesType = {
           resposta: [
             'L26-G2-RES-5.jpg',
             'L26-G2-RES-5-parte2.jpg',
-            'L26-G2-RES-5-parte2.jpg'
+            'L26-G2-RES-5-parte2.jpg',
+            'L26-G2-RES-5-parte3.jpg'
           ]
         },
         {
