@@ -114,7 +114,7 @@ app.post("/auth/register", async (req, res) => {
     nome,
     email,
     senha: passwordHash,
-    assinatura: false,
+    assinatura: true,
   });
 
   try {
