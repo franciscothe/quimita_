@@ -28,7 +28,7 @@ const Cupom6meses = ({ userToken }) => {
   const handleApplyCoupon = async () => {
     try {
       const response = await axios.post(
-        'https://localhost:5002/apply-coupon',
+        // 'https://localhost:5002/apply-coupon',
         { coupon },
         {
           headers: {

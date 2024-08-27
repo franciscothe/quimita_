@@ -93,7 +93,7 @@ const Perfil = () => {
             {/* Renderizar o componente FormularioCadastro apenas se o campo cpf não estiver preenchido */}
             {!userInfo?.cpf && (
               <>
-                <FormularioCadastro userToken={localStorage.getItem('token')} />
+                {/* <FormularioCadastro userToken={localStorage.getItem('token')} /> */}
                 {/* <Cupom6meses userToken={localStorage.getItem('token')}>
                   {' '}
                 </Cupom6meses> */}
