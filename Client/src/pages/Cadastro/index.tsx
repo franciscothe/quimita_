@@ -6,10 +6,10 @@ import { cores } from '../../styles'
 import { Container } from '@mui/material'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { IMaskInput } from 'react-imask' // Importa o IMaskInput
 
 const CadastroForm = () => {
   const navigate = useNavigate()
-
   const [error, setError] = useState(null)
 
   const formik = useFormik({
@@ -17,7 +17,8 @@ const CadastroForm = () => {
       nome: '',
       email: '',
       senha: '',
-      confirmaSenha: ''
+      confirmaSenha: '',
+      telefone: '' // Adiciona o campo telefone
     },
     validationSchema: Yup.object({
       nome: Yup.string()
@@ -32,26 +33,36 @@ const CadastroForm = () => {
       senha: Yup.string().required('Campo obrigatório'),
       confirmaSenha: Yup.string()
         .oneOf([Yup.ref('senha')], 'As senhas não coincidem')
+        .required('Campo obrigatório'),
+      telefone: Yup.string()
         .required('Campo obrigatório')
+        .matches(
+          /^\(\d{2}\) \d \d{4}-\d{4}$/,
+          'Formato inválido. Ex: (99) 9 9999-9999'
+        ) // Validação do telefone
     }),
     onSubmit: async (values) => {
       try {
+        // const response = await axios.post('/auth/register', values)
         const response = await axios.post(
           // 'https://localhost:5002/auth/register',
           '/auth/register',
           values
         )
-        // const response = await axios.post('/auth/register', values)
         const token = response.data.token
         localStorage.setItem('token', token)
         console.log('Usuário cadastrado com sucesso:', response.data)
         navigate('/user/perfil')
-      } catch (error: any) {
+      } catch (error) {
         console.error('Erro ao cadastrar usuário:', error)
-        if (error.response && error.response.status === 409) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response &&
+          error.response.status === 409
+        ) {
           alert('Este e-mail já está em uso. Por favor, escolha outro.')
         } else {
-          alert('Este e-mail já está em uso. Por favor, escolha outro.')
+          alert('Ocorreu um erro. Tente novamente mais tarde.')
         }
       }
     }
@@ -115,6 +126,22 @@ const CadastroForm = () => {
           />
           {formik.touched.confirmaSenha && formik.errors.confirmaSenha && (
             <p style={{ color: 'red' }}>{formik.errors.confirmaSenha}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="telefone">Telefone:</label>
+          <IMaskInput
+            mask="(00) 0 0000-0000"
+            className="form-control"
+            type="text"
+            id="telefone"
+            name="telefone"
+            value={formik.values.telefone}
+            onChange={formik.handleChange}
+            placeholder="(__) _ ____-____"
+          />
+          {formik.touched.telefone && formik.errors.telefone && (
+            <p style={{ color: 'red' }}>{formik.errors.telefone}</p>
           )}
         </div>
         <BtnEnviar type="submit">Cadastrar</BtnEnviar>

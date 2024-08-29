@@ -1,4 +1,5 @@
 // src/components/MethodologySection.js
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
@@ -11,15 +12,12 @@ const Metodologia = () => {
     <SectionWrapper>
       <div>
         <h2>Aos usuários já cadastrados...</h2>
-        <p className="lead text-secondary mb-4">
-          Acesse sua conta normalmente e aproveite o benefício que já foi
-          estendido para você. As cobranças estão suspensas, e você pode
-          continuar aproveitando nossos recursos sem preocupações!
-        </p>
-
-        <a href="#explore" className="btn btn btn-lg">
+        <Link to="/login" className="btn btn-lg">
           Fazer login
-        </a>
+        </Link>
+        <p className="lead text-secondary mb-4">
+          A cobrança de sua assinatura está suspensa até 31/12/2024.
+        </p>
       </div>
     </SectionWrapper>
   )

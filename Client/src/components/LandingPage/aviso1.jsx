@@ -1,4 +1,5 @@
 // src/components/MethodologySection.js
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
@@ -15,15 +16,10 @@ const Aviso1 = () => {
           Estamos em fase de testes!
           <h2>Aproveite o acesso gratuito à nossa plataforma até 31/12/2024</h2>
         </h2>
-        <p className="lead text-secondary mb-4">
-          Faça seu cadastro agora para acessar as apostilas e exercícios
-          exclusivos e ajude-nos a criar a melhor experiência de estudo para
-          você.
-        </p>
-        <a href="#explore" className="btn btn btn-lg">
-          Explore Agora
-        </a>
       </div>
+      <Link to="/sumario" className="btn btn-lg">
+        Explore Agora
+      </Link>
     </section>
   )
 }

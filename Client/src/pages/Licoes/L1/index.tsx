@@ -45,13 +45,13 @@ export const L1: React.FC = () => {
           console.error('Erro ao verificar a assinatura:', error)
           setAssinaturaValida(false)
           setMensagem(
-            'Erro ao verificar a assinatura. Tente novamente mais tarde.'
+            'Faça seu cadastro para ter acesso à apostila e grupos de exercícios'
           )
         }
       } else {
         setAssinaturaValida(false)
         setMensagem(
-          'Faça a assinatura para visualizar a apostila e os exercícios da lição'
+          'Faça o seu cadastro para ter acesso à apostila e grupos de exercícios'
         )
       }
     }
@@ -82,8 +82,8 @@ export const L1: React.FC = () => {
         ) : (
           <ExibirMensagem>
             <p>{mensagem}</p>
-            <Botao to="/user/Perfil" color={cores.laranja}>
-              Realizar Assinatura
+            <Botao to="/Cadastro" color={cores.laranja}>
+              CADASTRAR
             </Botao>
           </ExibirMensagem>
         )}

@@ -81,7 +81,7 @@ mongoose
 //registrando usuario
 
 app.post("/auth/register", async (req, res) => {
-  const { nome, email, senha, confirmaSenha } = req.body;
+  const { nome, email, senha, confirmaSenha, telefone } = req.body;
 
   // Validação
   if (!nome) {
@@ -102,7 +102,7 @@ app.post("/auth/register", async (req, res) => {
   // Checagem de existência de usuário
   const userExists = await User.findOne({ email: email });
   if (userExists) {
-    return res.status(425).json({ msg: "Por favor, utilize outro email" });
+    return res.status(409).json({ msg: "Por favor, utilize outro email" });
   }
 
   // Criação da senha criptografada
@@ -115,6 +115,7 @@ app.post("/auth/register", async (req, res) => {
     email,
     senha: passwordHash,
     assinatura: true,
+    telefone,
   });
 
   try {
