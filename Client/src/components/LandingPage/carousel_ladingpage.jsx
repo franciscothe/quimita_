@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap'
 import styled from 'styled-components'
 import construcao from './construcao.webp' // Ajuste a extensão se necessário
 import imagem1 from './check.webp' // Substitua com o caminho das suas imagens
-
+import garoto from './lapis.webp'
 const CarouselWrapper = styled.div`
   margin: 20px 0;
   position: relative;
@@ -61,11 +61,7 @@ const CarouselSection = () => {
             </TopCaption>
           </Carousel.Item>
           <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={construcao}
-              alt="Primeiro slide"
-            />
+            <img className="d-block w-100" src={garoto} alt="Primeiro slide" />
             <TopCaption>
               <div
                 style={{
@@ -75,11 +71,10 @@ const CarouselSection = () => {
                 }}
               >
                 {' '}
-                <h2>ACESSO GRATUITO</h2>
-                <img src={imagem1} alt="Ícone" className="icon" />
+                <h2>SUA APROVAÇÃO EM SUAS MÃOS</h2>
               </div>
             </TopCaption>
-          </Carousel.Item>{' '}
+          </Carousel.Item>
         </Carousel>
       </CarouselWrapper>
     </>
