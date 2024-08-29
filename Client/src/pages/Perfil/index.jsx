@@ -4,7 +4,7 @@ import { Cabecalho, HeaderSumario } from '../../components/Header/styles'
 import { Header } from '../../components/Header'
 import { SmallButton } from '../Login/styles'
 import FormPerfil from '../../components/Formulario_perfil'
-import { ButtonToolbar, Container } from 'react-bootstrap'
+import { ButtonToolbar, Container, Modal } from 'react-bootstrap'
 import {
   BotaoPerfil,
   BtnCancelaAssinatura,
@@ -24,7 +24,9 @@ import Cupom6meses from './CupomDesconto'
 
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState(null)
-
+  const [showModal, setShowModal] = useState(true)
+  const handleOpenModal = () => setShowModal(true)
+  const handleCloseModal = () => setShowModal(false)
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -36,8 +38,8 @@ const Perfil = () => {
         }
 
         // Fazer uma requisição para o backend para obter as informações do usuário
-        // const response = await axios.get('https://localhost:5002/user/perfil', {
-        const response = await axios.get('/user/perfil', {
+        const response = await axios.get('https://localhost:5002/user/perfil', {
+          // const response = await axios.get('/user/perfil', {
           headers: {
             Authorization: `Bearer ${token}` // Enviar o token armazenado no localStorage no cabeçalho da requisição
           }
@@ -76,7 +78,7 @@ const Perfil = () => {
         {userInfo && userInfo.assinatura === 'true' ? (
           <InfoUser>
             <p style={{ color: 'green', fontWeight: 'bold' }}>
-              A assinatura está ativa.
+              Status da Assinatura: Ativa <p>Validade: Até 31/12/2024 </p>{' '}
             </p>
 
             <BotaoIrSumario to="/Sumario">
@@ -93,7 +95,7 @@ const Perfil = () => {
             {/* Renderizar o componente FormularioCadastro apenas se o campo cpf não estiver preenchido */}
             {!userInfo?.cpf && (
               <>
-                {/* <FormularioCadastro userToken={localStorage.getItem('token')} /> */}
+                <FormularioCadastro userToken={localStorage.getItem('token')} />
                 {/* <Cupom6meses userToken={localStorage.getItem('token')}>
                   {' '}
                 </Cupom6meses> */}

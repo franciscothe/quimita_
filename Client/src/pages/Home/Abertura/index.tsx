@@ -8,6 +8,7 @@ import { PaginaInicial } from './styles'
 import FormularioLogin2 from '../../Login/index2'
 import NavBarUsuario from '../../../components/BarraNavegacao'
 import imagemTutorial from '../../Perfil/Formularios/Ativo 1.jpg'
+import LandingPage from '../../../components/LandingPage'
 
 const Abertura = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
@@ -21,12 +22,13 @@ const Abertura = () => {
 
   return (
     <>
-      <NavBarUsuario />
+      <LandingPage></LandingPage>
+      {/* <NavBarUsuario />
       <PaginaInicial>
         {isUserLoggedIn ? (
           <>
             <Titulo fontSize={20} texto="" />
-            <FormularioLogin2 />{' '}
+            <FormularioLogin2 /> <LandingPage></LandingPage>
           </>
         ) : (
           <>
@@ -49,7 +51,7 @@ const Abertura = () => {
             </div>
           </>
         )}
-      </PaginaInicial>
+      </PaginaInicial> */}
     </>
   )
 }
