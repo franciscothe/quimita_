@@ -82,8 +82,8 @@ export const L1: React.FC = () => {
         ) : (
           <ExibirMensagem>
             <p>{mensagem}</p>
-            <Botao to="/Cadastro" color={cores.laranja}>
-              CADASTRAR
+            <Botao to="/login" color={cores.laranja}>
+              ACESSAR
             </Botao>
           </ExibirMensagem>
         )}

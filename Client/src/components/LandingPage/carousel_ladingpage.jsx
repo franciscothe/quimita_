@@ -60,21 +60,6 @@ const CarouselSection = () => {
               </div>
             </TopCaption>
           </Carousel.Item>
-          <Carousel.Item>
-            <img className="d-block w-100" src={garoto} alt="Primeiro slide" />
-            <TopCaption>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center' // Centraliza o conteúdo interno da div
-                }}
-              >
-                {' '}
-                <h2>SUA APROVAÇÃO EM SUAS MÃOS</h2>
-              </div>
-            </TopCaption>
-          </Carousel.Item>
         </Carousel>
       </CarouselWrapper>
     </>
