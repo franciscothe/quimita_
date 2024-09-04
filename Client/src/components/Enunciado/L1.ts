@@ -5043,10 +5043,10 @@ export const Questoes: QuestoesType = {
           ex: '9',
           enunciado: 'L45-G5-EX-9.jpg',
           resposta: [
-            'L45-G5-RES-8.jpg',
-            'L45-G5-RES-8-parte2.jpg',
-            'L45-G5-RES-8-parte3.jpg',
-            'L45-G5-RES-8-parte4.jpg'
+            'L45-G5-RES-9.jpg',
+            'L45-G5-RES-9-parte2.jpg',
+            'L45-G5-RES-9-parte3.jpg',
+            'L45-G5-RES-9-parte4.jpg'
           ]
         }
       ]
