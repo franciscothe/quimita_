@@ -14,6 +14,7 @@ import {
 import Perfil from '../Perfil'
 import Assinatura from '../Assinatura'
 import RecuperarSenha from '../Recuperar_senha'
+import ChapterButtons from '../../components/Resolucoes_atkins'
 
 const isAuthenticated = () => {
   const token = localStorage.getItem('token')
@@ -72,5 +73,9 @@ export const Rotas = createBrowserRouter([
   {
     path: '/RecuperarSenha',
     element: <RecuperarSenha />
+  },
+  {
+    path: '/resolucoes_atkins',
+    element: <ChapterButtons />
   }
 ])
