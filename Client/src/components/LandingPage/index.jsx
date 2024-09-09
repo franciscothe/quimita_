@@ -54,17 +54,16 @@ function LandingPage() {
   return (
     <Container>
       <HeaderLanding />
-      <CarouselSection />
+      <StyledSection style={{ animationDelay: '0s' }}>
+        <CarouselSection />
+      </StyledSection>
+
       <StyledSection style={{ animationDelay: '0s' }}>
         <Aviso1 />
       </StyledSection>
       <StyledSection style={{ animationDelay: '0.2s' }}>
         <Metodologia />
       </StyledSection>
-      {/* <StyledSection style={{ animationDelay: '0.4s' }}>
-        <LicoesSection />
-      </StyledSection> */}
-      {/* <InfoSection /> */}
     </Container>
   )
 }

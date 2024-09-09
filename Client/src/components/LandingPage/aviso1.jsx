@@ -17,9 +17,6 @@ const Aviso1 = () => {
           <h2>Aproveite o acesso gratuito à nossa plataforma até 31/12/2024</h2>
         </h2>
       </div>
-      <Link to="/sumario" className="btn btn-lg">
-        Explore Agora
-      </Link>
     </section>
   )
 }

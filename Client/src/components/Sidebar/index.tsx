@@ -162,28 +162,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               }
             />
           </ListItem>
-          <ListItem button onClick={openAtkinsPares}>
+
+          <ListItem>
             <ListItemText
               primary={
-                <Typography variant="body1" fontWeight="bold">
-                  Resolução dos exercícios do livro Príncipios de Química
-                  (Atkins 3° edição) - PARES
-                </Typography>
+                <Nav.Link
+                  href="/resolucoes_atkins"
+                  style={{ marginTop: '10px' }}
+                >
+                  RESOLUÇÕES ATKINS (3° edição)
+                </Nav.Link>
               }
             />
           </ListItem>
-
-          <ListItem button onClick={openAtkinsImpares}>
-            <ListItemText
-              primary={
-                <Typography variant="body1" fontWeight="bold">
-                  Resolução dos exercícios do livro Príncipios de Química
-                  (Atkins 3° edição) - ÍMPARES
-                </Typography>
-              }
-            />
-          </ListItem>
-
           <ListItem>
             <ListItemText
               primary={
