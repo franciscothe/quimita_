@@ -93,11 +93,11 @@ app.post("/auth/register", async (req, res) => {
   if (!senha) {
     return res.status(422).json({ msg: "A senha é obrigatória" });
   }
-  if (senha !== confirmaSenha) {
-    return res
-      .status(422)
-      .json({ msg: "As senhas não conferem, tente novamente" });
-  }
+  // if (senha !== confirmaSenha) {
+  //   return res
+  //     .status(422)
+  //     .json({ msg: "As senhas não conferem, tente novamente" });
+  // }
 
   // Checagem de existência de usuário
   const userExists = await User.findOne({ email: email });
