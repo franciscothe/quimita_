@@ -10,7 +10,7 @@ const ContentBox = styled.div`
   justify-content: center;
   text-align: center;
   color: #000;
-  background-color: #ffffffe3;
+  background-color: rgb(255 241 44 / 64%);
   border-radius: 20px;
   padding: 20px 50px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Para dar destaque */

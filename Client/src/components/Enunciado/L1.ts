@@ -5506,7 +5506,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '2',
           enunciado: 'L49-G2-EX-2.jpg',
-          resposta: ['L49-G2-RES-2.jpg', 'L49-G2-RES-2-parte2.jpg']
+          resposta: ['L49-G2-RES-2.jpg']
         },
         {
           ex: '3',
@@ -5539,12 +5539,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '7',
           enunciado: 'L49-G2-EX-7.jpg',
-          resposta: [
-            'L49-G2-RES-7.jpg',
-            'L49-G2-RES-7-parte2.jpg',
-            'L49-G2-RES-7-parte3.jpg',
-            'L49-G2-RES-7-parte4.jpg'
-          ]
+          resposta: ['L49-G2-RES-7.jpg', 'L49-G2-RES-7-parte2.jpg']
         },
         {
           ex: '8',
@@ -5586,7 +5581,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '4',
           enunciado: ['L50-G1-EX-4.jpg', 'L50-G1-EX-4-parte2.jpg'],
-          resposta: ['L50-G1-RES-4.jpg', 'L50-G1-RES-4-parte2.jpg']
+          resposta: ['L50-G1-RES-4.jpg']
         },
         {
           ex: '5',
@@ -5630,7 +5625,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '5',
           enunciado: 'L50-G2-EX-5.jpg',
-          resposta: ['L50-G2-RES-5.jpg', 'L50-G2-RES-5-parte2.jpg']
+          resposta: ['L50-G2-RES-5.jpg']
         },
         {
           ex: '6',
@@ -5739,7 +5734,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '3',
           enunciado: 'L52-G1-EX-3.jpg',
-          resposta: ['L52-G1-RES-3.jpg', 'L52-G1-RES-3-parte2.jpg']
+          resposta: ['L52-G1-RES-3.jpg']
         },
         {
           ex: '4',
@@ -5749,7 +5744,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '5',
           enunciado: 'L52-G1-EX-5.jpg',
-          resposta: ['L52-G1-RES-5.jpg', 'L52-G1-RES-5-parte2.jpg']
+          resposta: ['L52-G1-RES-5.jpg']
         },
         {
           ex: '6',
@@ -5763,7 +5758,7 @@ export const Questoes: QuestoesType = {
         },
         {
           ex: '8',
-          enunciado: ['L52-G1-EX-8.jpg', 'L52-G1-EX-8-parte2.jpg'],
+          enunciado: ['L52-G1-EX-8.jpg'],
           resposta: 'L52-G1-RES-8.jpg'
         }
       ]

@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.d5289b2f.css",
-    "main.js": "/static/js/main.d1ea77d9.js",
+    "main.js": "/static/js/main.c6cf6411.js",
     "static/js/787.4edde0dd.chunk.js": "/static/js/787.4edde0dd.chunk.js",
     "static/media/Ativo 1.jpg": "/static/media/Ativo 1.1f96b8ce735c9d00392b.jpg",
     "static/media/check.webp": "/static/media/check.ca24067280c5813d294a.webp",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
     "main.d5289b2f.css.map": "/static/css/main.d5289b2f.css.map",
-    "main.d1ea77d9.js.map": "/static/js/main.d1ea77d9.js.map",
+    "main.c6cf6411.js.map": "/static/js/main.c6cf6411.js.map",
     "787.4edde0dd.chunk.js.map": "/static/js/787.4edde0dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d5289b2f.css",
-    "static/js/main.d1ea77d9.js"
+    "static/js/main.c6cf6411.js"
   ]
 }
