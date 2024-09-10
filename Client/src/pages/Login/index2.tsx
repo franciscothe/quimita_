@@ -13,7 +13,6 @@ import { Ccontainer, ImagemTutorial } from './styles'
 function BasicExample() {
   return (
     <Ccontainer>
-      <Logotipo></Logotipo>
       <BotaoClaro to="/Sumario" color={cores.laranja}>
         VER LISTA DE LIÇÕES
       </BotaoClaro>

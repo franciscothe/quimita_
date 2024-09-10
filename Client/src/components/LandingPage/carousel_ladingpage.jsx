@@ -48,6 +48,8 @@ const ButtonContainer = styled.div`
     text-decoration: none; /* Remove sublinhado dos links */
     display: flex; /* Garante que os botões sejam exibidos como blocos flex */
     align-items: center;
+    background-color: #73e794; /* Cor de fundo ao passar o mouse */
+
     &:hover {
       background-color: #0056b3; /* Cor de fundo ao passar o mouse */
     }

@@ -31,9 +31,9 @@ const CadastroForm = () => {
         .email('E-mail inválido')
         .required('Campo obrigatório'),
       senha: Yup.string().required('Campo obrigatório'),
-      confirmaSenha: Yup.string()
-        .oneOf([Yup.ref('senha')], 'As senhas não coincidem')
-        .required('Campo obrigatório'),
+      // confirmaSenha: Yup.string()
+      //   .oneOf([Yup.ref('senha')], 'As senhas não coincidem')
+      //   .required('Campo obrigatório'),
       telefone: Yup.string()
         .required('Campo obrigatório')
         .matches(
@@ -115,7 +115,7 @@ const CadastroForm = () => {
             <p style={{ color: 'red' }}>{formik.errors.senha}</p>
           )}
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="confirmaSenha">Confirmação de Senha:</label>
           <StyledInput
             type="password"
@@ -127,7 +127,7 @@ const CadastroForm = () => {
           {formik.touched.confirmaSenha && formik.errors.confirmaSenha && (
             <p style={{ color: 'red' }}>{formik.errors.confirmaSenha}</p>
           )}
-        </div>
+        </div> */}
         <div>
           <label htmlFor="telefone">Telefone:</label>
           <IMaskInput
