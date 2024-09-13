@@ -1,4 +1,4 @@
-// src/components/FreeAccessSection.js
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import imagem1 from './check.webp' // Substitua com o caminho das suas imagens
 import { Link } from 'react-router-dom'
@@ -34,7 +34,7 @@ const Icon = styled.img`
 
 const ButtonContainer = styled.div`
   display: flex; /* Coloca os botões lado a lado */
-  justify-content: center; /* Espaço entre os botões */
+  justify-content: space-between; /* Espaço entre os botões */
   align-items: center; /* Centraliza verticalmente os botões */
   width: 100%; /* Faz o contêiner ocupar toda a largura disponível */
   margin-top: 10px;
@@ -57,6 +57,13 @@ const ButtonContainer = styled.div`
 `
 
 const FreeAccessSection = () => {
+  const [hasToken, setHasToken] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    setHasToken(!!token) // Define hasToken como true se o token estiver presente, caso contrário, false
+  }, [])
+
   return (
     <ContentBox>
       <TitleContainer>
@@ -67,6 +74,11 @@ const FreeAccessSection = () => {
         <Link to="/sumario" className="btn btn-lg">
           LISTA DE LIÇÕES
         </Link>
+        {!hasToken && (
+          <Link to="/Cadastrar" className="btn btn-lg">
+            Cadastrar
+          </Link>
+        )}
       </ButtonContainer>
     </ContentBox>
   )
