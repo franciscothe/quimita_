@@ -23386,5 +23386,58 @@ export const Questoes: QuestoesType = {
         }
       ]
     }
+  },
+  L612: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L611-G1-EX-1.jpg'],
+          resposta: [
+            'L611-G1-RES-1.jpg',
+            'L611-G1-RES-1-parte2.jpg',
+            'L611-G1-RES-1-parte3.jpg'
+          ]
+        }
+      ]
+    }
+  },
+  L613: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L613-G1-EX-1.jpg'],
+          resposta: ['L613-G1-RES-1.jpg', 'L613-G1-RES-1-parte2.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L613-G1-EX-2.jpg'],
+          resposta: ['L613-G1-RES-2.jpg', 'L613-G1-RES-2-parte2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L613-G1-EX-3.jpg'],
+          resposta: ['L613-G1-RES-3.jpg', 'L613-G1-RES-3-parte2.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L613-G1-EX-4.jpg'],
+          resposta: ['L613-G1-RES-4.jpg', 'L613-G1-RES-4-parte2.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L613-G1-EX-5.jpg'],
+          resposta: ['L613-G1-RES-5.jpg', 'L613-G1-RES-5-parte2.jpg']
+        },
+        {
+          ex: '',
+          enunciado: ['L613-G1-EX-6.jpg'],
+          resposta: ['L613-G1-RES-6.jpg', 'L613-G1-RES-6-parte2.jpg']
+        }
+      ]
+    }
   }
 }

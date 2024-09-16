@@ -58,6 +58,11 @@ const FormularioLogin = () => {
 
   return (
     <>
+      <h3>
+        Caso seja sua primeira vez, crie sua conta clicando em{' '}
+        <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
+      </h3>
+
       <form onSubmit={handleSubmit}>
         <div>
           <StyledInput
@@ -81,7 +86,6 @@ const FormularioLogin = () => {
         <BtnEnviar type="submit">ENTRAR</BtnEnviar>
       </form>
       <DivCriarConta>
-        <LinkCriarConta to="/Cadastro"> CRIAR CONTA</LinkCriarConta>
         <LinkCriarConta to="/RecuperarSenha"> RECUPERAR SENHA</LinkCriarConta>
       </DivCriarConta>
     </>

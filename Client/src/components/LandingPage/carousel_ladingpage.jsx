@@ -54,6 +54,10 @@ const ButtonContainer = styled.div`
       background-color: #0056b3; /* Cor de fundo ao passar o mouse */
     }
   }
+
+  .btn:first-child {
+    margin-right: 10px; /* Adiciona margem à direita do primeiro botão */
+  }
 `
 
 const FreeAccessSection = () => {
@@ -71,14 +75,14 @@ const FreeAccessSection = () => {
         <Icon src={imagem1} alt="Ícone" />
       </TitleContainer>
       <ButtonContainer>
-        <Link to="/sumario" className="btn btn-lg">
-          LISTA DE LIÇÕES
-        </Link>
         {!hasToken && (
-          <Link to="/Cadastrar" className="btn btn-lg">
+          <Link to="/Cadastro" className="btn btn-lg">
             Cadastrar
           </Link>
         )}
+        <Link to="/sumario" className="btn btn-lg">
+          LISTA DE LIÇÕES
+        </Link>
       </ButtonContainer>
     </ContentBox>
   )
