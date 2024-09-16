@@ -6255,7 +6255,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '4',
           enunciado: 'L58-G1-EX-4.jpg',
-          resposta: ['L58-G1-RES-4.jpg', 'L58-G1-RES-4-parte2.jpg']
+          resposta: ['L58-G1-RES-4.jpg']
         }
       ]
     },
@@ -6279,7 +6279,7 @@ export const Questoes: QuestoesType = {
         },
         {
           ex: '4',
-          enunciado: ['L58-G2-EX-4.jpg', 'L58-G2-EX-4-parte2.jpg'],
+          enunciado: ['L58-G2-EX-4.jpg'],
           resposta: 'L58-G2-RES-4.jpg'
         },
         {
@@ -6342,7 +6342,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '6',
           enunciado: 'L59-G1-EX-6.jpg',
-          resposta: ['L59-G1-RES-6.jpg', 'L59-G1-RES-6-parte2.jpg']
+          resposta: ['L59-G1-RES-6.jpg']
         }
       ]
     },
@@ -6382,7 +6382,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '1',
           enunciado: 'L59-G3-EX-1.jpg',
-          resposta: ['L59-G3-RES-1.jpg', 'L59-G3-RES-1-parte2.jpg']
+          resposta: ['L59-G3-RES-1.jpg']
         },
         {
           ex: '2',
