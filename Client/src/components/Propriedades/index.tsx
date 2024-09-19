@@ -2036,7 +2036,7 @@ export const TodasMaterias: Materia[] = [
         apostila: ''
       },
       {
-        linkLicao: './L613',
+        linkLicao: './L612',
         id: 'L612',
         nomeLicao: 'L612 - FUVEST - 1° Fase (2023-2024)',
         url: '',

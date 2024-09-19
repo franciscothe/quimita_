@@ -23380,12 +23380,57 @@ export const Questoes: QuestoesType = {
       exercicios: [
         {
           ex: '1',
-          enunciado: ['L611-G1-EX-1.jpg'],
+          enunciado: ['L612-G1-EX-1.jpg'],
+          resposta: ['L612-G1-RES-1.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L612-G1-EX-2.jpg'],
+          resposta: ['L612-G1-RES-2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L612-G1-EX-3.jpg'],
+          resposta: ['L612-G1-RES-3.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L612-G1-EX-4.jpg'],
+          resposta: ['L612-G1-RES-4.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L612-G1-EX-5.jpg', 'L612-G1-EX-5-parte2.jpg'],
+          resposta: ['L612-G1-RES-5.jpg']
+        },
+        {
+          ex: '6',
+          enunciado: ['L612-G1-EX-6.jpg'],
+          resposta: ['L612-G1-RES-6.jpg']
+        },
+        {
+          ex: '7',
+          enunciado: ['L612-G1-EX-7.jpg'],
+          resposta: ['L612-G1-RES-7.jpg']
+        },
+        {
+          ex: '8',
+          enunciado: ['L612-G1-EX-8.jpg'],
+          resposta: ['L612-G1-RES-8.jpg']
+        },
+        {
+          ex: '9',
+          enunciado: ['L612-G1-EX-9.jpg'],
           resposta: [
-            'L611-G1-RES-1.jpg',
-            'L611-G1-RES-1-parte2.jpg',
-            'L611-G1-RES-1-parte3.jpg'
+            'L612-G1-RES-9.jpg',
+            'L612-G1-RES-9-parte2.jpg',
+            'L612-G1-RES-9-parte3.jpg'
           ]
+        },
+        {
+          ex: '10',
+          enunciado: ['L612-G1-EX-10.jpg'],
+          resposta: ['L612-G1-RES-10.jpg']
         }
       ]
     }
