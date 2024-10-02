@@ -18551,16 +18551,6 @@ export const Questoes: QuestoesType = {
           ex: '16',
           enunciado: ['L178-G3-EX-16.jpg'],
           resposta: ['L178-G3-RES-16.jpg']
-        },
-        {
-          ex: '17',
-          enunciado: ['L178-G3-EX-17.jpg'],
-          resposta: ['L178-G3-RES-17.jpg']
-        },
-        {
-          ex: '18',
-          enunciado: ['L178-G3-EX-18.jpg'],
-          resposta: ['L178-G3-RES-18.jpg']
         }
       ]
     }
