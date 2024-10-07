@@ -4,7 +4,7 @@ import { Props } from '.'
 export const MateriasSumario = styled.nav<Props>`
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
-  margin: 10px 30px;
+  margin: 10px 10px;
 
   .guiaMateria {
     margin-bottom: -20px;
@@ -22,8 +22,9 @@ export const MateriasSumario = styled.nav<Props>`
 
   .ListaMaterias {
     background-color: ${(props) => props.fundo2};
-    margin-left: 20px;
+    margin-left: 10px;
     padding-top: 25px;
+    padding-bottom: 3px;
     position: relative;
     z-index: 0;
     border-radius: 20px;

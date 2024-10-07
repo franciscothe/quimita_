@@ -29,6 +29,10 @@ const StyledSection = styled.section`
   border-radius: 12px;
   margin: 30px 0; /* Aumenta o respiro entre as sections */
   padding: 30px; /* Mais espaço interno para destacar o conteúdo */
+  animation-delay: 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(
     135deg,
     #f7f9fa 0%,
