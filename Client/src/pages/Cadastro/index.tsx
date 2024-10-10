@@ -41,7 +41,7 @@ const CadastroForm = () => {
           'Formato inválido. Ex: (99) 9 9999-9999'
         ) // Validação do telefone
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setSubmitting }) => {
       try {
         // const response = await axios.post('/auth/register', values)
         const response = await axios.post(
@@ -64,6 +64,8 @@ const CadastroForm = () => {
         } else {
           alert('Ocorreu um erro. Tente novamente mais tarde.')
         }
+      } finally {
+        setSubmitting(false) // Define isSubmitting como false após a conclusão
       }
     }
   })
@@ -144,7 +146,9 @@ const CadastroForm = () => {
             <p style={{ color: 'red' }}>{formik.errors.telefone}</p>
           )}
         </div>
-        <BtnEnviar type="submit">Cadastrar</BtnEnviar>
+        <BtnEnviar type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
+        </BtnEnviar>{' '}
       </form>
     </Container>
   )

@@ -43,6 +43,8 @@ https.createServer(sslOptions, app).listen(5002, () => {
   console.log("Servidor HTTPS rodando na porta 5002");
 });
 
+
+
 // Configuração do servidor HTTP para redirecionar para HTTPS
 http
   .createServer((req, res) => {
@@ -191,6 +193,17 @@ app.post("/auth/login", async (req, res) => {
     res.status(500).json({
       msg: "Aconteceu um erro no servidor",
     });
+  }
+});
+
+
+app.delete("/delete-users", async (req, res) => {
+  try {
+    const result = await User.deleteMany({  cpf: { $regex: /702.926.161-55/i } });
+    res.status(200).json({ message: `${result.deletedCount} documentos foram excluídos.` });
+  } catch (error) {
+    console.error("Erro ao excluir documentos:", error);
+    res.status(500).json({ error: "Erro ao excluir documentos." });
   }
 });
 
