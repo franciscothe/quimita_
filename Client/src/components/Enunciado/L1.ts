@@ -6925,7 +6925,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '6',
           enunciado: 'L64-G2-EX-6.jpg',
-          resposta: ['L64-G2-RES-6.jpg', 'L64-G2-RES-6-parte2.jpg']
+          resposta: ['L64-G2-RES-6.jpg']
         }
       ]
     },
@@ -7178,6 +7178,26 @@ export const Questoes: QuestoesType = {
           ex: '5',
           enunciado: 'L65-G3-EX-5.jpg',
           resposta: 'L65-G3-RES-5.jpg'
+        },
+        {
+          ex: '6',
+          enunciado: 'L65-G3-EX-6.jpg',
+          resposta: 'L65-G3-RES-6.jpg'
+        },
+        {
+          ex: '7',
+          enunciado: 'L65-G3-EX-7.jpg',
+          resposta: 'L65-G3-RES-7.jpg'
+        },
+        {
+          ex: '8',
+          enunciado: 'L65-G3-EX-8.jpg',
+          resposta: 'L65-G3-RES-8.jpg'
+        },
+        {
+          ex: '9',
+          enunciado: 'L65-G3-EX-9.jpg',
+          resposta: 'L65-G3-RES-9.jpg'
         }
       ]
     },
@@ -7291,30 +7311,6 @@ export const Questoes: QuestoesType = {
             'L65-G4-RES-20-parte2.jpg',
             'L65-G4-RES-20-parte3.jpg'
           ]
-        },
-        {
-          ex: '21',
-          enunciado: 'L65-G4-EX-21.jpg',
-          resposta: 'L65-G4-RES-21.jpg'
-        },
-        {
-          ex: '22',
-          enunciado: 'L65-G4-EX-22.jpg',
-          resposta: [
-            'L65-G4-RES-22.jpg',
-            'L65-G4-RES-22-parte2.jpg',
-            'L65-G4-RES-22-parte3.jpg'
-          ]
-        },
-        {
-          ex: '23',
-          enunciado: 'L65-G4-EX-23.jpg',
-          resposta: ['L65-G4-RES-23.jpg', 'L65-G4-RES-23-parte2.jpg']
-        },
-        {
-          ex: '24',
-          enunciado: ['L65-G4-EX-24.jpg', 'L65-G4-EX-24-parte2.jpg'],
-          resposta: 'L65-G4-RES-24.jpg'
         }
       ]
     }
