@@ -197,15 +197,15 @@ app.post("/auth/login", async (req, res) => {
 });
 
 
-app.delete("/delete-users", async (req, res) => {
-  try {
-    const result = await User.deleteMany({  cpf: { $regex: /702.926.161-55/i } });
-    res.status(200).json({ message: `${result.deletedCount} documentos foram excluídos.` });
-  } catch (error) {
-    console.error("Erro ao excluir documentos:", error);
-    res.status(500).json({ error: "Erro ao excluir documentos." });
-  }
-});
+// app.delete("/delete-users", async (req, res) => {
+//   try {
+//     const result = await User.deleteMany({  cpf: { $regex: /702.926.161-55/i } });
+//     res.status(200).json({ message: `${result.deletedCount} documentos foram excluídos.` });
+//   } catch (error) {
+//     console.error("Erro ao excluir documentos:", error);
+//     res.status(500).json({ error: "Erro ao excluir documentos." });
+//   }
+// });
 
 //check token
 const checkToken = (req, res, next) => {

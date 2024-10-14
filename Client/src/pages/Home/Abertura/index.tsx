@@ -10,7 +10,7 @@ const Abertura = () => {
     const token = localStorage.getItem('token')
     if (token) {
       // Redireciona para /user/perfil se o usuário estiver logado
-      navigate('/user/perfil')
+      navigate('/login')
     }
   }, [navigate]) // Adicione navigate como dependência do useEffect
 
