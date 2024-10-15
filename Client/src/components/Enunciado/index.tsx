@@ -23,6 +23,7 @@ import { TodasMaterias } from '../Propriedades'
 import LicaoDetalhes from '../Nomelicao'
 import { MateriasSumario } from '../ExibicaoSumario/styles'
 import PdfModalButton from '../Sidebar/TabelaPeriodicaButton'
+import BarraPesquisa from '../BarraPesquisa'
 
 export const EnunciadosL1Grupo1 = () => {
   const { id } = useParams<{ id: string }>()
@@ -88,6 +89,7 @@ export const EnunciadosL1Grupo1 = () => {
           <h3> {id} - Grupo 1</h3>
 
           <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+          <BarraPesquisa />
         </>
       </TopoPagina>
       <BarraNavegacao>
@@ -102,7 +104,7 @@ export const EnunciadosL1Grupo1 = () => {
           }}
         >
           <Button onClick={toggleSidebar} variant="contained" color="primary">
-            <IconSidebar />
+            Tabelas
           </Button>
           <PdfModalButton />
         </div>

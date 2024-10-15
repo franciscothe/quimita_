@@ -28,7 +28,7 @@ function PdfModalButton() {
           )
         }
       >
-        <IconTable />
+        Tabela Periódica{' '}
       </Button>
 
       {/* Modal que exibe o PDF */}
