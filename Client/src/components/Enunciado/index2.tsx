@@ -23,6 +23,8 @@ import axios from 'axios' // Importar o axios
 import { TodasMaterias } from '../Propriedades'
 import LicaoDetalhes from '../Nomelicao'
 import { MateriasSumario } from '../ExibicaoSumario/styles'
+import BarraPesquisa from '../BarraPesquisa'
+import PdfModalButton from '../Sidebar/TabelaPeriodicaButton'
 
 export const EnunciadosL1Grupo2 = () => {
   const { id } = useParams<{ id: string }>()
@@ -87,12 +89,26 @@ export const EnunciadosL1Grupo2 = () => {
           <h3> {id} - Grupo 2</h3>
 
           <BotaoIrSumario to="/Sumario">Lições</BotaoIrSumario>
+          <BarraPesquisa />
         </>
       </TopoPagina>
       <BarraNavegacao>
-        <Button onClick={toggleSidebar} variant="contained" color="primary">
-          <IconSidebar />
-        </Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '1rem',
+            height: '100%',
+            marginRight: '10px'
+          }}
+        >
+          <Button onClick={toggleSidebar} variant="contained" color="primary">
+            Tabelas
+          </Button>
+          <PdfModalButton />
+        </div>
+
         <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
         <>
           <div className="navExercicios">
