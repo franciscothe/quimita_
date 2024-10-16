@@ -96,7 +96,6 @@ const BarraPesquisa = () => {
             onChange={handleInputChange} // Quando o usuário digita, handleInputChange é chamada para atualizar o estado e buscar em tempo real.
             style={{ marginBottom: '20px' }}
           />
-          {/* Mostrar resultados da busca em tempo real */}
           <div style={{ marginTop: '20px', width: '100%' }}>
             {resultados.length > 0 && (
               <div>
