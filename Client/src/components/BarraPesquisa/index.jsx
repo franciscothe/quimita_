@@ -64,7 +64,12 @@ const BarraPesquisa = () => {
   return (
     <div>
       {/* Ícone de Pesquisa */}
-      <IconButton onClick={handleOpenModal}>
+      <IconButton
+        style={{
+          backgroundColor: '#d5df19'
+        }}
+        onClick={handleOpenModal}
+      >
         <IoSearch /> {/* Exibe o ícone de pesquisa */}
       </IconButton>
 
