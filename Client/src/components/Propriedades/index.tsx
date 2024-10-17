@@ -186,7 +186,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L201',
         id: 'L201',
-        nomeLicao: 'L201 - Energia Cinética dos Gases',
+        nomeLicao: 'L201 - (18-B) - Energia Cinética dos Gases',
         url: 'https://www.youtube.com/embed/TIMOS3QNSpI?si=iGCcckaR2aHX2hPv',
         apostila:
           'https://drive.google.com/file/d/1rcxR2BWUi16B_5C-chByZvi4mUrZ9BuR/preview'
@@ -266,7 +266,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L202',
         id: 'L202',
-        nomeLicao: 'L202 - Livre Percurso Médio',
+        nomeLicao: 'L202 - (27 B) - Livre Percurso Médio',
         url: 'https://www.youtube.com/embed/7zF7-Jwaomg?si=cpKONbkGDtrLoAQE',
         apostila:
           'https://drive.google.com/file/d/1IBA9_qNRdbTQJ53klK2tmu7QYcichASq/preview'
@@ -354,7 +354,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L203',
         id: 'L203',
-        nomeLicao: 'L203 - Reações Sucessivas',
+        nomeLicao: 'L203 - (36 B) - Reações Sucessivas',
         url: 'https://www.youtube.com/embed/mngnIoeTJlA?si=sfOfPLgdJxOympLf',
         apostila:
           'https://drive.google.com/file/d/1hoKdsEi3xgOFvQVUqbqBpLoLrs-mDCEE/preview'
@@ -434,7 +434,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L204',
         id: 'L204',
-        nomeLicao: 'L204 - Poder Calorífico dos Alimentos',
+        nomeLicao: 'L204 (43 B) - Poder Calorífico dos Alimentos',
         url: 'https://www.youtube.com/embed/MosLjWg0Jjo',
         apostila:
           'https://drive.google.com/file/d/1hmTm2BPp3BqD4BWRGDoKJHHVrCrhWklz/preview'
