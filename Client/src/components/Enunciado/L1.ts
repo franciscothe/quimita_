@@ -15957,52 +15957,52 @@ export const Questoes: QuestoesType = {
       exercicios: [
         {
           ex: '1',
-          enunciado: ['L149-G1-EX-1.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-1.jpg'],
           resposta: ['L149-G1-RES-1.jpg']
         },
         {
           ex: '2',
-          enunciado: ['L149-G1-EX-2.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-2.jpg'],
           resposta: ['L149-G1-RES-2.jpg', 'L149-G1-RES-2-parte2.jpg']
         },
         {
           ex: '3',
-          enunciado: ['L149-G1-EX-3.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-3.jpg'],
           resposta: ['L149-G1-RES-3.jpg']
         },
         {
           ex: '4',
-          enunciado: ['L149-G1-EX-4.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-4.jpg'],
           resposta: ['L149-G1-RES-4.jpg', 'L149-G1-RES-4-parte2.jpg']
         },
         {
           ex: '5',
-          enunciado: ['L149-G1-EX-5.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-5.jpg'],
           resposta: ['L149-G1-RES-5.jpg']
         },
         {
           ex: '6',
-          enunciado: ['L149-G1-EX-6.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-6.jpg'],
           resposta: ['L149-G1-RES-6.jpg']
         },
         {
           ex: '7',
-          enunciado: ['L149-G1-EX-7.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-7.jpg'],
           resposta: ['L149-G1-RES-7.jpg']
         },
         {
           ex: '8',
-          enunciado: ['L149-G1-EX-8.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-8.jpg'],
           resposta: ['L149-G1-RES-8.jpg']
         },
         {
           ex: '9',
-          enunciado: ['L149-G1-EX-9.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-9.jpg'],
           resposta: ['L149-G1-RES-9.jpg']
         },
         {
           ex: '10',
-          enunciado: ['L149-G1-EX-10.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G1-EX-10.jpg'],
           resposta: ['L149-G1-RES-10.jpg']
         }
       ]
@@ -16012,22 +16012,22 @@ export const Questoes: QuestoesType = {
       exercicios: [
         {
           ex: '1',
-          enunciado: ['L149-G2-EX-1.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-1.jpg'],
           resposta: ['L149-G2-RES-1.jpg']
         },
         {
           ex: '2',
-          enunciado: ['L149-G2-EX-2.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-2.jpg'],
           resposta: ['L149-G2-RES-2.jpg']
         },
         {
           ex: '3',
-          enunciado: ['L149-G2-EX-3.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-3.jpg'],
           resposta: ['L149-G2-RES-3.jpg', 'L149-G2-RES-3-parte2.jpg']
         },
         {
           ex: '4',
-          enunciado: ['L149-G2-EX-4.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-4.jpg'],
           resposta: [
             'L149-G2-RES-4.jpg',
             'L149-G2-RES-4-parte2.jpg',
@@ -16036,12 +16036,12 @@ export const Questoes: QuestoesType = {
         },
         {
           ex: '5',
-          enunciado: ['L149-G2-EX-5.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-5.jpg'],
           resposta: ['L149-G2-RES-5.jpg']
         },
         {
           ex: '6',
-          enunciado: ['L149-G2-EX-6.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-6.jpg'],
           resposta: [
             'L149-G2-RES-6.jpg',
             'L149-G2-RES-6-parte2.jpg',
@@ -16050,7 +16050,7 @@ export const Questoes: QuestoesType = {
         },
         {
           ex: '7',
-          enunciado: ['L149-G2-EX-7.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-7.jpg'],
           resposta: [
             'L149-G2-RES-7.jpg',
             'L149-G2-RES-7-parte2.jpg',
@@ -16059,12 +16059,12 @@ export const Questoes: QuestoesType = {
         },
         {
           ex: '8',
-          enunciado: ['L149-G2-EX-8.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-8.jpg'],
           resposta: ['L149-G2-RES-8.jpg']
         },
         {
           ex: '9',
-          enunciado: ['L149-G2-EX-9.jpg'],
+          enunciado: ['L149-G1-EX-FORMULAS.jpg', 'L149-G2-EX-9.jpg'],
           resposta: ['L149-G2-RES-9.jpg', 'L149-G2-RES-9-parte2.jpg']
         }
       ]
