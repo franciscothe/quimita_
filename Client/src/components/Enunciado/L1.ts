@@ -16142,9 +16142,7 @@ export const Questoes: QuestoesType = {
           resposta: [
             'L150-G1-RES-15.jpg',
             'L150-G1-RES-15-parte2.jpg',
-            'L150-G1-RES-15-parte3.jpg',
-            'L150-G1-RES-15-parte4.jpg',
-            'L150-G1-RES-15-parte5.jpg'
+            'L150-G1-RES-15-parte3.jpg'
           ]
         }
       ]
