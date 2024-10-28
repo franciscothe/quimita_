@@ -180,19 +180,12 @@ export const EnunciadosL1Grupo1 = () => {
               {Array.isArray(exercicioAtual.resposta) ? (
                 <ResolucaoImg>
                   {exercicioAtual.resposta.map((url, index) => (
-                    <img
-                      key={index}
-                      src={`/Images/${id}/${url}`}
-                      alt={`Resposta do exercício ${exercicioAtual.ex}`}
-                    />
+                    <img key={index} src={`/Images/${id}/${url}`} />
                   ))}
                 </ResolucaoImg>
               ) : (
                 <ResolucaoImg>
-                  <img
-                    src={`/Images/${id}/${exercicioAtual.resposta}`}
-                    alt={`Resposta do exercício ${exercicioAtual.ex}`}
-                  />
+                  <img src={`/Images/${id}/${exercicioAtual.resposta}`} />
                 </ResolucaoImg>
               )}
             </div>
