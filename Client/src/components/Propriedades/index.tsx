@@ -672,6 +672,15 @@ export const TodasMaterias: Materia[] = [
           'https://drive.google.com/file/d/1jND8GCmvl2z1RgSMTppmvCUO3NO2qFAa/preview'
       },
       {
+        linkLicao: './L205',
+        id: 'L205',
+        nomeLicao:
+          'L205 - (71-B) Complemento - Volumetria 2 (Cálculo de Pureza)',
+        url: 'https://www.youtube.com/embed/VNc1OKfmqSA',
+        apostila:
+          'https://drive.google.com/file/d/1ITY90WtlKVHdlkW_bkgTagH56XEZ3HiE/preview'
+      },
+      {
         linkLicao: './L72',
         id: 'L72',
         nomeLicao: 'L72 - Mistura aleatória de dois reagentes',
