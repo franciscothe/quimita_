@@ -186,7 +186,7 @@ export const TodasMaterias: Materia[] = [
       {
         linkLicao: './L201',
         id: 'L201',
-        nomeLicao: 'L201 - (18-B) - Energia Cinética dos Gases',
+        nomeLicao: 'L18B - (L201) - Energia Cinética dos Gases',
         url: 'https://www.youtube.com/embed/TIMOS3QNSpI?si=iGCcckaR2aHX2hPv',
         apostila:
           'https://drive.google.com/file/d/1rcxR2BWUi16B_5C-chByZvi4mUrZ9BuR/preview'

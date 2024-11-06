@@ -8567,6 +8567,183 @@ export const Questoes: QuestoesType = {
       ]
     }
   },
+  L75: {
+    grupo1: {
+      id: '1',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L75-G1-EX-1.jpg'],
+          resposta: ['L75-G1-RES-1.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L75-G1-EX-2.jpg'],
+          resposta: ['L75-G1-RES-2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L75-G1-EX-3.jpg'],
+          resposta: ['L75-G1-RES-3.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L75-G1-EX-4.jpg'],
+          resposta: ['L75-G1-RES-4.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L75-G1-EX-5.jpg'],
+          resposta: ['L75-G1-RES-5.jpg']
+        },
+        {
+          ex: '6',
+          enunciado: ['L75-G1-EX-6.jpg'],
+          resposta: ['L75-G1-RES-6.jpg']
+        },
+        {
+          ex: '7',
+          enunciado: ['L75-G1-EX-7.jpg'],
+          resposta: ['L75-G1-RES-7.jpg']
+        },
+        {
+          ex: '8',
+          enunciado: ['L75-G1-EX-8.jpg'],
+          resposta: [
+            'L75-G1-RES-8.jpg',
+            'L75-G1-RES-8-parte2.jpg',
+            'L75-G1-RES-8-parte3.jpg'
+          ]
+        },
+        {
+          ex: '9',
+          enunciado: ['L75-G1-EX-9.jpg'],
+          resposta: ['L75-G1-RES-9.jpg', 'L75-G1-RES-9-parte2.jpg']
+        },
+        {
+          ex: '10',
+          enunciado: ['L75-G1-EX-10.jpg'],
+          resposta: ['L75-G1-RES-10.jpg']
+        }
+      ]
+    },
+    grupo2: {
+      id: '2',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L75-G2-EX-1.jpg'],
+          resposta: ['L75-G2-RES-1.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L75-G2-EX-2.jpg'],
+          resposta: ['L75-G2-RES-2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L75-G2-EX-3.jpg'],
+          resposta: ['L75-G2-RES-3.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L75-G2-EX-4.jpg'],
+          resposta: ['L75-G2-RES-4.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L75-G2-EX-5.jpg'],
+          resposta: ['L75-G2-RES-5.jpg']
+        },
+        {
+          ex: '6',
+          enunciado: ['L75-G2-EX-6.jpg'],
+          resposta: ['L75-G2-RES-6.jpg']
+        },
+        {
+          ex: '7',
+          enunciado: ['L75-G2-EX-7.jpg'],
+          resposta: ['L75-G2-RES-7.jpg']
+        },
+        {
+          ex: '8',
+          enunciado: ['L75-G2-EX-8.jpg'],
+          resposta: ['L75-G2-RES-8.jpg']
+        }
+      ]
+    },
+    grupo3: {
+      id: '3',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L75-G3-EX-1.jpg'],
+          resposta: ['L75-G3-RES-1.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L75-G3-EX-2.jpg'],
+          resposta: ['L75-G3-RES-2.jpg']
+        },
+        {
+          ex: '3',
+          enunciado: ['L75-G3-EX-3.jpg'],
+          resposta: ['L75-G3-RES-3.jpg']
+        },
+        {
+          ex: '4',
+          enunciado: ['L75-G3-EX-4.jpg'],
+          resposta: ['L75-G3-RES-4.jpg']
+        },
+        {
+          ex: '5',
+          enunciado: ['L75-G3-EX-5.jpg'],
+          resposta: ['L75-G3-RES-5.jpg', 'L75-G3-RES-5-parte2.jpg']
+        },
+        {
+          ex: '6',
+          enunciado: ['L75-G3-EX-6.jpg'],
+          resposta: [
+            'L75-G3-RES-6.jpg',
+            'L75-G3-RES-6-parte2.jpg',
+            'L75-G3-RES-6-parte3.jpg'
+          ]
+        },
+        {
+          ex: '7',
+          enunciado: ['L75-G3-EX-7.jpg'],
+          resposta: ['L75-G3-RES-7.jpg']
+        },
+        {
+          ex: '8',
+          enunciado: ['L75-G3-EX-8.jpg'],
+          resposta: ['L75-G3-RES-8.jpg']
+        }
+      ]
+    },
+    grupo4: {
+      id: '4',
+      exercicios: [
+        {
+          ex: '1',
+          enunciado: ['L75-G4-EX-1.jpg'],
+          resposta: ['L75-G4-RES-1.jpg']
+        },
+        {
+          ex: '2',
+          enunciado: ['L75-G4-EX-2.jpg'],
+          resposta: [
+            'L75-G4-RES-2.jpg',
+            'L75-G4-RES-2-parte2.jpg',
+            'L75-G4-RES-2-parte3.jpg',
+            'L75-G4-RES-2-parte4.jpg',
+            'L75-G4-RES-2-parte5.jpg',
+            'L75-G4-RES-2-parte6.jpg'
+          ]
+        }
+      ]
+    }
+  },
   L76: {
     grupo1: {
       id: '1',
