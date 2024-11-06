@@ -8511,7 +8511,6 @@ export const Questoes: QuestoesType = {
           resposta: [
             'L74-G2-RES-10.jpg',
             'L74-G2-RES-10-parte2.jpg',
-            'L74-G2-RES-10-parte3.jpg'
           ]
         },
         {
