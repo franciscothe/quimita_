@@ -8508,10 +8508,7 @@ export const Questoes: QuestoesType = {
         {
           ex: '10',
           enunciado: 'L74-G2-EX-10.jpg',
-          resposta: [
-            'L74-G2-RES-10.jpg',
-            'L74-G2-RES-10-parte2.jpg',
-          ]
+          resposta: ['L74-G2-RES-10.jpg', 'L74-G2-RES-10-parte2.jpg']
         },
         {
           ex: '11',
